@@ -9,6 +9,21 @@ function printPrimitives() {
   let uniqueId = Symbol('id'); // Symbol
   let largeNumber = 9007199254740991n; // BigInt
 
+  console.log(typeof name); // Výstup: string
+  console.log(typeof age); // Výstup: number
+
+  typeof "Hello"; // Returns: "string"
+  typeof 42; // Returns: "number"
+  typeof true; // Returns: "boolean"
+  typeof undefined; // Returns: "undefined"
+  typeof null; // Returns: "object" (a known quirk in JavaScript)
+  typeof { name: "Alice" }; // Returns: "object"
+  typeof [1, 2, 3]; // Returns: "object"
+  typeof function () { }; // Returns: "function"
+  typeof Symbol('id'); // Returns: "symbol"
+  typeof 10n; // Returns: "bigint"
+
+
   console.log('Meno:', name, 'Typ:', typeof name);
   console.log('Vek:', age, 'Typ:', typeof age);
   console.log('Je študent:', isStudent, 'Typ:', typeof isStudent);
@@ -50,7 +65,7 @@ function comparisonOperators() {
   let y = 5;
 
   console.log('Rovná sa:', x == y); // Výstup: false
-  console.log('Nerovná sa:', x != y); // Výstup: true
+  console.log('Nerovná sa:', x = !y); // Výstup: true
   console.log('Väčšie ako:', x > y); // Výstup: true
   console.log('Menšie ako:', x < y); // Výstup: false
   console.log('Väčšie alebo rovné:', x >= y); // Výstup: true
@@ -82,10 +97,15 @@ function assigmentOperators() {
 function incrementDecrementOperators() {
   let x = 10;
 
-  console.log('Inkrementácia:', x++); // Výstup: 10
+  x = x + 1; // Inkrementácia
+  x++  // Inkrementácia
+
+  x-- // Dekrementácia
+  x = x - 1; // Dekrementácia
+
+  console.log('Inkrementácia:', x++); // Výstup: 11
   console.log('Inkrementácia:', x); // Výstup: 11
-  console.log('Dekrementácia:', x--); // Výstup: 11
-  console.log('Dekrementácia:', x); // Výstup: 10
+
 }
 
 printPrimitives();
