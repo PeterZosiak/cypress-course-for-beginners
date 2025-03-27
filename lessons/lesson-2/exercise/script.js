@@ -1,8 +1,8 @@
 let counter = 0;
 
 function printPrimitives() {
-  let name = "Alice"; // Reťazec
-  let age = 30; // Číslo
+  var name = "Alice"; // Reťazec
+  const age = 30; // Číslo
   let isStudent = true; // Boolean
   let unassigned; // Nedefinované
   let emptyValue = null; // Null

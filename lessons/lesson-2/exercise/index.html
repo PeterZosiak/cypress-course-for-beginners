@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Excercise 2</title>
+  <title>Cvicenie 2</title>
 
 </head>
 
@@ -13,6 +13,8 @@
   <button id="incrementButton">Zvysit</button>
   <button onclick="incrementByTwo()">Zvysit o 2</button>
   <button onclick="printPrimitives()">Print Primitives</button>
+  <button id="addCommentButton">Add Comment</button>
+  <article></article>
   <script>
 
     document.addEventListener('DOMContentLoaded', function () {
@@ -31,6 +33,20 @@
       document.getElementById('counterValue').innerText = counter;
     }
 
+    document.getElementById('addCommentButton').addEventListener('click', function () {
+      const comments = [
+        "Great job!",
+        "Keep up the good work!",
+        "Awesome!",
+        "Excellent!",
+        "Fantastic!"
+      ];
+      const randomComment = comments[Math.floor(Math.random() * comments.length)];
+      const article = document.querySelector('article');
+      const commentElement = document.createElement('p');
+      commentElement.textContent = randomComment;
+      article.appendChild(commentElement);
+    });
 
   </script>
   <script src="script.js"></script>
