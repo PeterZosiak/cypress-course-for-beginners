@@ -1,4 +1,4 @@
-
+// work on lesson
   var name = "Liudmyla";
   const age = 18;
   const pi = true;
