@@ -1,4 +1,4 @@
-import data from '../fixtures/example.json';
+import data from './exercise/cypress/fixtures/example.json';
 
 describe('Google search tests', () => {
   console.log(data);
@@ -10,6 +10,7 @@ describe('Google search tests', () => {
   data.forEach((element) => {
     it(`should type ${element} in Google search box and hit Search button`, () => {
       cy.visit('https://www.google.com');
+      cy.wait(5000);
       cy.get('textarea').eq(0).type(element).type('{enter}');
     });
   });

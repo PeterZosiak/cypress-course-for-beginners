@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="sk">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nástenka - Demo Aplikácia</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    #items-list li:hover {
+      color: red
+    }
+  </style>
+</head>
+
+<body>
+  <div class="dashboard-container">
+    <h1 data-testid="dashboard-title">Nástenka</h1>
+    <p data-testid="welcome-message" class="welcome-message">Vitaj, <span data-testid="username">demoUser</span>!</p>
+
+    <!-- Dynamické vyhľadávanie -->
+    <div>
+      <label for="search-input">Vyhľadať položky:</label>
+      <input data-testid="search-input" type="text" id="search-input" placeholder="Píšte pre filtrovanie položiek...">
+    </div>
+
+    <!-- Správa o nenájdených položkách -->
+    <p data-testid="no-results-message" style="display: none;">Žiadne položky nespĺňajú kritériá vyhľadávania.</p>
+
+    <!-- Zoznam položiek -->
+    <ul data-testid="items-list" id="items-list">
+      <!-- Položky budú vložené sem -->
+    </ul>
+
+    <!-- Tabuľka s údajmi -->
+    <h2>Údaje v tabuľke</h2>
+    <table data-testid="data-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Názov</th>
+          <th>Aktívny</th>
+        </tr>
+      </thead>
+      <tbody data-testid="table-body">
+        <!-- Riadky tabuľky budú vložené sem -->
+      </tbody>
+    </table>
+
+    <!-- Interaktívne prvky -->
+    <div style="margin-top: 20px;">
+      <input type="checkbox" id="checkbox1" data-testid="checkbox1">
+      <label for="checkbox1">Len Aktivne</label>
+    </div>
+    <div style="margin-top: 10px;">
+      <button data-testid="disabled-button" disabled>Zakázané tlačidlo</button>
+    </div>
+  </div>
+
+  <script>
+    // Vzorové dáta: v reálnom projekte by mohli byť načítané z JSON súboru cez fetch()
+    const items = [
+      { id: 1, name: "Položka Jeden", active: true },
+      { id: 2, name: "Položka Dva", active: false },
+      { id: 3, name: "Položka Tri", active: true },
+      { id: 4, name: "Položka Štyri", active: false }
+    ];
+
+    // Funkcia na vykreslenie položiek v zozname
+    function renderItems(filterText = "", showActiveOnly = false) {
+      const listElement = document.getElementById("items-list");
+      const noResultsMessage = document.querySelector('[data-testid="no-results-message"]');
+      listElement.innerHTML = ""; // Vymazanie existujúcich položiek
+
+      let matchingItems = items.filter(item =>
+        item.name.toLowerCase().includes(filterText.toLowerCase())
+      );
+
+      if (showActiveOnly) {
+        matchingItems = matchingItems.filter(item => item.active);
+      }
+
+      if (matchingItems.length === 0) {
+        noResultsMessage.style.display = "block";
+      } else {
+        noResultsMessage.style.display = "none";
+      }
+
+      matchingItems.forEach(item => {
+        const li = document.createElement("li");
+        li.setAttribute("data-testid", "item-" + item.id);
+        li.innerText = item.name;
+        listElement.appendChild(li);
+      });
+
+      renderTableData(matchingItems);
+    }
+
+    // Funkcia na vykreslenie údajov v tabuľke
+    function renderTableData(filteredItems) {
+      const tableBody = document.querySelector('[data-testid="table-body"]');
+      tableBody.innerHTML = ""; // Vymazať existujúce riadky
+
+      filteredItems.forEach(item => {
+        const row = document.createElement("tr");
+        row.setAttribute("data-testid", "table-row-" + item.id);
+        row.innerHTML = `
+          <td>${item.id}</td>
+          <td>${item.name}</td>
+          <td>${item.active ? 'Áno' : 'Nie'}</td>
+        `;
+        tableBody.appendChild(row);
+      });
+    }
+
+    // Pridanie event listenera pre dynamické vyhľadávanie
+    const searchInput = document.getElementById("search-input");
+    searchInput.addEventListener("input", (e) => {
+      renderItems(e.target.value, checkbox1.checked);
+    });
+
+    // Checkbox 1 event listener
+    const checkbox1 = document.getElementById('checkbox1');
+    checkbox1.addEventListener('change', () => {
+      console.log('Checkbox 1 is now:', checkbox1.checked);
+      renderItems(searchInput.value, checkbox1.checked);
+    });
+
+    // Počiatočné vykreslenie všetkých položiek
+    renderItems();
+  </script>
+</body>
+
+</html>

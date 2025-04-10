@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="sk">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Prihlásenie - Demo Aplikácia</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+
+  </style>
+</head>
+
+<body>
+  <div class="login-container">
+    <h1 data-testid="page-title">Prihlásenie</h1>
+    <form data-testid="login-form" id="login-form">
+      <div class="form-group">
+        <label for="username">Používateľské meno:</label>
+        <input data-testid="username-input" type="text" id="username" name="username" placeholder="Zadajte používateľské meno" required>
+      </div>
+      <div class="form-group">
+        <label for="password">Heslo:</label>
+        <input data-testid="password-input" type="password" id="password" name="password" placeholder="Zadajte heslo">
+      </div>
+      <div class="button-group">
+        <button data-testid="login-button" type="submit">Prihlásiť</button>
+        <button data-testid="reset-button" type="reset">Vymazať</button>
+      </div>
+    </form>
+    <div data-testid="error-message" class="error hidden"></div>
+    <div data-testid="success-message" class="success hidden">Prihlásenie úspešné! Presmerovanie...</div>
+  </div>
+
+  <script>
+    const loginForm = document.getElementById('login-form');
+    const errorMsg = document.querySelector('[data-testid="error-message"]');
+    const successMsg = document.querySelector('[data-testid="success-message"]');
+
+    const VALID_CREDENTIALS = {
+      username: "user",
+      password: "pass"
+    };
+
+    loginForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const username = document.getElementById('username').value.trim();
+      const password = document.getElementById('password').value.trim();
+
+      // Validate empty fields
+      if (!username || !password) {
+        errorMsg.textContent = "Vyplňte prosím všetky povinné polia";
+        errorMsg.classList.remove('hidden');
+        successMsg.classList.add('hidden');
+        return;
+      }
+
+      // Validate credentials
+      if (username === VALID_CREDENTIALS.username &&
+        password === VALID_CREDENTIALS.password) {
+        errorMsg.classList.add('hidden');
+        successMsg.classList.remove('hidden');
+
+        // Simulate redirect after successful login
+        setTimeout(() => {
+          window.location.href = "dashboard.html";
+        }, 1500);
+      } else {
+        errorMsg.textContent = "Nesprávne prihlasovacie údaje";
+        errorMsg.classList.remove('hidden');
+        successMsg.classList.add('hidden');
+      }
+    });
+
+    // Form reset handler
+    loginForm.addEventListener('reset', function () {
+      errorMsg.classList.add('hidden');
+      successMsg.classList.add('hidden');
+    });
+  </script>
+</body>
+
+</html>
