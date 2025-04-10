@@ -1,6 +1,6 @@
 function printHeight(height) {
 
-
+  // TODO: Implementujte podmienku
   // Ak je vyska vacsia ako 180 cm tak som vysoky
   // Ak je vyska mensia ako 180 ale vacsia ako 170 cm tak som stredne vysoky
   // Ak je vyska mensia ako 170 ale vacsia ako 160 cm tak som nizky

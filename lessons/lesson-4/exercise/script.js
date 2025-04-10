@@ -1,13 +1,17 @@
 // Vytvorte pole users, ktoré bude obsahovať zoznam používateľov. Každý user bude mať nasledovné vlastnosti: meno, email, role (admin, user)
-const users = []
+
+// Vypiste pole users do konzoly
+
+// Vypiste meno prveho pouzivatela
+
+// Vypiste len emaily vsetkych pouzivatelov
+
+// Vypiste len pouzivatelov, ktori maju rolu admin
 
 // Pridajte do pola users 1 nového usera  
 
 // Odstráňte z pola users 1 usera, posledneho
 
-// Vypiste len emaily vsetkych pouzivatelov
-
-// Vypiste len pouzivatelov, ktori maju rolu admin
 
 
 

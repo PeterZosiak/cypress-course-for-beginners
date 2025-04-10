@@ -119,7 +119,7 @@
 #### **C. Cypress Folder Structure Overview**
 - **Default Directories:**
   - `cypress/fixtures`: Store JSON files for test data.
-  - `cypress/integration`: Write test files here.
+  - `cypress/e2e`: Write test files here.
   - `cypress/plugins`: Extend Cypress functionality.
   - `cypress/support`: Add reusable utilities and global configurations.
 - **Purpose of Each Directory:**
@@ -147,7 +147,7 @@
      });
      ```
 
-2. **`integration` (or `e2e` in newer versions):**
+2. **`e2e` (or `integration` in older versions):**
    - Store actual test files, typically organized by feature or functionality.
    - Example:
      ```

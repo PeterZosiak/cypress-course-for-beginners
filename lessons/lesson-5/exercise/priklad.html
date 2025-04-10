@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="sk">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>DOM Príklad</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f3f3f3;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .obal {
+      max-width: 600px;
+      margin: auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+    }
+
+    h1,
+    h2 {
+      color: #333;
+    }
+
+    .produkt {
+      margin: 5px 0;
+      padding: 10px;
+      background-color: #eef;
+      border-radius: 4px;
+    }
+
+    .zvyraznene {
+      font-weight: bold;
+      color: darkblue;
+    }
+
+    button {
+      padding: 10px;
+      margin-top: 10px;
+    }
+
+    input {
+      padding: 8px;
+      margin-bottom: 10px;
+      width: 100%;
+    }
+
+    .skryte {
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="obal">
+    <h1 id="nadpis">Vitaj na stránke</h1>
+    <p class="popis">Toto je jednoduchý príklad</p>
+    <p class="popis">manipulácie s DOM.</p>
+
+    <button id="zmenNadpis">Zmeň nadpis</button>
+
+    <h2>Prihlásenie</h2>
+    <input type="text" id="meno" placeholder="Zadaj meno">
+    <input type="text" data-testid="heslo" placeholder="Zadaj heslo">
+    <button onclick="nastavHeslo()">Nastav heslo</button>
+    <button id="prihlas">Prihlásiť</button>
+    <div id="vysledok"></div>
+
+    <h2>Načítané produkty</h2>
+    <div id="produkty"></div>
+    <a href="" id="nacitanie-produktov" onclick="zobrazProdukty()">Nacitaj produkty</a><br>
+
+    <button id="zobrazAdresu">Zobraz URL adresu</button>
+    <p id="url" class="skryte"></p>
+  </div>
+
+  <script>
+    // DOM manipulácia
+    document.getElementById("zmenNadpis").addEventListener("click", () => {
+      const nadpis = document.getElementById("nadpis")
+      nadpis.innerText = "Nadpis bol zmenený!"
+      nadpis.classList.add("zvyraznene")
+
+      const popis = document.querySelectorAll(".popis")
+      popis.forEach((p) => {
+        p.style.color = "blue"
+      })
+    })
+
+    // Event handling - prihlásenie
+    document.getElementById("prihlas").addEventListener("click", () => {
+      const meno = document.getElementById("meno").value
+      const vystup = document.getElementById("vysledok")
+      if (meno.trim() === "") {
+        vystup.innerText = "Prosím zadaj meno."
+        vystup.style.color = "red"
+      } else {
+        vystup.innerText = `Ahoj, ${meno}!`
+        vystup.style.color = "green"
+      }
+    })
+
+    function nastavHeslo() {
+      const heslo = document.querySelector('[data-testid="heslo"]')
+      heslo.value = "superTajneHeslo"
+
+    }
+
+    // Simulácia JSON fetch a dynamické vytvorenie DOM prvkov
+    const produktyData = [
+      { nazov: "Notebook", cena: "900€" },
+      { nazov: "Myš", cena: "25€" },
+      { nazov: "Klávesnica", cena: "45€" }
+    ]
+
+    function zobrazProdukty() {
+      event.preventDefault()
+      const kontajner = document.getElementById("produkty")
+      produktyData.forEach((produkt) => {
+        const div = document.createElement("div")
+        div.classList.add("produkt")
+        div.innerText = `${produkt.nazov} - ${produkt.cena}`
+        kontajner.appendChild(div)
+        console.log("pridane");
+      })
+    }
+
+    //zobrazProdukty()
+
+    // window.location a setTimeout
+    document.getElementById("zobrazAdresu").addEventListener("click", () => {
+      const url = window.location.href
+      const urlBox = document.getElementById("url")
+      urlBox.innerText = `Aktuálna URL: ${url}`
+      urlBox.classList.remove("skryte")
+
+      window.setTimeout(() => {
+        alert("O chvíľu sa stránka obnoví.")
+        window.location.reload()
+      }, 4000)
+    })
+  </script>
+
+</body>
+
+</html>

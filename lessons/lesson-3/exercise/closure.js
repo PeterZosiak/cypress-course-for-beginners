@@ -10,6 +10,7 @@ function vonkajsiaFunkcia() {
     let vnutornaPremenna = 'Som vnútri!';
     console.log(vonkajsiaPremenna); // Prístupné
     console.log(vnutornaPremenna); // Prístupné
+    console.log(globalnaPremenna); // Prístupné
   }
 
   if (true) {
@@ -17,6 +18,7 @@ function vonkajsiaFunkcia() {
     let blokovaPremenna = "Som v bloku!";
     console.log(blokovaPremenna); // Prístupné
   }
+  congole.log(blokovaPremenna); // ReferenceError: blokovaPremenna nie je definovaná
 
   const arrowFunction = () => { return 'Som šípková funkcia!' };
 

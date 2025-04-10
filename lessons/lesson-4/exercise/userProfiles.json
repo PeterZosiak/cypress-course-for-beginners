@@ -1,0 +1,18 @@
+[
+  {
+    "jmeno": "Peter",
+    "vek": 25,
+    "adresa": {
+      "ulica": "Hlavní",
+      "mesto": "Praha"
+    },
+    "rola": [
+      "admin",
+      "tester"
+    ]
+  },
+  {
+    "jemno": "Petr",
+    "vek": 25
+  }
+]
