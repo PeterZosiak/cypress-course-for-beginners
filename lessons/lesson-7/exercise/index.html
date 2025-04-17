@@ -7,9 +7,116 @@
   <title>Ukážka interakcie Cypress</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      margin: 20px;
-      line-height: 1.5;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f4f7f6;
+      margin: 0;
+      padding: 40px 20px;
+      /* Add padding top/bottom */
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      /* Align items to the top */
+      min-height: 100vh;
+      line-height: 1.6;
+      color: #333;
+    }
+
+    .container {
+      background-color: #ffffff;
+      padding: 30px 40px;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      max-width: 800px;
+      width: 100%;
+    }
+
+    h1,
+    h2 {
+      color: #0056b3;
+      /* Dark blue heading */
+      margin-bottom: 1em;
+      border-bottom: 2px solid #e9ecef;
+      padding-bottom: 0.5em;
+    }
+
+    form div,
+    .user-profile-section div,
+    .other-elements div,
+    .table-section div,
+    .dynamic-section div {
+      margin-bottom: 20px;
+      /* Consistent spacing between sections/groups */
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: #555;
+    }
+
+    input[type="text"],
+    input[type="password"],
+    input[type="file"],
+    select {
+      width: 100%;
+      padding: 10px 12px;
+      margin-bottom: 10px;
+      /* Space below inputs */
+      border: 1px solid #ced4da;
+      border-radius: 4px;
+      box-sizing: border-box;
+      /* Include padding and border in element's total width and height */
+      font-size: 1rem;
+    }
+
+    input[type="checkbox"],
+    input[type="radio"] {
+      margin-right: 8px;
+      vertical-align: middle;
+      /* Align checkboxes/radios with labels */
+    }
+
+    input[type="radio"]+label {
+      margin-right: 15px;
+      /* Space between radio options */
+      display: inline-block;
+      /* Keep labels inline */
+      margin-bottom: 0;
+      /* Override block label margin */
+    }
+
+    button {
+      background-color: #007bff;
+      /* Primary button color */
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background-color 0.2s ease-in-out;
+      margin-right: 10px;
+      /* Space between buttons */
+    }
+
+    button[type="reset"] {
+      background-color: #6c757d;
+      /* Secondary button color */
+    }
+
+    button:hover {
+      background-color: #0056b3;
+      /* Darker shade on hover */
+    }
+
+    button[type="reset"]:hover {
+      background-color: #5a6268;
+    }
+
+    button:disabled {
+      background-color: #adb5bd;
+      cursor: not-allowed;
     }
 
     .hidden {
@@ -17,97 +124,203 @@
     }
 
     .error {
-      color: red;
+      color: #dc3545;
+      /* Bootstrap danger color */
+      font-size: 0.9em;
+    }
+
+    /* Profile Section Specific Styles */
+    .user-profile-section {
+      background-color: #e9ecef;
+      /* Light background for emphasis */
+      border: none;
+      /* Remove default border */
+      border-radius: 6px;
+    }
+
+    .user-profile-section p {
+      margin-bottom: 0.8em;
+    }
+
+    .user-profile-section strong {
+      color: #495057;
+    }
+
+    /* Table Styles */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    th,
+    td {
+      border: 1px solid #dee2e6;
+      padding: 12px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #e9ecef;
+      /* Light grey header */
+      font-weight: 600;
+    }
+
+    tbody tr:nth-child(odd) {
+      background-color: #f8f9fa;
+      /* Zebra striping */
+    }
+
+    /* Dynamic Search Styles */
+    #dynamic-search {
+      margin-bottom: 15px;
+    }
+
+    ul[data-testid="search-results"] {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      border: 1px solid #ced4da;
+      border-radius: 4px;
+      max-height: 150px;
+      overflow-y: auto;
+    }
+
+    ul[data-testid="search-results"] li {
+      padding: 8px 12px;
+      border-bottom: 1px solid #e9ecef;
+    }
+
+    ul[data-testid="search-results"] li:last-child {
+      border-bottom: none;
     }
   </style>
 </head>
 
 <body>
-  <h1>Ukážka interakcie Cypress</h1>
+  <div class="container"> <!-- Boxed layout container -->
+    <h1>Ukážka interakcie Cypress</h1>
+    <form data-testid="login-form">
+      <div data-testid="input-fields"> <!-- Container for input fields -->
+        <h2>Prihlasovacie údaje</h2> <!-- Section heading -->
+        <!-- Input Fields -->
+        <div>
+          <label for="username">Používateľské meno:</label>
+          <input data-testid="username-input" type="text" id="username"
+            placeholder="Zadajte svoje používateľské meno" />
+        </div>
+        <div>
+          <label for="password">Heslo:</label>
+          <input data-testid="password-input" type="password" id="password" placeholder="Zadajte svoje heslo" />
+        </div>
+      </div>
 
-  <!-- Input Fields -->
-  <div>
-    <label for="username">Používateľské meno:</label>
-    <input data-testid="username-input" type="text" id="username" placeholder="Zadajte svoje používateľské meno" />
-  </div>
-  <div>
-    <label for="password">Heslo:</label>
-    <input data-testid="password-input" type="password" id="password" placeholder="Zadajte svoje heslo" />
-  </div>
+      <div data-testid="dropdown-section"> <!-- Container for dropdown -->
+        <h2>Nastavenia</h2> <!-- Section heading -->
+        <!-- Dropdown -->
+        <div>
+          <label for="role">Rola:</label>
+          <select data-testid="role-select" id="role">
+            <option value="user">Používateľ</option>
+            <option value="admin">Administrátor</option>
+            <option value="superadmin">Super Administrátor</option>
+          </select>
+        </div>
+      </div>
 
-  <!-- Dropdown -->
-  <div>
-    <label for="role">Rola:</label>
-    <select data-testid="role-select" id="role">
-      <option value="user">Používateľ</option>
-      <option value="admin">Administrátor</option>
-      <option value="superadmin">Super Administrátor</option>
-    </select>
-  </div>
+      <div data-testid="selection-controls"> <!-- Container for checkboxes and radio buttons -->
+        <!-- Checkboxes and Radio Buttons -->
+        <div>
+          <input data-testid="accept-terms" type="checkbox" id="accept-terms" />
+          <label for="accept-terms" style="display: inline-block; margin-bottom: 0;">Súhlasím s podmienkami</label>
+          <!-- Inline label for checkbox -->
+        </div>
+        <div style="margin-top: 15px;"> <!-- Add margin top for spacing -->
+          <label>Pohlavie:</label> <!-- Group label -->
+          <input data-testid="gender-male" type="radio" id="gender-male" name="gender" value="male" />
+          <label for="gender-male">Muž</label>
+          <input data-testid="gender-female" type="radio" id="gender-female" name="gender" value="female" />
+          <label for="gender-female">Žena</label>
+        </div>
+      </div>
 
-  <!-- Checkboxes and Radio Buttons -->
-  <div>
-    <input data-testid="accept-terms" type="checkbox" id="accept-terms" />
-    <label for="accept-terms">Súhlasím s podmienkami</label>
-  </div>
-  <div>
-    <input data-testid="gender-male" type="radio" id="gender-male" name="gender" value="male" />
-    <label for="gender-male">Muž</label>
-    <input data-testid="gender-female" type="radio" id="gender-female" name="gender" value="female" />
-    <label for="gender-female">Žena</label>
-  </div>
+      <div data-testid="form-actions"> <!-- Container for buttons -->
+        <!-- Buttons -->
+        <div>
+          <button data-testid="submit-button" type="submit">Odoslať</button>
+          <button data-testid="reset-button" type="reset">Resetovať</button>
+        </div>
+      </div>
+    </form>
 
-  <!-- Buttons -->
-  <div>
-    <button data-testid="submit-button">Odoslať</button>
-    <button data-testid="reset-button" type="reset">Resetovať</button>
-  </div>
+    <!-- Section for demonstrating within() -->
+    <div data-testid="user-profile-section" class="user-profile-section"> <!-- Added class -->
+      <h2>Profil používateľa</h2>
+      <p><strong>Meno:</strong> <span data-testid="profile-name">Ján Novák</span></p>
+      <p><strong>Email:</strong> <span data-testid="profile-email">jan.novak@example.com</span></p>
+      <div data-testid="profile-actions">
+        <button data-testid="edit-profile-button">Upraviť profil</button>
+        <button data-testid="view-history-button">Zobraziť históriu</button>
+      </div>
+    </div>
 
-  <!-- Hidden and Disabled Elements -->
-  <div>
-    <p data-testid="hidden-message" class="hidden">Toto je skrytá správa.</p>
-    <button data-testid="disabled-button" disabled>Zakázané tlačidlo</button>
-  </div>
+    <!-- Hidden and Disabled Elements -->
+    <div data-testid="other-elements"> <!-- Container for other elements -->
+      <h2>Ostatné prvky</h2> <!-- Section heading -->
+      <div>
+        <p data-testid="hidden-message" class="hidden">Toto je skrytá správa.</p>
+        <button data-testid="disabled-button" disabled>Zakázané tlačidlo</button>
+      </div>
 
-  <!-- File Upload -->
-  <div>
-    <label for="file-upload">Nahrať súbor:</label>
-    <input data-testid="file-upload" type="file" id="file-upload" />
-  </div>
+      <!-- File Upload -->
+      <div>
+        <label for="file-upload">Nahrať súbor:</label>
+        <input data-testid="file-upload" type="file" id="file-upload" />
+      </div>
+    </div>
 
-  <!-- Table -->
-  <table data-testid="user-table" border="1" style="margin-top: 20px;">
-    <thead>
-      <tr>
-        <th>Používateľské meno</th>
-        <th>Rola</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Alice</td>
-        <td>Používateľ</td>
-      </tr>
-      <tr>
-        <td>Bob</td>
-        <td>Administrátor</td>
-      </tr>
-    </tbody>
-  </table>
 
-  <!-- Dynamic Interaction -->
-  <div>
-    <label for="dynamic-search">Hľadať:</label>
-    <input data-testid="dynamic-search" type="text" id="dynamic-search" placeholder="Hľadať..." />
-    <ul data-testid="search-results">
-      <li>Alice</li>
-      <li>Bob</li>
-      <li>Charlie</li>
-    </ul>
-  </div>
+    <!-- Table -->
+    <div data-testid="table-section"> <!-- Container for table -->
+      <h2>Tabuľka používateľov</h2> <!-- Section heading -->
+      <table data-testid="user-table"> <!-- Removed inline styles -->
+        <thead>
+          <tr>
+            <th>Používateľské meno</th>
+            <th>Rola</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Alice</td>
+            <td>Používateľ</td>
+          </tr>
+          <tr>
+            <td>Bob</td>
+            <td>Administrátor</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Dynamic Interaction -->
+    <div data-testid="dynamic-section"> <!-- Container for dynamic interaction -->
+      <h2>Dynamické vyhľadávanie</h2> <!-- Section heading -->
+      <div>
+        <label for="dynamic-search">Hľadať:</label>
+        <input data-testid="dynamic-search" type="text" id="dynamic-search" placeholder="Hľadať..." />
+        <ul data-testid="search-results">
+          <li>Alice</li>
+          <li>Bob</li>
+          <li>Charlie</li>
+        </ul>
+      </div>
+    </div>
+
+  </div> <!-- End of container -->
 
   <script>
-    // JavaScript for dynamic interaction
+    // JavaScript for dynamic interaction (no changes needed here)
     const searchInput = document.querySelector('[data-testid="dynamic-search"]');
     const searchResults = document.querySelector('[data-testid="search-results"]');
 

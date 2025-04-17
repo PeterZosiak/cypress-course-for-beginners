@@ -48,6 +48,124 @@ Chai is a popular assertion library for JavaScript that provides a variety of st
     });
     ```
 
+    #### Most Used Assertions in Cypress
+
+    **1. `should('exist')`**
+    Checks that the element exists in the DOM.
+
+    ```javascript
+    cy.get('[data-testid="login-button"]').should('exist');
+    ```
+    **Use when:** You want to verify that an element has been rendered.
+    ---
+
+    **2. `should('be.visible')`**
+    Checks that the element is **visible** to the user.
+
+    ```javascript
+    cy.get('[data-testid="modal"]').should('be.visible');
+    ```
+    **Use when:** You want to ensure the user can see/interact with the element.
+
+    ---
+    **3. `should('not.exist')`** / `should('not.be.visible')`  
+    Opposite of the above – great for testing **removal or hiding** of elements.
+
+    ```javascript
+    cy.get('[data-testid="loading-spinner"]').should('not.exist');
+    ```
+
+    ---
+    **4. `should('have.text', 'some text')`**
+    Checks for **exact** text content inside an element.
+
+    ```javascript
+    cy.get('[data-testid="welcome-message"]').should('have.text', 'Welcome back!');
+    ```
+
+    **Alternative:**  
+    Use `contains()` for partial match, or `.should('include.text', 'Welcome')`.
+
+    ---
+    **5. `should('include.text', 'partial text')`**
+    Verifies that the element contains a substring (not exact match required).
+
+    ```javascript
+    cy.get('.alert').should('include.text', 'Error');
+    ```
+    
+    ---
+    **6. `should('have.value', 'text')`**
+    Checks the value of input fields.
+
+    ```javascript
+    cy.get('[data-testid="email-input"]').should('have.value', 'user@example.com');
+    ```
+
+    **Use when:** You want to confirm that a field was filled correctly.
+
+    ---
+    **7. `should('be.checked')` / `should('not.be.checked')`**
+    Used for checkboxes or radio buttons.
+
+    ```javascript
+    cy.get('#terms-checkbox').should('be.checked');
+    ```
+
+    ---
+    **8. `should('be.disabled')` / `should('be.enabled')`**
+    Ensures that form elements are active/inactive as expected.
+
+    ```javascript
+    cy.get('[data-testid="submit-btn"]').should('be.disabled');
+    ```
+
+    ---
+    **9. `should('have.class', 'class-name')`**
+    Asserts that the element has a specific class applied.
+
+    ```javascript
+    cy.get('button').should('have.class', 'active');
+    ```
+
+    ---
+    **10. `should('have.attr', 'attribute', 'value')`**
+    Asserts that an element has a specific attribute with a value.
+
+    ```javascript
+    cy.get('a').should('have.attr', 'href', '/dashboard');
+    ```
+
+    Also useful for checking presence of `data-*` attributes or `target`, `src`, `disabled`, etc.
+
+    ----
+    **11. `should('have.length', number)`**
+    Checks how many elements were returned by `cy.get()`.
+
+    ```javascript
+    cy.get('.list-item').should('have.length', 5);
+    ```
+
+    **Use when:** You want to check if a list contains the expected number of items.
+
+    ---
+    **12. `should('match', /regex/)`**
+    Asserts that the string matches a regular expression.
+
+    ```javascript
+    cy.get('[data-testid="email"]').invoke('text').should('match', /^[^\s@]+@[^\s@]+\.[^\s@]+$/);
+    ```
+
+
+    Use `expect()` inside a `.then()` block when working with logic or custom data:
+
+    ```javascript
+    cy.get('#price').then(($el) => {
+      const price = parseFloat($el.text().replace('€', ''));
+      expect(price).to.be.lessThan(100);
+    });
+    ```
+
 
 - **Should Style:**  
   - **Pros:**  

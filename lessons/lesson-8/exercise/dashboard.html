@@ -6,54 +6,69 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Nástenka - Demo Aplikácia</title>
   <link rel="stylesheet" href="styles.css">
-  <style>
-    #items-list li:hover {
-      color: red
-    }
-  </style>
 </head>
 
 <body>
-  <div class="dashboard-container">
-    <h1 data-testid="dashboard-title">Nástenka</h1>
+  <div class="dashboard-container" data-testid="dashboard-container"> <!-- Container for within() -->
+    <h1 data-testid="dashboard-title">Nástenka</h1> <!-- Example for should('be.visible') -->
     <p data-testid="welcome-message" class="welcome-message">Vitaj, <span data-testid="username">demoUser</span>!</p>
+    <!-- Example for should('contain', 'Vitaj') -->
 
-    <!-- Dynamické vyhľadávanie -->
-    <div>
+    <!-- Status Section -->
+    <div class="status-section" data-testid="status-section">
+      <h2>Stav Systému</h2>
+      <span data-testid="system-status" class="status-indicator status-active">Aktívny</span>
+      <!-- Example for should('have.text', 'Aktívny') -->
+      <div data-testid="custom-attribute-div" data-custom-attr="exampleValue123" style="margin-top: 10px;">Div s
+        vlastným atribútom</div> <!-- Example for should('have.attr', 'data-custom-attr', 'exampleValue123') -->
+    </div>
+
+    <!-- Search Section - Container for within() -->
+    <div class="search-section" data-testid="search-section">
+      <h2>Vyhľadávanie</h2>
       <label for="search-input">Vyhľadať položky:</label>
       <input data-testid="search-input" type="text" id="search-input" placeholder="Píšte pre filtrovanie položiek...">
+      <!-- Example for should('have.attr', 'placeholder', '...') -->
     </div>
 
-    <!-- Správa o nenájdených položkách -->
-    <p data-testid="no-results-message" style="display: none;">Žiadne položky nespĺňajú kritériá vyhľadávania.</p>
-
-    <!-- Zoznam položiek -->
-    <ul data-testid="items-list" id="items-list">
-      <!-- Položky budú vložené sem -->
-    </ul>
-
-    <!-- Tabuľka s údajmi -->
-    <h2>Údaje v tabuľke</h2>
-    <table data-testid="data-table">
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Názov</th>
-          <th>Aktívny</th>
-        </tr>
-      </thead>
-      <tbody data-testid="table-body">
-        <!-- Riadky tabuľky budú vložené sem -->
-      </tbody>
-    </table>
-
-    <!-- Interaktívne prvky -->
-    <div style="margin-top: 20px;">
-      <input type="checkbox" id="checkbox1" data-testid="checkbox1">
-      <label for="checkbox1">Len Aktivne</label>
+    <!-- Items Section - Container for within() -->
+    <div class="items-section" data-testid="items-section">
+      <h2>Zoznam položiek</h2>
+      <span data-testid="item-count" class="item-count"></span> <!-- Example for expect() assertion -->
+      <p data-testid="no-results-message" class="hidden">Žiadne položky nespĺňajú kritériá vyhľadávania.</p>
+      <!-- Example for conditional assertion with then() -->
+      <ul data-testid="items-list" id="items-list">
+        <!-- Items will be dynamically inserted here, find() can target li elements -->
+      </ul>
     </div>
-    <div style="margin-top: 10px;">
-      <button data-testid="disabled-button" disabled>Zakázané tlačidlo</button>
+
+    <!-- Table Section - Container for within() -->
+    <div class="table-section" data-testid="table-section">
+      <h2>Údaje v tabuľke</h2>
+      <table data-testid="data-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Názov</th>
+            <th>Aktívny</th>
+          </tr>
+        </thead>
+        <tbody data-testid="table-body">
+          <!-- Table rows will be dynamically inserted here, find() can target tr/td -->
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Interactive Elements Section - Container for within() -->
+    <div class="interactive-elements-section" data-testid="interactive-elements-section">
+      <h2>Interaktívne prvky</h2>
+      <div>
+        <input type="checkbox" id="checkbox1" data-testid="checkbox1">
+        <label for="checkbox1">Len Aktivne</label> <!-- find() can target this label -->
+      </div>
+      <div style="margin-top: 10px;">
+        <button data-testid="disabled-button" disabled>Zakázané tlačidlo</button> <!-- find() can target this button -->
+      </div>
     </div>
   </div>
 
@@ -66,11 +81,18 @@
       { id: 4, name: "Položka Štyri", active: false }
     ];
 
-    // Funkcia na vykreslenie položiek v zozname
-    function renderItems(filterText = "", showActiveOnly = false) {
-      const listElement = document.getElementById("items-list");
-      const noResultsMessage = document.querySelector('[data-testid="no-results-message"]');
-      listElement.innerHTML = ""; // Vymazanie existujúcich položiek
+    // DOM Elements
+    const listElement = document.getElementById("items-list");
+    const noResultsMessage = document.querySelector('[data-testid="no-results-message"]');
+    const tableBody = document.querySelector('[data-testid="table-body"]');
+    const searchInput = document.getElementById("search-input");
+    const checkbox1 = document.getElementById('checkbox1');
+    const itemCountSpan = document.querySelector('[data-testid="item-count"]'); // Get the span for item count
+
+    // Funkcia na vykreslenie položiek v zozname a tabuľke
+    function renderData(filterText = "", showActiveOnly = false) {
+      listElement.innerHTML = ""; // Vymazanie existujúcich položiek zoznamu
+      tableBody.innerHTML = ""; // Vymazať existujúce riadky tabuľky
 
       let matchingItems = items.filter(item =>
         item.name.toLowerCase().includes(filterText.toLowerCase())
@@ -80,54 +102,45 @@
         matchingItems = matchingItems.filter(item => item.active);
       }
 
-      if (matchingItems.length === 0) {
-        noResultsMessage.style.display = "block";
-      } else {
-        noResultsMessage.style.display = "none";
-      }
+      // Update item count display - for expect() example
+      itemCountSpan.textContent = `Zobrazených položiek: ${matchingItems.length}`;
 
+      // Show/hide no results message - for conditional assertion example
+      noResultsMessage.classList.toggle('hidden', matchingItems.length > 0);
+
+      // Render list items
       matchingItems.forEach(item => {
         const li = document.createElement("li");
-        li.setAttribute("data-testid", "item-" + item.id);
+        li.setAttribute("data-testid", `item-${item.id}`); // data-testid for find()
         li.innerText = item.name;
         listElement.appendChild(li);
       });
 
-      renderTableData(matchingItems);
-    }
-
-    // Funkcia na vykreslenie údajov v tabuľke
-    function renderTableData(filteredItems) {
-      const tableBody = document.querySelector('[data-testid="table-body"]');
-      tableBody.innerHTML = ""; // Vymazať existujúce riadky
-
-      filteredItems.forEach(item => {
+      // Render table rows
+      matchingItems.forEach(item => {
         const row = document.createElement("tr");
-        row.setAttribute("data-testid", "table-row-" + item.id);
+        row.setAttribute("data-testid", `table-row-${item.id}`); // data-testid for find()
         row.innerHTML = `
-          <td>${item.id}</td>
-          <td>${item.name}</td>
-          <td>${item.active ? 'Áno' : 'Nie'}</td>
-        `;
+                    <td data-testid="cell-id-${item.id}">${item.id}</td> <!-- data-testid for find() -->
+                    <td data-testid="cell-name-${item.id}">${item.name}</td> <!-- data-testid for find() -->
+                    <td data-testid="cell-active-${item.id}">${item.active ? 'Áno' : 'Nie'}</td> <!-- data-testid for find() -->
+                `;
         tableBody.appendChild(row);
       });
     }
 
-    // Pridanie event listenera pre dynamické vyhľadávanie
-    const searchInput = document.getElementById("search-input");
+    // Event listener pre dynamické vyhľadávanie
     searchInput.addEventListener("input", (e) => {
-      renderItems(e.target.value, checkbox1.checked);
+      renderData(e.target.value, checkbox1.checked);
     });
 
-    // Checkbox 1 event listener
-    const checkbox1 = document.getElementById('checkbox1');
+    // Event listener pre checkbox
     checkbox1.addEventListener('change', () => {
-      console.log('Checkbox 1 is now:', checkbox1.checked);
-      renderItems(searchInput.value, checkbox1.checked);
+      renderData(searchInput.value, checkbox1.checked);
     });
 
     // Počiatočné vykreslenie všetkých položiek
-    renderItems();
+    renderData();
   </script>
 </body>
 

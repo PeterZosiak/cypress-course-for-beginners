@@ -1,7 +1,5 @@
 ### **Lesson 7: Interacting with Web Elements and Handling User Inputs**
 
----
-
 ## **1. Content Outline**
 
 ### **A. Introduction**
@@ -42,6 +40,30 @@
   - Use `data-*` attributes for test stability.
   - Avoid brittle selectors like `nth-child`.
 
+  ##### cy.get() vs cy.find()
+  **Key Difference:**  
+  Use `cy.get()` to query the global DOM. Use `cy.find()` when you need to narrow down the search to elements inside a specific container or context.
+
+  **cy.get():**
+  - **Usage:**  
+    `cy.get()` is used to select elements from the entire DOM using a given selector.
+  - **Example:**
+    ```javascript
+    // Selects an element with a data-testid attribute from the entire page
+    cy.get('[data-testid="login-form"]');
+    ```
+
+  **cy.find():**
+  - **Usage:**  
+    `cy.find()` is used to search for descendant elements within a previously selected element.
+  - **Example:**
+    ```javascript
+    // First, select a parent element
+    cy.get('[data-testid="login-form"]')
+      // Then find a child input element within that form
+      .find('[data-testid="username-input"]');
+    ```
+
 ##### Why `data-testid` Attribute is Better than ID or CLASS Selector
 
 **Explanation:**
@@ -67,7 +89,6 @@
 cy.get('[data-testid="submit-button"]').click();
 ```
 
-
 ---
 
 ### **C. Actions on Web Elements**
@@ -84,6 +105,12 @@ cy.get('[data-testid="submit-button"]').click();
      ```javascript
      cy.get('[data-testid="username-input"]').type('testUser');
      ```
+    - **Simulating Keyboard Events:**
+      - Use `.type()` with special keys like `{enter}`, `{backspace}`.
+      - Example:
+        ```javascript
+        cy.get('[data-testid="search-input"]').type('Cypress{enter}');
+        ```
 
 3. **Clearing Input Fields:**
    - Use `.clear()` to remove content.
@@ -119,7 +146,6 @@ cy.get('[data-testid="submit-button"]').click();
      ```javascript
      cy.get('[data-testid="menu-item"]').trigger('mouseover');
      ```
-
 ---
 
 ### **D. Validating Interactions**
@@ -152,45 +178,11 @@ cy.get('[data-testid="submit-button"]').click();
     cy.get('[data-testid="file-upload"]').selectFile('cypress/fixtures/sample.pdf');
     ```
 
-- **Simulating Keyboard Events:**
-  - Use `.type()` with special keys like `{enter}`, `{backspace}`.
-  - Example:
-    ```javascript
-    cy.get('[data-testid="search-input"]').type('Cypress{enter}');
-    ```
-
 - **Interacting with Disabled Elements:**
   - Validate or trigger events on disabled elements:
     ```javascript
     cy.get('[data-testid="submit-button"]').should('be.disabled');
     ```
-
-##### cy.get() vs cy.find()
-
-**cy.get():**
-- **Usage:**  
-  `cy.get()` is used to select elements from the entire DOM using a given selector.
-- **Example:**
-  ```javascript
-  // Selects an element with a data-testid attribute from the entire page
-  cy.get('[data-testid="login-form"]');
-  ```
-
-**cy.find():**
-- **Usage:**  
-  `cy.find()` is used to search for descendant elements within a previously selected element.
-- **Example:**
-  ```javascript
-  // First, select a parent element
-  cy.get('[data-testid="login-form"]')
-    // Then find a child input element within that form
-    .find('[data-testid="username-input"]');
-  ```
-
-**Key Difference:**  
-Use `cy.get()` to query the global DOM. Use `cy.find()` when you need to narrow down the search to elements inside a specific container or context.
-
-
 
 ##### cy.trigger()
 
@@ -206,7 +198,6 @@ Use `cy.get()` to query the global DOM. Use `cy.find()` when you need to narrow 
 
 - **When to Use:**  
   Use `cy.trigger()` when you need to simulate events beyond the standard click or type actions—especially useful for testing dynamic UI changes like tooltips or dropdown menus that appear on hover.
-
 
 
 ##### cy.within()
@@ -313,6 +304,16 @@ Use `cy.get()` to query the global DOM. Use `cy.find()` when you need to narrow 
 
 - **Interactive Tools:**
   - Practice with tools like [TodoMVC](http://todomvc.com).
+
+- **Websites for practice Test Automation**
+  - [Advantage eshop demo](https://advantageonlineshopping.com)
+  - [DemoBlaze eshop](https://www.demoblaze.com)
+  - [Tools QA](https://demoqa.com)
+  - [UI Test Automation Playground](http://uitestingplayground.com)
+  - [Sauce Labs](https://www.saucedemo.com)
+  - [Cypress Playground](https://cypress-playground.s3.eu-central-1.amazonaws.com/index.html)
+  - [Automation Exercise](https://automationexercise.com)
+  - [Practice Test Automation Website for Web UI & API](https://practice.expandtesting.com)
 
 ---
 
