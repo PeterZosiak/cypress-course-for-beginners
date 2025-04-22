@@ -13,11 +13,13 @@
   <form data-testid="login-form" id="login-form">
     <div class="form-group">
       <label for="login-username">Používateľské meno:</label>
-      <input data-testid="login-username-input" type="text" id="login-username" placeholder="Zadajte používateľské meno" required />
+      <input data-testid="login-username-input" type="text" id="login-username" placeholder="Zadajte používateľské meno"
+        required />
     </div>
     <div class="form-group">
       <label for="login-password">Heslo:</label>
-      <input data-testid="login-password-input" type="password" id="login-password" placeholder="Zadajte heslo" required />
+      <input data-testid="login-password-input" type="password" id="login-password" placeholder="Zadajte heslo"
+        required />
     </div>
     <button data-testid="login-submit-button" type="submit">Prihlásiť sa</button>
   </form>
@@ -32,7 +34,7 @@
       const password = document.getElementById('login-password').value.trim();
 
       // Pre demo účely predpokladáme, že prihlásenie je úspešné, ak sa používateľské meno rovná "demoUser" a heslo sa rovná "demoPass"
-      if (username === "demoUser" && password === "demoPass") {
+      if (username === "user" && password === "pass") {
         document.querySelector('[data-testid="login-error-message"]').classList.add('hidden');
         document.querySelector('[data-testid="login-success-message"]').classList.remove('hidden');
       } else {

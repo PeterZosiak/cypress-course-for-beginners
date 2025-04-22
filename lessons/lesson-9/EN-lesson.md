@@ -57,69 +57,8 @@
 
 ---
 
-#### **B. Include/Exclude Patterns**
 
-1. **Organizing Tests:**
-   - **Include Patterns:**  
-     - Group tests by feature, module, or functionality.  
-     - Use naming conventions or folder structures to organize tests.
-   - **Exclude Patterns:**  
-     - Exclude specific tests during certain runs (e.g., long-running tests or tests not relevant to the current build).
-   - **Examples:**  
-     - Use tags like `@smoke` or `@regression` to include/exclude tests.
-     - Name test files with prefixes (e.g., `smoke-login.spec.js`) for easy filtering.
-
-2. **Test Management Using Tags or Naming Conventions:**
-   - **Benefits:**  
-     - Quick selection of tests for different environments or testing phases.  
-     - Reduces overall test runtime during quick validation cycles.
-   - **Implementation:**  
-     Although Cypress doesn’t support tagging out-of-the-box, you can implement naming conventions or use community plugins to manage tags.
-
-### **Examples for Include/Exclude Patterns**
-
-**Include/Exclude Patterns in Test Organization:**
-
-1. **Using Naming Conventions:**
-   - **Prefixing Files:**  
-     - Name tests with specific prefixes like `smoke-`, `regression-`, or `integration-` to easily filter them during test runs.
-     - **Example:**  
-       - `smoke-login.spec.js` – for critical tests that run on every build.
-       - `regression-dashboard.spec.js` – for broader, more comprehensive tests.
-
-2. **Using Tags (via Comments or Custom Logic):**
-   - **Tagging Within Tests:**  
-     - You can add comments or use a custom tagging system to mark tests.  
-     - **Example:**  
-       ```javascript
-       // @smoke
-       describe('Login Tests', () => {
-         it('should log in successfully', () => {
-           // test logic here
-         });
-       });
-       ```
-     - Plugins like [cypress-grep](https://github.com/cypress-io/cypress-grep) allow filtering tests by tags using comments or metadata.
-
-3. **Using Plugins to Manage Test Runs Externally:**
-   - **Cypress-Grep:**  
-     - This plugin enables you to include or exclude tests based on a grep pattern.
-     - **Usage:**  
-       - Install: `npm install cypress-grep --save-dev`
-       - Then run tests using a tag filter, for example:
-         ```bash
-         npx cypress run --env grep=@smoke
-         ```
-   - **Other Tools:**
-     - **Cypress-Skip-And-Only-Helper:**  
-       - This plugin can help conditionally skip tests in CI environments or based on configuration.
-     - **Cypress-Tagging (custom solution):**  
-       - Some teams develop custom scripts to parse test files and filter them by tags defined in a standardized format.
-
-
----
-
-#### **C. Dynamic Data Handling**
+#### **B. Dynamic Data Handling**
 
 1. **Generating Random Data for Tests:**
    - **Purpose:**  
@@ -202,6 +141,7 @@ cy.get('[data-testid="email-input"]').type(randomEmail);
 
 ---
 
+
 ### **2. Hands-On Activities**
 
 1. **Fixture Creation and Usage:**
@@ -209,17 +149,12 @@ cy.get('[data-testid="email-input"]').type(randomEmail);
      Create a JSON file (e.g., `users.json`) containing multiple user objects.  
      Write a Cypress test that loads this fixture and asserts that the user array contains valid data.
 
-2. **Implement Include/Exclude Patterns:**
-   - **Activity:**  
-     Organize test files using naming conventions (e.g., prefix files with `smoke-` or `regression-`).  
-     Discuss how to selectively run tests based on these naming patterns.
-
-3. **Dynamic Data Generation:**
+2. **Dynamic Data Generation:**
    - **Activity:**  
      Write a utility function that generates random user data (e.g., username, email).  
      Use this dynamic data in a test to create a new user and validate the process.
 
-4. **Parameterize a Test:**
+3. **Parameterize a Test:**
    - **Activity:**  
      Use a fixture file to run the same login test for multiple users.  
      Validate that the application responds correctly for each user scenario.
