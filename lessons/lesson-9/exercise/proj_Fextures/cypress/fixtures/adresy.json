@@ -1,0 +1,39 @@
+[
+  {
+    "address": "123 Main St",
+    "ruian_code": "RU123",
+    "count": 1,
+    "available_technologies": [
+      "Fiber",
+      "DSL"
+    ]
+    
+  },
+  {
+    "address": "456 Elm St",
+    "ruian_code": "RU456",
+    "count": 1,
+    "available_technologies": [
+      "Cable",
+      "Fiber"
+    ]
+  },
+  {
+    "address": "789 Oak St",
+    "ruian_code": "RU789",
+    "count": 1,
+    "available_technologies": [
+      "DSL",
+      "Satellite"
+    ]
+  },
+  {
+    "address": "111",
+    "ruian_code": "RU799",
+    "count": 0,
+    "available_technologies": [
+      "DSL",
+      "Satellite"
+    ]
+  }
+]
