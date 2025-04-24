@@ -1,4 +1,4 @@
-npx {
+{
   "name": "login_test",
   "version": "1.0.0",
   "main": "index.js",
