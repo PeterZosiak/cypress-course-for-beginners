@@ -337,10 +337,6 @@ it('přihlásí se úspěšně s platnými údaji', () => {
    - Vytvořte vlastní příkaz (např. `cy.login()`) a využijte jej v několika testovacích případech.
    - Refaktorujte stávající testovací kód, aby využíval tento vlastní příkaz.
 
-5. **Procvičování příkazů Cypress:**
-   - Napište testovací případy, které demonstrují řetězení příkazů (např. výběr elementu, ověření jeho viditelnosti a kliknutí).
-   - Experimentujte s příkazem `cy.within()` pro ohraničení testů na konkrétní elementy.
-
 ---
 
 ### **Zdroje**

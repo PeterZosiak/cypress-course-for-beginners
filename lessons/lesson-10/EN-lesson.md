@@ -283,7 +283,7 @@ it('should log in successfully with valid credentials', () => {
 
 - **Directory Structure:**
   - **cypress/fixtures:** Contains external data files (JSON, etc.) for test data.
-  - **cypress/integration (or e2e):** Houses all test spec files organized by feature (e.g., login.spec.js, registration.spec.js).
+  - **cypress/e2e:** Houses all test spec files organized by feature (e.g., login.spec.js, registration.spec.js).
   - **cypress/plugins:** Contains plugins or modifications to Cypress’s default behavior.
   - **cypress/support:**  
     - **commands.js:** Where custom commands are defined.
@@ -336,10 +336,6 @@ it('should log in successfully with valid credentials', () => {
 4. **Custom Commands:**
    - Create a custom command (e.g., `cy.login()`) and use it across multiple test cases.
    - Refactor existing test code to use this custom command.
-
-5. **Cypress Commands Practice:**
-   - Write test cases that demonstrate chaining of commands (e.g., selecting an element, asserting its visibility, and clicking it).
-   - Experiment with commands like `cy.within()` for scoping tests to specific elements.
 
 ---
 

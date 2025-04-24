@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="sk">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vyhľadávanie Adresy</title>
+  <style>
+    /* styles.css */
+
+    /* General Body Styling */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background-color: #f0f0f0;
+      color: #333;
+    }
+
+    /* Headings */
+    h1 {
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    /* Input and Button Styling */
+    input[type="text"] {
+      width: 70%;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      margin-right: 10px;
+    }
+
+    button {
+      padding: 8px 16px;
+      background-color: #007BFF;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    /* Result Display Styling */
+    .result {
+      margin-top: 20px;
+      padding: 15px;
+      background-color: #fff;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    #no-address {
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+  <h1 data-testid="page-title">Vyhľadávanie Adresy</h1>
+  <div>
+    <input data-testid="search-input" type="text" id="search-input" placeholder="Zadajte adresu..." />
+    <button data-testid="search-button" id="search-button">Vyhľadať</button>
+    <span data-testid="no-address" id="no-address">Adresa je povinna</span>
+  </div>
+  <div data-testid="result-display" id="result-display" class="result hidden">
+    <p data-testid="ruian-code" id="ruian-code"></p>
+    <p data-testid="available-technologies" id="available-technologies"></p>
+  </div>
+
+  <script src="main.js"></script>
+</body>
+
+</html>

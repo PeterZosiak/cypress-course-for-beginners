@@ -109,8 +109,8 @@
 **Example Using Faker:**
 
 ```javascript
-// Install faker with: npm install faker --save-dev
-import faker from 'faker';
+// Install faker with: npm install --save-dev @faker-js/faker
+import { faker } from '@faker-js/faker';
 
 const randomUsername = faker.internet.userName();
 const randomEmail = faker.internet.email();

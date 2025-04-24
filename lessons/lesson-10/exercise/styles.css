@@ -1,93 +1,125 @@
 /* styles.css */
 
-/* Global Styles */
+/* General Styles */
 body {
   font-family: Arial, sans-serif;
   margin: 0;
-  padding: 20px;
-  background-color: #f7f7f7;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f5f5f5;
   color: #333;
 }
 
-/* Container Boxed Design */
-.container {
-  max-width: 500px;
-  margin: 0 auto;
-  background: #fff;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  padding: 20px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+/* Container Styles */
+.login-container,
+.dashboard-container {
+  background: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  margin: 20px;
 }
 
-/* Headings */
-h1,
-h2 {
+.login-container {
+  max-width: 400px;
+}
+
+.dashboard-container {
+  max-width: 600px;
+}
+
+/* Typography */
+h1 {
   text-align: center;
-  color: #2c3e50;
+  margin-bottom: 2rem;
+  color: #333;
 }
 
-/* Form Group Styling */
+.welcome-message {
+  text-align: center;
+  color: #666;
+  margin-bottom: 2rem;
+}
+
+/* Form Elements */
+form {
+  margin-bottom: 20px;
+  padding: 15px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
 .form-group {
   margin-bottom: 15px;
 }
 
+form div {
+  margin-bottom: 1rem;
+}
+
 label {
   display: block;
-  margin-bottom: 5px;
+  margin-bottom: 0.5rem;
+  color: #666;
   font-weight: bold;
-  color: #34495e;
 }
 
 /* Input Fields */
-input[type="text"],
-input[type="password"],
-input[type="email"],
+input,
 select {
   width: 100%;
-  padding: 10px;
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-bottom: 1rem;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="file"] {
+  padding: 8px;
   border: 1px solid #ccc;
-  border-radius: 3px;
+  border-radius: 4px;
   box-sizing: border-box;
   margin-bottom: 10px;
 }
 
-/* Button Styling */
+/* Buttons */
 button {
   width: 100%;
-  padding: 10px;
-  background-color: #2980b9;
-  color: #fff;
+  padding: 0.75rem;
+  background-color: #007bff;
+  color: white;
   border: none;
-  border-radius: 3px;
+  border-radius: 4px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  margin-top: 1rem;
 }
 
 button:hover {
-  background-color: #1c5980;
+  background-color: #0056b3;
+}
+
+button[disabled] {
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 
 /* Error and Success Messages */
 .error {
-  color: #a94442;
-  background-color: #f2dede;
-  border: 1px solid #ebccd1;
-  padding: 10px;
-  border-radius: 3px;
-  margin-top: 10px;
-  text-align: center;
+  color: red;
+  margin-top: 1rem;
   font-size: 0.9em;
 }
 
 .success {
-  color: #3c763d;
-  background-color: #dff0d8;
-  border: 1px solid #d0e9c6;
-  padding: 10px;
-  border-radius: 3px;
-  margin-top: 10px;
-  text-align: center;
+  color: green;
+  margin-top: 1rem;
   font-size: 1em;
 }
 
@@ -96,22 +128,222 @@ button:hover {
   display: none;
 }
 
-/* Boxed Section for Dashboard */
-.box {
-  border: 1px solid #ddd;
-  border-radius: 3px;
-  padding: 15px;
+/* Table Styling */
+table {
+  width: 100%;
+  border-collapse: collapse;
   margin-top: 20px;
-  background-color: #fff;
+}
+
+table,
+th,
+td {
+  border: 1px solid #ccc;
+}
+
+th,
+td {
+  padding: 10px;
+  text-align: left;
 }
 
 /* List Styling */
 ul {
-  list-style: none;
+  list-style-type: none;
   padding: 0;
+  margin: 1rem 0;
 }
 
 li {
-  padding: 8px;
+  padding: 0.75rem;
   border-bottom: 1px solid #eee;
+}
+
+li:last-child {
+  border-bottom: none;
+}
+
+/* Search Input */
+#search-input {
+  margin-bottom: 10px;
+  padding: 8px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+
+/* Basic styles for demonstration */
+.hidden {
+  display: none;
+}
+
+.error {
+  color: red;
+  margin-top: 10px;
+}
+
+.success {
+  color: green;
+  margin-top: 10px;
+}
+
+.login-container {
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+}
+
+.button-group {
+  margin-top: 20px;
+  text-align: right;
+}
+
+.button-group button {
+  margin-left: 10px;
+  padding: 10px 15px;
+}
+
+/* Basic styles for demonstration */
+body {
+  font-family: sans-serif;
+  padding: 20px;
+}
+
+.dashboard-container {
+  max-width: 800px;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.welcome-message {
+  font-size: 1.1em;
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+input[type="text"],
+input[type="checkbox"] {
+  margin-bottom: 15px;
+}
+
+input[type="text"] {
+  width: calc(100% - 22px);
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 10px;
+  border: 1px solid #eee;
+  border-radius: 4px;
+}
+
+li {
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+li:last-child {
+  border-bottom: none;
+}
+
+li:hover {
+  background-color: #f9f9f9;
+  cursor: pointer;
+  color: #007bff;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+th,
+td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: left;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.hidden {
+  display: none;
+}
+
+/* Utility class */
+.search-section,
+.items-section,
+.table-section,
+.interactive-elements-section,
+.status-section {
+  margin-bottom: 25px;
+  padding: 15px;
+  border: 1px dashed #ddd;
+  border-radius: 5px;
+}
+
+/* Added borders for clarity */
+h2 {
+  border-bottom: 1px solid #eee;
+  padding-bottom: 5px;
+  margin-top: 0;
+}
+
+.item-count {
+  font-style: italic;
+  color: #555;
+  font-size: 0.9em;
+  margin-top: 5px;
+}
+
+.status-indicator {
+  padding: 5px 10px;
+  border-radius: 4px;
+  color: white;
+  font-weight: bold;
+}
+
+.status-active {
+  background-color: green;
+}
+
+.status-inactive {
+  background-color: orange;
 }
