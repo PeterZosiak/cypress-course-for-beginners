@@ -35,8 +35,7 @@ Dashboard page*/
     cy.get('input[id="password"]').type("pass")
     cy.get('[data-testid="login-button"]').click()
 
-    cy.get('div[data-testid="success-message"]').should('be.visible',
-{timeout: 1000})
+    cy.get('div[data-testid="success-message"]').should('be.visible', {timeout: 1000})
 
 
     // Control URL
@@ -46,27 +45,40 @@ Dashboard page*/
   })
 
   it('dashboard', () => {
-    cy.visit('http://127.0.0.1:5500/lessons/lesson-8/exercise/dashboard.html')
+    //cy.visit('http://127.0.0.1:5500/lessons/lesson-8/exercise/dashboard.html')
+    cy.visit('http://127.0.0.1:5500/cypress-course-for-beginners-1/lessons/lesson-8/exercise/dashboard.html')
 
-    // Перевірка користувача
+    
     cy.get('span[data-testid="username"]').should('have.text', 'demoUser')
 
-    // Фільтрація через пошук
+
+
+    // search = 'dva'
     cy.get('input[data-testid="search-input"]').type('dva')
-    //cy.get('span[data-testid="item-count"]').should('contain', '2')
-    cy.get('ul[data-testid="items-list"]li').first().should('contain.text', 'Položka Dva')
+    cy.get('span[data-testid="item-count"]').should('contain', '2')
+    cy.get('ul[data-testid="items-list"]').find('li').should('have.length', 2).and('contain.text', 'Dva')
 
-    // Очистити фільтр
-    cy.get('input[data-testid="search-input"]').clear()
+    cy.get('input[data-testid="search-input"]').clear() //clear search
 
-    cy.get('input[data-testid="checkbox1"]').check()
+    cy.get('ul[data-testid="items-list"]').find('li').then((listItems) => {
+      const listItemsLength = listItems.length
+      cy.get('span[data-testid="item-count"]').should('have.text', `Zobrazených položiek: ${listItemsLength}`)
 
-    // Перевірка клітинки в таблиці
-    cy.get('tbody[data-testid="table-body"]')
-      .find('tr').eq(0)
-      .find('td[data-testid="cell-active-1"]')
-      .should('have.text', 'Áno')
+    })
+  
+    cy.get('input[data-testid="checkbox1"]').check() //select checkbox
 
+    //work code with should'have:
+    //cy.get('tbody[data-testid="table-body"]').find('tr').find('td[data-testid="cell-active-1"]').should('have.text', 'Áno')
+
+    //work code with should'contain:
+    //cy.get('tbody[data-testid="table-body"]').find('tr').find('td[data-testid*="cell-active"]').should('contain.text', 'Áno')
+
+    //work code with cicle each:
+    cy.get('tbody[data-testid="table-body"]').find('tr').each((row) => {
+      cy.wrap(row).find('td[data-testid*="cell-active"]').should('contain.text', 'Áno')
+    })
+    
 
   })
 })
