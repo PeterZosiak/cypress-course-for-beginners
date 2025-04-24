@@ -28,12 +28,8 @@
     ]
   },
   {
-    "address": "111",
-    "ruian_code": "RU799",
-    "count": 0,
-    "available_technologies": [
-      "DSL",
-      "Satellite"
-    ]
+    "address": "not exist",
+    "ruian_code": "xxx",
+    "count": 0
   }
 ]
