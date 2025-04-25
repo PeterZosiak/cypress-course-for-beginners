@@ -5,67 +5,83 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Prihlásenie - Demo Aplikácia</title>
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
-  <div class="container">
-    <h1 data-cy="page-title">Prihlásenie používateľa</h1>
-    <form data-cy="login-form" id="login-form">
-      <div class="form-group">
-        <label for="login-username">Používateľské meno:</label>
-        <input data-cy="login-username-input" type="text" id="login-username" placeholder="Zadajte používateľské meno" />
-        <span data-cy="error-username" class="error hidden">Používateľské meno je povinné.</span>
+  <div class="login-container" data-testid="login-container"> <!-- Added data-testid for within() -->
+    <h1 data-testid="page-title">Prihlásenie</h1>
+    <form data-testid="login-form" id="login-form">
+      <div class="form-group" data-testid="username-group"> <!-- Added data-testid for find() -->
+        <label for="username">Používateľské meno:</label>
+        <input data-testid="username-input" type="text" id="username" name="username"
+          placeholder="Zadajte používateľské meno" required>
       </div>
-      <div class="form-group">
-        <label for="login-password">Heslo:</label>
-        <input data-cy="login-password-input" type="password" id="login-password" placeholder="Zadajte heslo" />
-        <span data-cy="error-password" class="error hidden">Heslo je povinné.</span>
+      <div class="form-group" data-testid="password-group"> <!-- Added data-testid for find() -->
+        <label for="password">Heslo:</label>
+        <input type="password" id="password" name="password" placeholder="Zadajte heslo">
       </div>
-      <button data-cy="login-submit-button" type="submit">Prihlásiť</button>
+      <div class="button-group" data-testid="action-buttons"> <!-- Added data-testid for find() -->
+        <button data-testid="login-button" type="submit">Prihlásiť</button>
+        <button data-testid="reset-button" type="reset">Vymazať</button>
+      </div>
     </form>
-    <div data-cy="error-invalid" class="error hidden">Nesprávne prihlasovacie údaje, skúste znova.</div>
-    <div data-cy="login-success-message" class="success hidden">Prihlásenie úspešné! Presmerovanie...</div>
+    <div data-testid="message-area"> <!-- Container for messages, useful for within() -->
+      <div data-testid="error-message" class="error hidden"></div>
+      <div data-testid="success-message" class="success hidden">Prihlásenie úspešné! Presmerovanie...</div>
+    </div>
   </div>
 
   <script>
-    // Validácia a spracovanie prihlasovacieho formulára
-    document.getElementById('login-form').addEventListener('submit', function (e) {
+    const loginForm = document.getElementById('login-form');
+    const errorMsg = document.querySelector('[data-testid="error-message"]');
+    const successMsg = document.querySelector('[data-testid="success-message"]');
+
+    const VALID_CREDENTIALS = {
+      username: "user",
+      password: "pass"
+    };
+
+    loginForm.addEventListener('submit', function (e) {
       e.preventDefault();
 
-      // Vymazanie predchádzajúcich chybových správ
-      document.querySelector('[data-cy="error-username"]').classList.add('hidden');
-      document.querySelector('[data-cy="error-password"]').classList.add('hidden');
-      document.querySelector('[data-cy="error-invalid"]').classList.add('hidden');
-      document.querySelector('[data-cy="login-success-message"]').classList.add('hidden');
+      const username = document.getElementById('username').value.trim();
+      const password = document.getElementById('password').value.trim();
 
-      const username = document.getElementById('login-username').value.trim();
-      const password = document.getElementById('login-password').value.trim();
-      let isValid = true;
+      // Clear previous messages
+      errorMsg.classList.add('hidden');
+      successMsg.classList.add('hidden');
+      errorMsg.textContent = ''; // Clear text content as well
 
-      // Kontrola validácie
-      if (!username) {
-        document.querySelector('[data-cy="error-username"]').classList.remove('hidden');
-        isValid = false;
-      }
-      if (!password) {
-        document.querySelector('[data-cy="error-password"]').classList.remove('hidden');
-        isValid = false;
-      }
-      if (!isValid) {
+      // Validate empty fields
+      if (!username || !password) {
+        errorMsg.textContent = "Vyplňte prosím všetky povinné polia";
+        errorMsg.classList.remove('hidden');
         return;
       }
 
-      // Simulácia overenia
-      if (username === "demoUser" && password === "demoPass") {
-        document.querySelector('[data-cy="login-success-message"]').classList.remove('hidden');
-        // Simulácia presmerovania po oneskorení
+      // Validate credentials
+      if (username === VALID_CREDENTIALS.username &&
+        password === VALID_CREDENTIALS.password) {
+        successMsg.classList.remove('hidden');
+
+        // Simulate redirect after successful login
         setTimeout(() => {
-          window.location.href = "dashboard.html";
-        }, 1500);
+          // In a real app, you might redirect or update UI
+          // For demo, just keep the success message
+          window.location.href = "dashboard.html"; // Keep redirect for lesson context
+        }, 1000);
       } else {
-        document.querySelector('[data-cy="error-invalid"]').classList.remove('hidden');
+        errorMsg.textContent = "Nesprávne prihlasovacie údaje";
+        errorMsg.classList.remove('hidden');
       }
+    });
+
+    // Form reset handler
+    loginForm.addEventListener('reset', function () {
+      errorMsg.classList.add('hidden');
+      successMsg.classList.add('hidden');
+      errorMsg.textContent = '';
     });
   </script>
 </body>
