@@ -1,5 +1,5 @@
 /// <reference types="cypress" />
-//npm install cypress @cypress/grep --save-dev
+//npm install @cypress/grep --save-dev
 //npx cypress run --env grepTags=SMOKE
 //npx cypress run --env grep="smokeTest"
 
@@ -15,7 +15,6 @@ describe('Dashboard tests', () => {
         cy.login('user', 'pass');
         // Check redirect to dashboard
         cy.url().should('include', '/dashboard');
-
 
     });
 
