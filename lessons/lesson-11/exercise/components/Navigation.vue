@@ -1,11 +1,24 @@
 <template>
   <nav>
     <ul>
-      <li><NuxtLink to="/" data-testid="nav-home">Home</NuxtLink></li>
-      <li><NuxtLink to="/courses" data-testid="nav-courses">Courses</NuxtLink></li>
-      <li><NuxtLink to="/about" data-testid="nav-about">About</NuxtLink></li>
-      <li><NuxtLink to="/contact" data-testid="nav-contact">Contact</NuxtLink></li>
-      <li><NuxtLink to="/login" data-testid="nav-login">Login</NuxtLink></li>
+      <li>
+        <NuxtLink to="/" data-testid="nav-home">Home</NuxtLink>
+      </li>
+      <li>
+        <NuxtLink to="/courses" data-testid="nav-courses">Courses</NuxtLink>
+      </li>
+      <li>
+        <NuxtLink to="/about" data-testid="nav-about">About</NuxtLink>
+      </li>
+      <li>
+        <NuxtLink to="/contact" data-testid="nav-contact">Contact</NuxtLink>
+      </li>
+      <li>
+        <NuxtLink to="/login" data-testid="nav-login">Login</NuxtLink>
+      </li>
+      <li>
+        <NuxtLink to="/register" data-testid="nav-register">Register</NuxtLink>
+      </li>
     </ul>
   </nav>
 </template>

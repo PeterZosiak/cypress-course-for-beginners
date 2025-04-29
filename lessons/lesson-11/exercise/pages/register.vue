@@ -1,7 +1,13 @@
 <template>
   <div class="login-container">
-    <h1>Login</h1>
-    <form @submit.prevent="handleSubmit">
+    <h1>Register</h1>
+    <form @submit.prevent="handleRegister"> <!-- Changed to submit event -->
+      <div class="form-group">
+        <label for="username">Username:</label>
+        <input type="text" id="username" v-model="username" required @blur="validateUsername"
+          data-testid="username-input" />
+        <span v-if="usernameError" class="error">{{ usernameError }}</span>
+      </div>
       <div class="form-group">
         <label for="email">Email:</label>
         <input type="email" id="email" v-model="email" required @blur="validateEmail" data-testid="email-input" />
@@ -14,7 +20,8 @@
         <span v-if="passwordError" class="error">{{ passwordError }}</span>
       </div>
       <div class="button-group">
-        <button type="submit" :disabled="!isFormValid" data-testid="login-btn">Login</button>
+        <button type="submit" :disabled="!isFormValid" data-testid="register-btn">Register</button>
+        <!-- Changed to type="submit" -->
       </div>
     </form>
   </div>
@@ -26,10 +33,22 @@ import { useRouter } from 'vue-router';
 
 const router = useRouter();
 
+const username = ref(''); // Added username ref
 const email = ref('');
 const password = ref('');
+const usernameError = ref(''); // Added username error ref
 const emailError = ref('');
 const passwordError = ref('');
+
+const validateUsername = () => {
+  if (!username.value) {
+    usernameError.value = 'Username is required';
+  } else if (username.value.toLowerCase() === 'peter') {
+    usernameError.value = 'User with name \'peter\' is already registered';
+  } else {
+    usernameError.value = '';
+  }
+};
 
 const validateEmail = () => {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -38,8 +57,8 @@ const validateEmail = () => {
 
 const validatePassword = () => {
   const specialCharRegex = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
-  if (!password.value) { // Handle empty password case for initial state or clearing
-    passwordError.value = ''; // Or set a specific message if needed
+  if (!password.value) {
+    passwordError.value = '';
   } else if (password.value.length < 6) {
     passwordError.value = 'Password must be at least 6 characters long';
   } else if (!specialCharRegex.test(password.value)) {
@@ -50,21 +69,20 @@ const validatePassword = () => {
 };
 
 const isFormValid = computed(() => {
-  // Trigger validation explicitly if needed, or rely on @blur
-  // Ensure errors are checked *after* potential validation runs
-  const isEmailValid = email.value && !emailError.value;
-  const isPasswordValid = password.value && !passwordError.value;
   // Check the actual error refs *after* validation logic might have run
-  return email.value && password.value && emailError.value === '' && passwordError.value === '';
+  return username.value && email.value && password.value &&
+    usernameError.value === '' && emailError.value === '' && passwordError.value === '';
 });
 
-const handleSubmit = () => {
-  // Here you would typically make an API call to authenticate the user
-  console.log('Login submitted:', { email: email.value, password: password.value });
-  // Redirect to the account page with the email as a route parameter
-  router.push({ path: '/account', query: { email: email.value } });
-};
+const handleRegister = () => {
+  // Ensure form is valid before proceeding (though button state handles this)
+  if (!isFormValid.value) return;
 
+  // For now, we'll just redirect to the account page with the email
+  // In a real app, you'd send username, email, password to your backend
+  console.log('Registering user:', username.value, email.value); // Log registration attempt
+  router.push({ path: '/account', query: { email: email.value, username: username.value } }); // Pass username too
+};
 </script>
 
 <style scoped>
