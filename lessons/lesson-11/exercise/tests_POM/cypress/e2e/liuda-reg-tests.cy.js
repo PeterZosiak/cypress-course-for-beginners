@@ -1,7 +1,7 @@
 import registrationPage from "../pages/registrationPage";
 import menuComponent from "../pages/components/menuComponent";
 
-describe('lne registracne testy', () => {
+describe('Ine registracne testy', () => {
   it('toto je test', () => {
     cy.visit('http://localhost:3000');
     menuComponent.registerButton().click();
