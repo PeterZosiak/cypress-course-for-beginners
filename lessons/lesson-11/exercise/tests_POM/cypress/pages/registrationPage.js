@@ -6,13 +6,24 @@
     registerButton () {
         return cy.get('[data-testid="register-btn"]')
     }
-    
-    errorMessage() {
+
+    errorMessageInputName() {
         return cy.get('span[class="error"]')
+        //return cy.get('span.error')
+    }
+    
+    errorMessageEmail() {
+        return cy.get('span[class="error"]')
+        //return cy.get('span.error')
+    }
+
+    errorMessagePassword() {
+        return cy.get('span[class="error"]')
+        //return cy.get('span.error')
     }
 
     insertEmail(email) {
-        this.emailInput().type(email)
+        return this.emailInput().type(email)
     }
 
     register(username, email, password) {

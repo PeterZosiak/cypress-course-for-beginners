@@ -4,9 +4,29 @@ export default new class aboutPage{
         return cy.get('div[class="team-grid"]')
     }
 
-    teamMember1(
+    teamMember1() {
         return cy.get('div[data-testid="team-member-1"]')
-    )
+          
+    }
+    roleMember1() {
+        return cy.get('div[data-testid="team-member-1"]')       
+    }
+    descriptionMember1() {
+        return cy.get('div[data-testid="team-member-1"]')       
+    }
+
+    teamMember2() {   
+        return cy.get('div[data-testid="team-member-2"]')
+    }
+
+    teamMember3() {   
+        return cy.get('div[data-testid="team-member-3"]')
+    }
+  
+    teamMember() {
+        return this.teamMember1().find('hr[data-testid="team-member-1"]')
+    }
+    
 }
 /*Domaci ukol: Napisat testy na stranku Contact
 Test 1: Skomntroluje ze vsetky element su viditelne a v spravnom stave (button is disabled) 

@@ -1,4 +1,4 @@
-class Component {
+export default new class Component {
     homeButton() {
         return cy.get('a[data-testid="nav-home"]')
     }
