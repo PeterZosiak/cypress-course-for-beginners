@@ -3,7 +3,10 @@ import registrationPage from "../pages/registrationPage"
 describe('registr test', () => {
   beforeEach(() => {
     //arrange
-    cy.visit('http://localhost:3000/register')
+    cy.fixture('url.json').then((urls) => {
+      cy.visit(`${urls.mainUrl}/register`)
+      //cy.visit('http://localhost:3000/register')
+    })
   })
 
   it('should open registr. page', () => {
@@ -19,7 +22,7 @@ describe('registr test', () => {
     
     it('Should username - empty and get error', () => {
       registrationPage.usernameInput().click().blur()
-      registrationPage.errorMessageInputName().should('be.visible').and('contain', 'Username is required')
+      registrationPage.errorMessageInputUsName().should('be.visible').and('contain', 'Username is required')
     })
 
     it('Should enter invalid email - without "@" and "." and get error', () => {

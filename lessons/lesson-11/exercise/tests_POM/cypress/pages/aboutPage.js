@@ -1,12 +1,9 @@
 export default new class aboutPage{
     teamGrid() {
-
         return cy.get('div[class="team-grid"]')
     }
-
     teamMember1() {
-        return cy.get('div[data-testid="team-member-1"]')
-          
+        return cy.get('div[data-testid="team-member-1"]')        
     }
     roleMember1() {
         return cy.get('div[data-testid="team-member-1"]')       
@@ -14,15 +11,12 @@ export default new class aboutPage{
     descriptionMember1() {
         return cy.get('div[data-testid="team-member-1"]')       
     }
-
     teamMember2() {   
         return cy.get('div[data-testid="team-member-2"]')
     }
-
     teamMember3() {   
         return cy.get('div[data-testid="team-member-3"]')
     }
-  
     teamMember() {
         return this.teamMember1().find('hr[data-testid="team-member-1"]')
     }

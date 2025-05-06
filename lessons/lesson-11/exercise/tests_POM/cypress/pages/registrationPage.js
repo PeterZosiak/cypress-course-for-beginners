@@ -7,7 +7,7 @@
         return cy.get('[data-testid="register-btn"]')
     }
 
-    errorMessageInputName() {
+    errorMessageInputUsName() {
         return cy.get('span[class="error"]')
         //return cy.get('span.error')
     }
