@@ -6,7 +6,7 @@ describe('Check ContactUs Page', () => {
         cy.fixture('url.json').then((urls) => {
             cy.visit(`${urls.mainUrl}/contact`)
             //cy.visit('http://localhost:3000/contact')          
-            //menuComponent.navigate('contact')
+            menuComponent.navigate('contact')
         })  
 
     it('should open ContactUs page and control all fields on page', () => {

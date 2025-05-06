@@ -1,5 +1,6 @@
 import aboutPage from '../pages/aboutPage'
 import menuComponent from '../pages/components/menuComponent';     
+import teamMemberComponent from '../pages/components/teamMemberComponent';
 
 describe('About', () => {
     it('should open About page and contol members of team', () => {
