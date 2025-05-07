@@ -1,4 +1,4 @@
-export default new class coursesPage{
+ export default class coursesPage{
     courseName1() {
         return cy.get('div[data-testid="course-1"]').find('h3')
     }
