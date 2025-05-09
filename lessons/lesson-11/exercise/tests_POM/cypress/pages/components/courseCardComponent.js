@@ -6,13 +6,26 @@ export default class CourseCardComponent {
     
     // creating parrent component
     nadradenyElement() {
-      return cy.get(`div[data-testid=${this.componentSelector}]`)
+      return cy.get(`div[data-testid=${this.componentSelector}]`) //this.componentSelector = 'course-1'
+      // analog. work code:
+      //return cy.get('div[data-testid="' + this.componentSelector + '"]')
     }
     
     nazovKurzu = () => this.nadradenyElement().find('h3') 
+    descripCourse = () => this.nadradenyElement().find('p').first()
     cenaKurzu = () => this.nadradenyElement().find('p[class="price"]') 
-    komentare = () => this.nadradenyElement().find('div[class="comments-section"]')
+    komentare = () => this.nadradenyElement().find('h4')
 
+    authorComment = (commentNumber) => this.nadradenyElement().find(`li[data-testid="comment-${commentNumber}"] strong`);
+  
+    textComment = (commentNumber) => this.nadradenyElement().find(`li[data-testid="comment-${commentNumber}"]`).then($el => {
+      const fullText = $el.text(); // "John: Great course for beginners!"
+      const author = $el.find('strong').text(); // "John"
+      return fullText.replace(`${author}:`, '').trim(); // "Great course for beginners!"
+    });
+
+    inputComment = () => this.nadradenyElement().find('input[data-testid="comment-input"]') 
+    addCommentButton = () => this.nadradenyElement().find('button[data-testid="submit-comment"]');    
   }
 
   //Na stranke Course (localhost:3000/courses)  pridat komentar pre kazdy jeden kurz. 

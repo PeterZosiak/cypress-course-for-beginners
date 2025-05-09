@@ -1,4 +1,5 @@
 export default new class aboutPage{
+    headingH1 = () => cy.get ('h1')
     teamGrid() {
         return cy.get('div[class="team-grid"]')
     }

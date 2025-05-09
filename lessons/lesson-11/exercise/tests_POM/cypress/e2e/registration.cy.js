@@ -9,15 +9,12 @@ describe('registr test', () => {
     })
   })
 
-  it('should open registr. page', () => {
-    //act
-    //assert
+  it('should be visible all elements on page', () => {
     registrationPage.headingH1().should('be.visible')
     registrationPage.usernameInput().should('be.visible')
     registrationPage.emailInput().should('be.visible')
     registrationPage.passwordInput().should('be.visible') 
     registrationPage.registerButton().should('be.visible')
-    //})
   })
     
     it('Should username - empty and get error', () => {
