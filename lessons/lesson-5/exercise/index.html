@@ -14,9 +14,14 @@
 </head>
 
 <body>
+<<<<<<< HEAD
+  <h1 onclick="zmenTitle()" id="napisId" data-textid="title">Welcome to Lesson 5</h1>
+=======
   <h1>Vitajte to Lesson 5</h1>
+>>>>>>> origin/main
   <p id="simpleText"></p>
   <button>Zmena textu</button>
+  <button onclick="zmenBarvuTextu()">ZmenBarvy</button>
   <p>chcem byt cerveny</p>
   <p>a ja tiez</p>
 
@@ -32,12 +37,34 @@
   <p data-user-id="143">User: John Boe</p>
   <script>
     // Napiste funkciu, ktora po kliknuti na tlacidlo zmeni text v paragrafe na "Hello World"
+    function zmenTitle() {
+      const nadpis = document.querySelector('[id="napisId"]')
+      console.log(nadpis)
+      nadpis.innerText = "Hello World"
+    }
 
-    // Napiste funckciu, ktora 2 sekundy po nacitani stranky zmeni Title stranky
+  // Napiste funckciu, ktora 2 sekundy po nacitani stranky zmeni Title stranky
+  // Napiste funckciu, ktora zmeni farbu vsetky paragrafov na stranke na cervenu
+        function zmenBarvuTextu() {
+            
+          console.log("ted se vykona zm Barvy")
+          const paragrafy = document.querySelectorAll("p")
+            paragrafy.forEach(paragraf => {
+              paragraf.innerText = "cervena"
+              paragraf.style.color = "green"
 
-    // Napiste funckciu, ktora zmeni farbu vsetky paragrafov na stranke na cervenu
+            })
+
+        }
+
+   
 
     // Napiste funkciu, ktora vypise aktualnu adresu stranky do konzoly
+
+    function vypisCurrentUrl() {
+      console.log(window.Location.href)
+
+    }
 
     // Napiste funkciu, ktora zobrazi Alert okno s lubovolnym textom
 
