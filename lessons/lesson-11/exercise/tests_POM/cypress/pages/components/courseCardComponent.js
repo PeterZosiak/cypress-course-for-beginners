@@ -6,12 +6,14 @@ export default class CourseCardComponent {
     
     // creating parrent component
     nadradenyElement() {
-      return cy.get(`div[data-testid=${this.componentSelector}]`)
+       return cy.get(`div[data-testid=${this.componentSelector}]`)
     }
     
     nazovKurzu = () => this.nadradenyElement().find('h3') 
+    descripPozice = () => this.nadradenyElement().find('p') 
     cenaKurzu = () => this.nadradenyElement().find('p[class="price"]') 
     komentare = () => this.nadradenyElement().find('div[class="comments-section"]')
+    //komentare = () => this.nadradenyElement().find('div[class="comments-section"]')
 
   }
 
