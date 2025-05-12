@@ -14,8 +14,12 @@ describe('Courses tests', () => {
 
       const card1 = new courseCardComponent('course-1')
       card1.nazovKurzu().should('have.text', 'Cypress Basics')
+      card1.descripPozice().should('have.text', 'Learn the fundamentals of Cypress testing framework')
       card1.cenaKurzu().should('have.text', '99€')
 
+      
+
+      
 
       const card2 = new courseCardComponent('course-2')
       card2.nazovKurzu().should('have.text', 'Advanced E2E Testing')
