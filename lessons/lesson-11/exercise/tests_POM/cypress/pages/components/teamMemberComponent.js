@@ -27,6 +27,7 @@ export default class teamMemberComponent {
     role() {
         return cy.get('h3[data-testid="member-role"]').eq(this.poziciaVGide)
     }
+    
     description() {
         return cy.get('h3[data-testid="member-description"]').eq(this.poziciaVGide)
     }

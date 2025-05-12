@@ -10,7 +10,6 @@ export default class coursesPage{
     courseName3() {
         return cy.get('div[data-testid="course-3"]').find('h3')
     }
-    inputComment = () => cy.get('input[data-testid="comment-input-1"]') 
 }
 
 //export default new class sendComment{}

@@ -11,7 +11,7 @@ describe('Check About Page', () => {
     })
         it('should be visible name of page', () => {
             aboutPage.headingH1().should('be.visible').and('contain', 'About Us')
-        }) 
+        })
       
         it('validation member1', () => {
             const teamMember1 = new teamMemberComponent(0, 'team-member-1')
