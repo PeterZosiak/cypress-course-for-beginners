@@ -24,8 +24,16 @@ export default class CourseCardComponent {
       return fullText.replace(`${author}:`, '').trim(); // "Great course for beginners!"
      });
 
-    inputComment = () => this.nadradenyElement().find(`input[data-testid="comment-input-1"]`)  
-    addCommentButton = () => this.nadradenyElement().find(`button[data-testid="submit-comment-1"]`).click()
+       inputComment = (courseNumber) => 
+    this.nadradenyElement().find(`input[data-testid="comment-input-${courseNumber}"]`);
+
+    addCommentButton = (courseNumber) => 
+    this.nadradenyElement().find(`button[data-testid="submit-comment-${courseNumber}"]`);
+
+
+
+    //inputComment = () => this.nadradenyElement().find(`input[data-testid="comment-input-1"]`)  
+    //addCommentButton = () => this.nadradenyElement().find(`button[data-testid="submit-comment-1"]`).click()
   
   }
 

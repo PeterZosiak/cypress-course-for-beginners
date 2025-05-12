@@ -22,7 +22,7 @@ describe('Courses tests', () => {
       card1.authorComment(1).should('have.text', 'John')
       card1.textComment(1).then(commentText => {
         expect(commentText).to.equal('Great course for beginners!');
-      card1.inputComment().type('Great course for me')
+      card1.inputComment(1).type('Great course for me')
       })
     })
   
@@ -48,8 +48,8 @@ describe('Courses tests', () => {
       })  
   
     it('should write a message for course-1', () => {
-      card1.inputComment().type('Great course for me');
-      card1.addCommentButton().click();
+      card1.inputComment(1).type('Great course for me');
+      card1.addCommentButton(1).click();
       card1.authorComment(2).should('have.text', 'Anonymous');
       card1.textComment(2).then(commentText => {
       expect(commentText).to.equal('Great course for me');
@@ -57,12 +57,12 @@ describe('Courses tests', () => {
     })
 
     it('should write a message for course-2', () => {
-      //card2.inputComment(2).type('Great course for me');
-      //card2.addCommentButton(2).click();
-      //card2.authorComment(2).should('have.text', 'Anonymous');
-      //card2.textComment(2).then(commentText => {
-      //expect(commentText).to.equal('Great course for me');
-      //})
+      card2.inputComment(2).type('Excellent!');
+      card2.addCommentButton(2).click();
+      card2.authorComment(2).should('have.text', 'Anonymous');
+      card2.textComment(2).then(commentText => {
+      expect(commentText).to.equal('Excellent!');
+      })
     })
 
 
