@@ -23,12 +23,14 @@ export default class CourseCardComponent {
       const author = $el.find('strong').text(); // "John"
       return fullText.replace(`${author}:`, '').trim(); // "Great course for beginners!"
      });
+    inputComment = (courseNumber) => 
+      this.nadradenyElement().find(`input[data-testid="comment-input-${courseNumber}"]`);
 
-    inputComment = () => this.nadradenyElement().find(`input[data-testid="comment-input-1"]`)  
-    addCommentButton = () => this.nadradenyElement().find(`button[data-testid="submit-comment-1"]`).click()
-  
+    addCommentButton = (courseNumber) => 
+      this.nadradenyElement().find(`button[data-testid="submit-comment-${courseNumber}"]`);  
   }
 
   //Na stranke Course (localhost:3000/courses)  pridat komentar pre kazdy jeden kurz. 
   //Kto sa citi, zvalidovat pridany komentar, ze bol pridany, je viditelny, a zhoduje sa so zadanym komentarom
+  
   
