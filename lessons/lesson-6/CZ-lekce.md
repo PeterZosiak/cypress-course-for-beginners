@@ -1,17 +1,18 @@
-## **Lekce 6: Instalace a konfigurace Cypress**
+## **Lekce 6: Instalace a konfigurace Cypressu**
 
-### **1. Obsah lekce**
+### **1. Osnova obsahu**
 
-#### **A. Úvod do instalace Cypress**
+#### **A. Úvod do instalace Cypressu**
 - **Proč je instalace důležitá:**
-  - Před psaním testů Cypress je potřeba správně nastavit prostředí, aby byla zajištěna kompatibilita a hladké provádění testu.
-- **Požadavky pro instalaci:**
-  - Node.js nainstalovaný v systému.
-  - Základní porozumění správcům balíčků jako `npm` nebo `yarn`.
+  - Než začnete psát Cypress testy, musíte mít správně nastavené prostředí, abyste zajistili kompatibilitu a hladký průběh testů.
+- **Předpoklady pro instalaci:**
+  - Ve vašem systému musí být nainstalován Node.js.
+  - Základní znalost správců balíčků jako `npm` nebo `yarn`.
 
-1. **Nainstalovaný Node.js:**
-   - Cypress vyžaduje Node.js k řízení své instalace a závislostí (balíčků).
-   - Nainstalujte Node.js z oficiálního webu: [https://nodejs.org/](https://nodejs.org/).
+
+1. **Node.js nainstalován:**
+   - Cypress vyžaduje Node.js pro správu své instalace a závislostí.
+   - Nainstalujte Node.js z oficiálních stránek: [https://nodejs.org/](https://nodejs.org/).
    - Ověřte instalaci pomocí:
      ```bash
      node -v
@@ -19,36 +20,36 @@
      ```
 
 2. **Správce balíčků:**
-   - Node.js standardně obsahuje `npm` (Node Package Manager). Alternativně můžete použít `yarn`, `pnpm` nebo jiné.
+   - Node.js obsahuje `npm` (Node Package Manager) ve výchozím nastavení. Můžete však využít i `yarn`, `pnpm` nebo jiné.
 
-3. **Inicializovaný projekt JavaScriptu:**
-   - Váš projekt by měl mít soubor `package.json`, který je vytvořen pomocí `npm init` nebo `yarn init`. Tento soubor sleduje závislosti jako Cypress a další metadata projektu.
+3. **Inicializovaný JavaScript projekt:**
+   - Váš projekt by měl mít soubor `package.json`, který vytvoříte pomocí `npm init` nebo `yarn init`. Tento soubor eviduje závislosti jako Cypress a další metadata projektu.
 
-4. **Základní porozumění příkazové řádce:**
-   - Budete potřebovat vykonávat příkazy v terminálu k instalaci a spuštění Cypress.
+4. **Základní orientace v příkazové řádce:**
+   - Pro instalaci a spuštění Cypressu budete muset spouštět příkazy v terminálu.
 
 ##### **Co je npm a jak funguje?**
 
 **Co je npm?**
-- `npm` (Node Package Manager) je nástroj, který přichází s Node.js a používá se k řízení JavaScriptových balíčků a závislostí.
+- `npm` (Node Package Manager) je nástroj dodávaný s Node.js, sloužící k správě JavaScriptových balíčků a závislostí.
 - Pomáhá vývojářům:
   - Instalovat knihovny a nástroje.
-  - Sdílet své vlastní knihovny s komunitou.
-  - Řídit projektové nebo globální závislosti.
+  - Sdílet vlastní balíčky s komunitou.
+  - Spravovat závislosti specifické pro projekt nebo globální závislosti.
 
 **Jak npm funguje:**
 1. **Instalace balíčků:**
-   - Nainstalujte balíček lokálně (specifický pro projekt):
+   - Instalace balíčku lokálně (pro konkrétní projekt):
      ```bash
      npm install package-name
      ```
-   - Nainstalujte balíček globálně (přístupný ve všech projektech):
+   - Instalace balíčku globálně (dostupný ve všech projektech):
      ```bash
      npm install -g package-name
      ```
 
 2. **Správa závislostí:**
-   - Nainstalované balíčky jsou uvedeny v `package.json` v sekci `dependencies` nebo `devDependencies`.
+   - Instalované balíčky jsou uvedeny v souboru `package.json` v sekcích `dependencies` nebo `devDependencies`.
 
 3. **Automatizace skriptů:**
    - `npm` může spouštět vlastní skripty definované v `package.json`:
@@ -60,48 +61,50 @@
        }
      }
      ```
-   - Spusťte skript:
+   - Spuštění skriptu:
      ```bash
      npm run test
      ```
 
 ---
 
-### **Rozdíl mezi npm, yarn, bun a pnpm**
+### **Rozdíl mezi npm, yarn, bum a pnpm**
 
-| Funkce              | **npm**                       | **yarn**                     | **bun**                      | **pnpm**                       |
-|---------------------|------------------------------|------------------------------|------------------------------|--------------------------------|
-| **Rychlost**        | Střední                      | Rychlejší než npm           | Nejrychlejší                 | Rychlejší než npm/yarn        |
-| **Využití místa na disku** | Vyšší (duplicitní balíčky) | Střední                     | Efektivní                   | Nízké (používá tvrdé odkazy k omezení duplicity) |
-| **Strom závislostí**| Ploché strom                 | Ploché strom                 | Ploché strom                 | Hierarchické strom (lepší izolace) |
-| **Offline režim**   | Omezený                     | Podporováno                 | Podporováno                  | Podporováno                    |
-| **Přijetí**         | Široce používáno             | Populární ve větších projektech | Nové (emergující)          | Roste přijetí v podnicích      |
-| **Nejlepší použití** | Obecné                     | Velké nebo výkonově kritické projekty | Rychlé vývojové workflow     | Projekty vyžadující efektivní úložiště |
+| Vlastnost             | **npm**                       | **yarn**                     | **bun**                     | **pnpm**                               |
+|-----------------------|-------------------------------|------------------------------|-----------------------------|----------------------------------------|
+| **Rychlost**          | Průměrná                      | Rychlejší než npm            | Nejrychlejší                | Rychlejší než npm/yarn                 |
+| **Využití disku**     | Vyšší (duplicitní balíčky)    | Průměrné                     | Efektivní                   | Nízké (používá hardlinky pro eliminaci duplicit) |
+| **Strom závislostí**  | Plochý strom                  | Plochý strom                 | Plochý strom                | Hierarchický strom (lepší izolace)     |
+| **Offline režim**     | Omezený                       | Podporováno                  | Podporováno                 | Podporováno                            |
+| **Adopce**            | Široce používán               | Oblíbený ve větších projektech| Nový (nastupující)        | Stoupající popularita v enterprise     |
+| **Nejlepší využití**  | Obecné                        | Velké nebo výkonnostní projekty | Rychlé vývojové workflow | Projekty vyžadující efektivní úložiště |
 
-#### **B. Krok za krokem proces instalace**
-1. **Inicializace projektu:**
+
+#### **B. Instalace krok za krokem**
+1. **Inicializujte projekt:**
    - Vytvořte novou složku projektu.
-   - Spusťte `npm init` nebo `yarn init` k inicializaci souboru `package.json`.
-2. **Instalace Cypress:**
+   - Spusťte `npm init` nebo `yarn init` pro vytvoření souboru `package.json`.
+2. **Instalujte Cypress:**
    - Použijte příkaz `npm install cypress --save-dev` nebo `yarn add cypress --dev`.
-3. **Ověření instalace:**
-   - Spusťte `npx cypress open` nebo `yarn cypress open` k otevření testovacího běžce Cypress.
+3. **Ověřte instalaci:**
+   - Spusťte `npx cypress open` nebo `yarn cypress open` pro otevření Cypress Test Runneru.
+
 
 ##### **Co je `npm init`?**
 
 **Účel:**
-`npm init` inicializuje nový projekt Node.js vytvořením souboru `package.json`, který slouží jako konfigurační soubor pro řízení závislostí a skriptů projektu.
+`npm init` inicializuje nový Node.js projekt vytvořením souboru `package.json`, který slouží jako konfigurační soubor pro správu závislostí a skriptů projektu.
 
 **Jak to funguje:**
-1. Spusťte `npm init` ve vaší projektové složce:
+1. Spusťte `npm init` ve složce projektu:
    ```bash
    npm init
    ```
-2. Odpovězte na otázky (název projektu, verze, popis atd.) nebo je přeskakujte pomocí příznaku `-y` pro výchozí hodnoty:
+2. Odpovězte na výzvy (název projektu, verze, popis atd.), nebo použijte parametr `-y` pro výchozí hodnoty:
    ```bash
    npm init -y
    ```
-3. Je vytvořen soubor `package.json`, který obsahuje metadata jako:
+3. Vznikne soubor `package.json`, který obsahuje například tato data:
    ```json
    {
      "name": "my-project",
@@ -112,17 +115,24 @@
    }
    ```
 
-#### **C. Přehled struktury složky Cypress**
+
+#### **C. Přehled struktury složek Cypressu**
 - **Výchozí adresáře:**
-  - `cypress/fixtures`: JSON soubory pro testovací data.
-  - `cypress/e2e`: Soubory s testy.
-  - `cypress/plugins`: Rozširuje funkcionalitu Cypress.
-  - `cypress/support`: Opakovaně použitelné utility a globální konfigurace.
-##### **Účel složek Cypress**
+  - `cypress/fixtures`: Uchovává JSON soubory pro testovací data.
+  - `cypress/e2e`: Sem pište testovací soubory.
+  - `cypress/plugins`: Rozšiřitelnost Cypressu.
+  - `cypress/support`: Ukládání znovupoužitelných utilit a globální konfigurace.
+- **Význam jednotlivých adresářů:**
+  - **`fixtures`:** Centralizace mock dat pro testy.
+  - **`integration`:** Organizace testovacích případů dle funkcionalit.
+  - **`support`:** Přizpůsobení příkazů a konfigurace globálního chování.
+
+
+##### **Význam složek Cypressu**
 
 1. **`fixtures`:**
-   - Složka pro testovací data.
-   - Používá se pro simulaci odpovědí API nebo poskytování testovacích dat.
+   - Uchovávejte mock data ve formátu JSON.
+   - Používá se pro simulaci odpovědí API nebo zadání vstupních dat pro testy.
    - Příklad: `cypress/fixtures/users.json`
      ```json
      [
@@ -133,12 +143,12 @@
    - Přístup v testech:
      ```javascript
      cy.fixture('users').then((users) => {
-       cy.log(users[0].name); // Loguje "Alice"
+       cy.log(users[0].name); // Vypíše "Alice"
      });
      ```
 
 2. **`e2e` (nebo `integration` ve starších verzích):**
-   - Ukládá testovací skripty, obvykle organizované podle funkčnosti.
+   - Uchovávejte skutečné testovací soubory, obvykle rozdělené dle funkcionalit.
    - Příklad:
      ```
      cypress/integration/login.spec.js
@@ -146,17 +156,17 @@
      ```
 
 3. **`plugins`:**
-   - Rozširuje funkcionalitu Cypress, například upravením chování prohlížeče nebo konfigurací pluginů.
+   - Rozšiřte funkčnost Cypressu, například úpravou chování prohlížeče nebo konfigurací pluginů.
    - Příklad:
      ```javascript
      module.exports = (on, config) => {
-       // Upravte konfiguraci nebo nastavte posluchače událostí
+       // Úprava konfigurace nebo nastavení event listenerů
      };
      ```
 
 4. **`support`:**
-   - Obsahuje opakovaně použitelný kód jako vlastní příkazy nebo globální konfigurace.
-   - Příklad: Přidejte vlastní příkaz pro přihlášení do `cypress/support/commands.js`:
+   - Obsahuje znovupoužitelný kód jako vlastní příkazy nebo globální konfigurace.
+   - Příklad: Přidání vlastního přihlašovacího příkazu v `cypress/support/commands.js`:
      ```javascript
      Cypress.Commands.add('login', (username, password) => {
        cy.get('[data-testid="username"]').type(username);
@@ -165,9 +175,10 @@
      });
      ```
 
+
 #### **D. Konfigurační soubory**
-- **Přehled `cypress.config.js`:**
-  - Konfigurační soubor. Lze nastavit základní URL, velikost viewportu, časové limity a další.
+- **Přehled souboru `cypress.config.js`:**
+  - Nastavení základní URL, velikosti viewportu, timeoutů a další.
   - Příklad:
     ```javascript
     const { defineConfig } = require('cypress');
@@ -183,10 +194,10 @@
     });
     ```
 
-##### **Co je `baseUrl` v kontextu Cypress?**
+##### **Co je `baseUrl` v kontextu Cypressu?**
 
 **Definice:**
-`baseUrl` je konfigurační vlastnost v `cypress.config.js`, která nastavuje výchozí kořenovou URL pro testovanou aplikaci. Zjednodušuje testovací kód tím, že eliminuje potřebu opakovaně uvádět celou URL v příkazech `cy.visit()`.
+`baseUrl` je konfigurační vlastnost v `cypress.config.js`, která nastavuje výchozí kořenovou URL pro testovanou aplikaci. Umožňuje zjednodušit testovací kód, protože není potřeba opakovaně uvádět celou URL v příkazech `cy.visit()`.
 
 **Příklad:**
 - V `cypress.config.js`:
@@ -199,15 +210,16 @@
   ```
 - Použití v testech:
   ```javascript
-  cy.visit('/login'); // Převádí na 'http://localhost:3000/login'
+  cy.visit('/login'); // Rozhodí se na 'http://localhost:3000/login'
   ```
 
 **Výhody:**
-- Snižuje redundantnost v testovacích souborech.
-- Usnadňuje aktualizaci testů, pokud se změní kořenová URL (např. přechod z `localhost` na staging server).
+- Snižuje redundanci v testovacích souborech.
+- Usnadňuje změnu root URL (například při přesunu z `localhost` na staging server).
 
-- **Nastavení proměnných prostředí:**
-  - Použijte `env` v konfiguračním souboru pro citlivá data nebo znovu použitelné hodnoty.
+
+- **Nastavení environmentálních proměnných:**
+  - Použijte `env` v konfiguračním souboru pro citlivá data nebo opakovaně využívané hodnoty.
   - Příklad:
     ```javascript
     module.exports = defineConfig({
@@ -219,10 +231,10 @@
   - Přístup v testech pomocí `Cypress.env('apiUrl')`.
 
 
-### **`env` vlastnost v `cypress.config.js`**
+### **Vlastnost `env` v `cypress.config.js`**
 
 **Definice:**
-Vlastnost `env` v `cypress.config.js` uchovává proměnné specifické pro prostředí, jako jsou API koncové body, přihlašovací údaje nebo příznaky. Tyto hodnoty lze přistupovat v testech pomocí `Cypress.env()`.
+Vlastnost `env` v `cypress.config.js` ukládá proměnné specifické pro prostředí, jako jsou API endpointy, údaje pro přihlášení nebo různé příznaky. Tyto hodnoty lze v testech získat pomocí `Cypress.env()`.
 
 **Příklad:**
 - V `cypress.config.js`:
@@ -238,8 +250,8 @@ Vlastnost `env` v `cypress.config.js` uchovává proměnné specifické pro pros
   ```
 - Použití v testech:
   ```javascript
-  describe('API Testy', () => {
-    it('by měl načíst data z API', () => {
+  describe('API Tests', () => {
+    it('should fetch data from the API', () => {
       const apiUrl = Cypress.env('apiUrl');
       cy.request(`${apiUrl}/users`).then((response) => {
         expect(response.status).to.eq(200);
@@ -249,54 +261,55 @@ Vlastnost `env` v `cypress.config.js` uchovává proměnné specifické pro pros
   ```
 
 **Výhody:**
-- Centralizuje hodnoty specifické pro prostředí, což usnadňuje jejich aktualizaci.
-- Drží citlivá data (např. API klíče) mimo testovací kód.
+- Centralizace hodnot specifických pro prostředí, což zjednodušuje jejich aktualizaci.
+- Udržení citlivých údajů (například API klíčů) mimo testovací kód.
 
 
-#### **E. Spuštění testů Cypress**
-- **Dev režim:**
-  - Použijte `npx cypress open` k otevření uživatelského rozhraní Test Runneru.
+#### **E. Spouštění Cypress testů**
+- **Open režim:**
+  - Použijte `npx cypress open` pro spuštění Test Runner UI.
 - **Headless režim:**
-  - Použijte `npx cypress run` k provedení testů v terminálu.
-  - Užitečné pro CI/CD pipeline.
+  - Použijte `npx cypress run` pro provedení testů v terminálu.
+  - Vhodné pro CI/CD pipelines.
 - **Příklad příkazu:**
   ```bash
   npx cypress run --spec cypress/integration/login.spec.js
   ```
 
-**`npx`** je nástroj, který přichází s `npm` (od verze 5.2.0) a používá se k spusteni balíčků Node.js přímo z příkazové řádky bez jejich globální instalace. Umožňuje spouštět binární soubory balíčků, které jsou buď nainstalovány lokálně ve vašem projektu, nebo staženy přímo z npm registru.
+  
+**`npx`** je nástroj dodávaný s `npm` (od verze 5.2.0) a slouží ke spouštění Node.js balíčků přímo z příkazové řádky bez nutnosti jejich globální instalace. Umožňuje spustit binárky balíčků, které jsou buď nainstalované lokálně v projektu, nebo je stáhne přímo z npm registru.
 
 
 ##### **Proč používat `npx`?**
 
-1. **Dočasné provádění:**
-   - S `npx` můžete balíček spustit dočasně, aniž byste ho trvale instalovali do systému.
+1. **Dočasné spuštění:**
+   - S `npx` můžete spustit balíček dočasně bez jeho trvalé instalace do systému.
    - Například:
      ```bash
      npx create-react-app my-app
      ```
-     Tímto se spustí balíček `create-react-app` bez nutnosti globální instalace.
+     Tento příkaz spustí balíček `create-react-app` bez nutnosti globální instalace.
 
 2. **Vyhněte se globálním instalacím:**
-   - Místo instalace balíčku globálně (např. `npm install -g some-package`), `npx` stáhne a spustí balíček přímo.
-   - To udržuje váš globální environment čistý a vyhýbá se konfliktům verzí.
+   - Místo instalace balíčku globálně (`npm install -g some-package`) získá a spustí `npx` balíček napřímo.
+   - Tím udržíte svůj globální systém čistý a vyvarujete se konfliktům verzí.
 
-3. **Spusťte lokálně nainstalované balíčky:**
-   - Pokud je balíček nainstalován lokálně ve vašem projektu (`node_modules`), `npx` jej automaticky spustí, aniž by bylo potřeba odkazovat na celou cestu.
+3. **Spouštění lokálně nainstalovaných balíčků:**
+   - Pokud je balíček nainstalovaný lokálně v projektu (`node_modules`), `npx` jej automaticky spustí bez nutnosti psát celou cestu.
    - Příklad:
      ```bash
      npx cypress open
      ```
-     Tímto se spustí Cypress z vaší lokální složky `node_modules`, pokud je již nainstalován.
+     Tento příkaz spustí Cypress z lokální složky `node_modules`, pokud je instalován.
 
-4. **Provádění konkrétní verze:**
-   - Můžete specifikovat konkrétní verzi balíčku:
+4. **Spuštění konkrétních verzí:**
+   - Můžete uvést konkrétní verzi balíčku:
      ```bash
      npx some-package@1.2.3
      ```
 
-5. **Generování a scaffolding:**
-   - `npx` se běžně používá k provádění nástrojů, které generují nové projekty nebo konfigurační soubory, aniž byste museli instalovat nástroj globálně.
+5. **Scaffolding a generátory:**
+   - `npx` se hojně využívá pro generování nových projektů nebo konfiguračních souborů bez nutnosti globální instalace nástroje.
    - Příklad:
      ```bash
      npx eslint --init
@@ -305,81 +318,82 @@ Vlastnost `env` v `cypress.config.js` uchovává proměnné specifické pro pros
 
 ### **Jak `npx` funguje?**
 - Když spustíte příkaz pomocí `npx`:
-  1. Zkontroluje, zda balíček existuje lokálně ve vašem `node_modules`.
-  2. Pokud balíček není nalezen lokálně, dočasně jej stáhne a spustí.
-  3. Jakmile je process dokončen, npx vykoná vyčištení odstraněním dočasných souborů (pokud byl stažen).
+  1. Zkontroluje, zda balíček existuje lokálně v `node_modules`.
+  2. Pokud není nalezen, dočasně stáhne balíček a spustí jej.
+  3. Po spuštění balíček (pokud byl stažen) odstraní.
+
 
 ---
 
-### **Kdy používat `npx` vs `npm`?**
+### **Kdy použít `npx` vs `npm`?**
 
-| **Funkce**                | **`npm`**                                   | **`npx`**                                |
-|---------------------------|---------------------------------------------|------------------------------------------|
-| **Instalace**             | Nainstaluje balíček lokálně nebo globálně. | Spustí balíček bez instalace.           |
-| **Použití**               | Vyžaduje instalaci balíčku nejprve.        | Není nutná instalace; vykonává přímo.   |
-| **Globální balíčky**      | Často používáno pro správu globálních nástrojů. | Nahrazuje potřebu globálních instalací.   |
-| **Jednorázové použití**    | Není vhodné bez instalace.                 | Ideální pro jednorázová vykonání.       |
+| **Vlastnost**           | **`npm`**                                        | **`npx`**                                   |
+|-------------------------|--------------------------------------------------|---------------------------------------------|
+| **Instalace**           | Instaluje balíček lokálně nebo globálně.         | Spustí balíček bez instalace.               |
+| **Použití**             | Je třeba balíček nejdříve nainstalovat.          | Nevyžaduje instalaci; provede přímo.        |
+| **Globální balíčky**    | Často se používá ke správě globálních nástrojů.  | Nahrazuje nutnost globální instalace.       |
+| **Jednorázové použití** | Není vhodné bez instalace.                       | Ideální pro jednorázové spuštění.           |
 
 ---
 
 ### **Příklady použití `npx`**
 
-1. **Spustit Cypress bez globální instalace:**
+1. **Spuštění Cypressu bez globální instalace:**
    ```bash
    npx cypress open
    ```
 
-2. **Vygenerovat novou React aplikaci:**
+2. **Vytvoření nové React aplikace:**
    ```bash
    npx create-react-app my-app
    ```
 
-3. **Lintovat soubory bez globální instalace ESLint:**
+3. **Lintování souborů bez globální instalace ESLintu:**
    ```bash
    npx eslint myfile.js
    ```
 
-4. **Spustit konkrétní verze balíčků:**
+4. **Spuštění konkrétní verze balíčku:**
    ```bash
    npx some-package@2.0.0
    ```
 
-5. **Dočasná exekuce pro testování:**
-   - Spusťte `npx cowsay` jako zábavným příkladem:
+5. **Dočasné spuštění pro testování:**
+   - Spusťte `npx cowsay` pro zábavu:
      ```bash
      npx cowsay "Hello, World!"
      ```
-`npx` je všestranný nástroj, který zjednodušuje provádění balíčků a pomáhá se vyhnout zaplňování systému zbytečnými globálními instalacemi, což je ideální pro vývojáře, kteří často pracují s nástroji a frameworky JavaScriptu.
+`npx` je univerzální nástroj, který zjednodušuje spouštění balíčků a pomáhá udržet systém čistý bez zbytečných globálních instalací, což ocení zejména vývojáři často pracující s JavaScriptovými nástroji a frameworky.
 
 
-#### **F. Nejlepší praktiky pro nastavení**
-- **Udržujte Cypress aktualizovanou:**
-  - Pravidelně aktualizujte Cypress, abyste měli přístup k novým funkcím a opravám chyb.
-- **Používejte verzování pro konfigurační soubory:**
-  - Sledujte změny v `cypress.config.js` a dalších nastavení.
-- **Vytvořte základní URL:**
-  - Definujte základní URL v konfiguračním souboru pro zjednodušení testovacích příkazů jako `cy.visit()`.
+#### **F. Osvědčené postupy při nastavování**
+- **Mějte Cypress aktuální:**
+  - Pravidelně aktualizujte Cypress kvůli novým funkcím a opravám chyb.
+- **Používejte verzovací systém pro konfigurační soubory:**
+  - Sledujte změny v `cypress.config.js` a dalších souborech nastavení.
+- **Definujte základní URL:**
+  - Nastavte základní URL v konfiguračním souboru pro zjednodušení příkazů jako `cy.visit()`.
 
 ---
 
 ### **2. Praktické aktivity**
 
-#### **A. Cvičení Instalace Cypress**
+#### **A. Cvičení na instalaci Cypressu**
 - **Cíl:**
-  - Příručka pro studenty při instalaci Cypress ve svém prostředí.
+  - Provést studenty instalací Cypressu v jejich prostředí.
 - **Kroky:**
-  1. Nainstalujte Node.js, pokud ještě není nainstalován.
+  1. Nainstalujte Node.js, pokud již není nainstalován.
   2. Inicializujte nový projekt pomocí `npm init`.
-  3. Nainstalujte Cypress pomocí `npm install cypress --save-dev`.
+  3. Nainstalujte Cypress příkazem `npm install cypress --save-dev`.
   4. Spusťte `npx cypress open` a prozkoumejte výchozí strukturu složek.
 - **Výsledek:**
-  - Studenti by měli vidět, že Cypress Test Runner je úspěšně otevřen.
+  - Studenti by měli úspěšně otevřít Cypress Test Runner.
 
-#### **B. Cvičení Nastavení konfiguračního souboru**
+#### **B. Cvičení na nastavení konfiguračního souboru**
 - **Cíl:**
-  - Upravte soubor `cypress.config.js` přidáním základní URL a nastavení viewportu.
+  - Upravte soubor `cypress.config.js` pro přidání základní URL a nastavení viewportu.
 - **Kroky:**
-  1. Otevřete `cypress.config.js`.
+  1. Otevřete soubor `cypress.config.js`.
   2. Přidejte následující:
      ```javascript
      module.exports = {
@@ -392,95 +406,95 @@ Vlastnost `env` v `cypress.config.js` uchovává proměnné specifické pro pros
      ```
   3. Uložte soubor a znovu spusťte `npx cypress open`.
 - **Výsledek:**
-  - Studenti by měli být schopni přejít na základní URL spuštěním `cy.visit('/')` ve svých testech.
+  - Studenti by měli být schopni navštívit základní URL příkazem `cy.visit('/')` ve svých testech.
 
 ---
 
-### **3. Potenciální otázky studentů**
+### **3. Možné otázky studentů**
 
-1. **Co se stane, pokud nemám nainstalovaný Node.js?**
-   - **Odpověď:** Cypress vyžaduje, aby byl nainstalovaný Node.js, protože je řízen pomocí npm (Node Package Manager). Studenti si musí stáhnout a nainstalovat Node.js před pokračováním.
+1. **Co se stane, když nemám nainstalovaný Node.js?**
+   - **Odpověď:** Cypress vyžaduje instalaci Node.js, protože jej spravuje npm (Node Package Manager). Studenti si musí stáhnout a nainstalovat Node.js před pokračováním.
 
 2. **Musím instalovat Cypress globálně?**
-   - **Odpověď:** Ne, Cypress je obvykle nainstalován lokálně v projektu pro lepší správu verzí a reprodukovatelnost.
+   - **Odpověď:** Ne, Cypress se obvykle instaluje lokálně v rámci projektu pro lepší správu verzí a reprodukovatelnost.
 
-3. **Jaký je rozdíl mezi Dev režimem a Headless režimem Cypress?**
-   - **Odpověď:** Dev režim spouští interaktivní Cypress Test Runner, což umožňuje studentům vizuálně sledovat provádění testů. Headless režim spouští testy v terminálu bez otevření uživatelského rozhraní, vhodné pro automatizované pipeline.
+3. **Jaký je rozdíl mezi open režimem a headless režimem Cypressu?**
+   - **Odpověď:** Open režim spustí interaktivní Cypress Test Runner, kde studenti vidí testy vizuálně. Headless režim běží testy v terminálu bez UI, což je vhodné pro automatizační pipeline.
 
-4. **Proč bych měl použít základní URL v konfiguraci?**
-   - **Odpověď:** Nastavení základní URL zjednodušuje testovací příkazy. Místo psaní `cy.visit('http://localhost:3000/login')` můžete napsat `cy.visit('/login')`. 
+4. **Proč bych měl používat základní URL v konfiguraci?**
+   - **Odpověď:** Nastavení základní URL zjednodušuje příkazy v testech. Místo `cy.visit('http://localhost:3000/login')` stačí napsat `cy.visit('/login')`.
 
-5. **Mohu používat Cypress s existujícími projekty?**
-   - **Odpověď:** Ano, Cypress může být přidán do jakéhokoli JavaScriptového projektu instalací jako vývojová závislost.
+5. **Mohu používat Cypress v existujících projektech?**
+   - **Odpověď:** Ano, Cypress lze přidat do libovolného JavaScriptového projektu instalací jako vývojovou závislost.
 
 ---
 
-### **4. Doporučené materiály**
+### **4. Doplňkové materiály**
 
 #### **A. Oficiální dokumentace:**
-- [Průvodce instalací Cypress](https://docs.cypress.io/guides/getting-started/installing-cypress)
-- [Konfigurace Cypress](https://docs.cypress.io/guides/references/configuration)
+- [Průvodce instalací Cypressu](https://docs.cypress.io/guides/getting-started/installing-cypress)
+- [Konfigurace Cypressu](https://docs.cypress.io/guides/references/configuration)
 
 #### **B. Tutoriály a články:**
-- [Struktura složky Cypress a nastavení](https://docs.cypress.io/guides/core-concepts/writing-and-organizing-tests)
-- [Průvodce pro začátečníky k instalaci Cypress](https://blog.testproject.io/2021/01/05/getting-started-with-cypress/)
+- [Struktura složek Cypressu a nastavení](https://docs.cypress.io/guides/core-concepts/writing-and-organizing-tests)
+- [Začátečnický průvodce instalací Cypressu](https://blog.testproject.io/2021/01/05/getting-started-with-cypress/)
 
 #### **C. Videa:**
-- **Traversy Media:** Základní kurz Cypress
-- **The Net Ninja:** Začínáme s testováním Cypress
+- **Traversy Media:** Cypress Crash Course
+- **The Net Ninja:** Úvod do testování pomocí Cypressu
 
-#### **D. Platformy pro praxi:**
-- Nastavte Cypress v jednoduché aplikaci TodoMVC nebo v online ukázce jako `http://todomvc.com`. 
+#### **D. Tréninkové platformy:**
+- Nastavte Cypress v jednoduché aplikaci TodoMVC nebo demo stránce jako `http://todomvc.com`.
 
 ---
 
-### **5. Navrhované rozdělení lekce na 3 hodiny**
+### **5. Doporučený rozvrh lekce pro 3 hodiny**
 
-#### **Hodina 1: Úvod a instalace (60 minut)**
-- **Instalace Cypress (30 minut):**
-  - Příručka pro studenty krok za krokem během instalace.
+#### **1. hodina: Úvod a instalace (60 minut)**
+- **Instalace Cypressu (30 minut):**
+  - Postupné vedení studentů instalací.
   - Ověření nastavení pomocí `npx cypress open`.
-- **Přehled struktury složky (20 minut):**
-  - Vysvětlení účelu každé složky.
-  - Diskuse o tom, kde psát testy a ukládat mock data.
-- **Q&A (10 minut):**
-  - Řešení jakýchkoli dotazů souvisejících s instalací.
+- **Přehled struktury složek (20 minut):**
+  - Vysvětlení účelu jednotlivých složek.
+  - Diskuze, kam psát testy a ukládat mock data.
+- **Dotazy a odpovědi (10 minut):**
+  - Odpovědi na dotazy k instalaci.
 
-#### **Hodina 2: Konfigurace Cypress (60 minut)**
-- **Vytvoření a úprava `cypress.config.js` (30 minut):**
-  - Nastavte základní URL, velikost viewportu a vlastní proměnné prostředí.
-  - Diskuse o důležitosti konfiguračních souborů.
+#### **2. hodina: Konfigurace Cypressu (60 minut)**
+- **Vytváření a úprava `cypress.config.js` (30 minut):**
+  - Nastavení základní URL, velikosti viewportu a custom environment proměnných.
+  - Diskuze o významu konfiguračních souborů.
 - **Praktická aktivita (20 minut):**
-  - Upravte konfigurační soubor a spusťte Test Runner k potvrzení změn.
-- **Q&A (10 minut):**
-  - Vyjasnění jakýchkoli dotazů týkajících se konfigurace.
+  - Úprava konfiguračního souboru a spuštění Test Runneru pro ověření změn.
+- **Dotazy a odpovědi (10 minut):**
+  - Odpovědi na dotazy ohledně konfigurace.
 
-#### **Hodina 3: Spuštění testů Cypress (60 minut)**
-- **Otevřené a bezhlavé režimy (20 minut):**
-  - Demonstrujte oba režimy a vysvětlete jejich případy použití.
-- **Prozkoumání příkladových testů (30 minut):**
-  - Spusťte výchozí příkladové testy v Cypress, aby jste ukázali vestavěné funkce.
-  - Diskuse o tom, jak strukturovat vlastní testy ve složce `integration`.
-- **Rekapitulace a Q&A (10 minut):**
-  - Přezkoumání kroků instalace a konfigurace.
-  - Odpovězení na poslední otázky a příprava studentů na další lekci.
+#### **3. hodina: Spouštění Cypress testů (60 minut)**
+- **Open a headless režim (20 minut):**
+  - Ukázka obou režimů a vysvětlení jejich využití.
+- **Prozkoumání ukázkových testů (30 minut):**
+  - Spuštění výchozích ukázkových testů v Cypressu a vysvětlení vestavěných funkcí.
+  - Diskuze o struktuře vlastních testů ve složce `integration`.
+- **Shrnutí a dotazy (10 minut):**
+  - Opakování kroků instalace a konfigurace.
+  - Doplnění odpovědí na závěrečné dotazy a příprava na další lekci.
 
 ---
 
 ### **6. Další doporučení**
 
-#### **Interaktivní demonstrace:**
-- Ukažte studentům, jak řešit běžné problémy s instalací (např. oprávnění, chybějící Node.js).
-- Demonstrujte živé úpravy `cypress.config.js` a jejich okamžité účinky.
+#### **Interaktivní ukázky:**
+- Ukažte studentům řešení běžných instalačních potíží (například oprávnění, chybějící Node.js).
+- Živě editujte `cypress.config.js` a ukažte okamžité změny.
 
-#### **Podporujte účast:**
-- Nechte studenty samostatně nainstalovat Cypress a vzájemně si pomáhat s problémy s nastavením.
-- Nechte studenty experimentovat s nastaveními konfigurace jako časová omezení a velikosti viewportu.
+#### **Podporujte aktivní účast:**
+- Nechte studenty instalovat Cypress samostatně a pomáhejte si navzájem s nastavením.
+- Povzbuďte experimentování s nastavením jako jsou timeouty a velikosti viewportu.
 
-#### **Poskytněte jasné pokyny:**
-- Krok-za-krokem příkazy pro instalaci a konfiguraci.
+#### **Poskytujte jasné pokyny:**
+- Krok za krokem pro instalaci i konfiguraci.
 - Tipy pro organizaci složky `integration` pro škálovatelné testovací případy.
 
-#### **Zaměřte se na praktičnost:**
-- Použijte vztahové příklady, jako je nastavení základní URL pro vzorovou aplikaci.
-- Vysvětlete, jak správné nastavení ovlivňuje udržovatelnost a škálovatelnost projektů automatizace testů.
+#### **Důraz na praktičnost:**
+- Používejte srozumitelné příklady, například nastavení základní URL pro ukázkovou aplikaci.
+- Vysvětlete, jak správné nastavení ovlivňuje udržovatelnost a škálovatelnost automatizovaných testovacích projektů.

@@ -1,277 +1,395 @@
-## **Lekce 8: Zpracování assercí a validací**
+## **Lekce 8: Práce s asercemi a validacemi**
 
-### **1. Obsah lekce**
+### **1. Osnova obsahu**
 
-#### **A. Úvod do Assertions**
+#### **A. Úvod do asercí**
 - **Definice:**
-  - Assertions jsou prohlášení ve vašem testovacím kódu, která kontrolují, zda je určitá podmínka pravdivá. Jsou klíčová pro ověření, že stav aplikace odpovídá očekávaným výsledkům.
-- **Proč jsou Assertions důležitá:**
-  - **Detekce chyb:** Pomáhají rychle identifikovat, kdy se aplikace nechová podle očekávání.
-  - **Spolehlivost testů:** Zajišťují, že změny v kódu neporuší očekávanou funkčnost.
+  - Aserce jsou příkazy ve vašem testovacím kódu, které ověřují, zda je splněna určitá podmínka. Jsou zásadní pro ověření, že stav aplikace odpovídá očekávaným výsledkům.
+- **Proč jsou aserce důležité:**
+  - **Detekce chyb:** Pomáhají rychle rozpoznat, kdy se aplikace nechová podle očekávání.
+  - **Spolehlivost testů:** Zajišťují, že změny v kódu nenaruší očekávanou funkcionalitu.
   - **Dokumentace:** Slouží jako živá dokumentace toho, co by aplikace měla dělat.
 
-#### **B. Assertions Cypress a integrace s Chai**
-- **Vestavěná Assertions Cypress:**
-  - Cypress používá Chai v pozadí pro Assertions.
-- **Styly Assertions Chai:**
-  - **Should:** Řetězová Assertions pomocí `should()`.
-  - **Expect:** Funkční styl Assertions pomocí `expect()`.
-  - **Assert:** Klasický styl Assertions pomocí `assert`.
+#### **B. Aserce v Cypressu a integrace s Chai**
+- **Vestavěné aserce v Cypressu:**
+  - Cypress používá pod kapotou Chai pro aserce.
+- **Styly asercí v Chai:**
+  - **Should:** Řetězitelné aserce pomocí `should()`.
+  - **Expect:** Funkcionální styl asercí pomocí `expect()`.
+  - **Assert:** Klasický styl asercí pomocí `assert`.
 - **Příklady:**
   - `cy.get(selector).should('be.visible')`
   - `expect(value).to.equal(expectedValue)`
 
 **Definice:**
-Chai je populární knihovna pro Assertions pro JavaScript, která poskytuje různé styly pro psaní testů. Umožňuje vývojářům psát testy, které jsou snadno čitelné s jasnými, popisnými Assertionsi.
+Chai je populární knihovna pro aserce v JavaScriptu, která nabízí různé styly psaní testů. Umožňuje vývojářům psát čitelné testy s jasnými a popisnými asercemi.
 
 **Jak používat Chai:**
 - **Integrace s Cypress:**  
-  Cypress zahrnuje Chai přímo, takže můžete používat jeho Assertions přímo ve svých testech bez jakéhokoli dodatečného nastavení.
-- **Běžné styly Assertions v Chai:**
-  - **Should Style:**  
-    Používá jazyk pro řetězení, aby vytvářel Assertions, která zní jako přirozený jazyk.
+  Cypress má Chai již zabudované, takže jeho aserce lze používat přímo v testech bez další konfigurace.
+- **Hlavní styly asercí v Chai:**
+  - **Should styl:**  
+    Používá řetězitelný jazyk pro sestavování asercí čtivých jako přirozený jazyk.
     ```javascript
     cy.get('[data-testid="login-button"]').should('be.visible');
     ```
-  - **Expect Style:**  
-    Používá funkční volání pro uplatnění očekávání.
+  - **Expect styl:**  
+    Ověřuje očekávání pomocí volání funkcí.
     ```javascript
     cy.get('[data-testid="login-button"]').then(($btn) => {
       expect($btn).to.be.visible;
     });
     ```
-  - **Assert Style:**  
-    Používá klasické funkce Assertions.
+  - **Assert styl:**  
+    Používá klasické asertovací funkce.
     ```javascript
     cy.get('[data-testid="login-button"]').then(($btn) => {
-      assert.isTrue($btn.is(':visible'), 'Tlačítko pro přihlášení je viditelné');
+      assert.isTrue($btn.is(':visible'), 'Login button is visible');
+    });
+    ```
+
+    #### Nejčastěji používané aserce v Cypressu
+
+    **1. `should('exist')`**
+    Ověřuje, že prvek existuje v DOMu.
+
+    ```javascript
+    cy.get('[data-testid="login-button"]').should('exist');
+    ```
+    **Použijte, když:** Chcete ověřit, že prvek byl vykreslen.
+    ---
+
+    **2. `should('be.visible')`**
+    Ověřuje, že je prvek **viditelný** uživateli.
+
+    ```javascript
+    cy.get('[data-testid="modal"]').should('be.visible');
+    ```
+    **Použijte, když:** Chcete mít jistotu, že uživatel prvek vidí/může s ním interagovat.
+
+    ---
+    **3. `should('not.exist')`** / `should('not.be.visible')`  
+    Opak předchozího – vhodné pro testování **odstranění nebo skrytí** prvků.
+
+    ```javascript
+    cy.get('[data-testid="loading-spinner"]').should('not.exist');
+    ```
+
+    ---
+    **4. `should('have.text', 'nějaký text')`**
+    Ověřuje **přesný** textový obsah v prvku.
+
+    ```javascript
+    cy.get('[data-testid="welcome-message"]').should('have.text', 'Welcome back!');
+    ```
+
+    **Alternativa:**  
+    Použijte `contains()` pro částečnou shodu, nebo `.should('include.text', 'Welcome')`.
+
+    ---
+    **5. `should('include.text', 'část textu')`**
+    Ověřuje, že prvek obsahuje podřetězec (není vyžadována přesná shoda).
+
+    ```javascript
+    cy.get('.alert').should('include.text', 'Error');
+    ```
+    
+    ---
+    **6. `should('have.value', 'text')`**
+    Ověřuje hodnotu vstupních polí.
+
+    ```javascript
+    cy.get('[data-testid="email-input"]').should('have.value', 'user@example.com');
+    ```
+
+    **Použijte, když:** Chcete potvrdit, že pole bylo vyplněno správně.
+
+    ---
+    **7. `should('be.checked')` / `should('not.be.checked')`**
+    Používá se pro checkboxy nebo rádio tlačítka.
+
+    ```javascript
+    cy.get('#terms-checkbox').should('be.checked');
+    ```
+
+    ---
+    **8. `should('be.disabled')` / `should('be.enabled')`**
+    Zajišťuje, že formulářové prvky jsou (ne)aktivní podle očekávání.
+
+    ```javascript
+    cy.get('[data-testid="submit-btn"]').should('be.disabled');
+    ```
+
+    ---
+    **9. `should('have.class', 'class-name')`**
+    Ověřuje, že má prvek určitou třídu.
+
+    ```javascript
+    cy.get('button').should('have.class', 'active');
+    ```
+
+    ---
+    **10. `should('have.attr', 'attribute', 'value')`**
+    Ověřuje, že prvek má specifický atribut s danou hodnotou.
+
+    ```javascript
+    cy.get('a').should('have.attr', 'href', '/dashboard');
+    ```
+
+    Také užitečné pro kontrolu přítomnosti atributů `data-*` nebo `target`, `src`, `disabled` atd.
+
+    ----
+    **11. `should('have.length', číslo)`**
+    Ověření počtu prvků vrácených pomocí `cy.get()`.
+
+    ```javascript
+    cy.get('.list-item').should('have.length', 5);
+    ```
+
+    **Použijte, když:** Chcete zkontrolovat, zda seznam obsahuje očekávaný počet prvků.
+
+    ---
+    **12. `should('match', /regex/)`**
+    Ověřuje, že řetězec odpovídá regulárnímu výrazu.
+
+    ```javascript
+    cy.get('[data-testid="email"]').invoke('text').should('match', /^[^\s@]+@[^\s@]+\.[^\s@]+$/);
+    ```
+
+
+    Používejte `expect()` uvnitř bloku `.then()` při práci s logikou nebo vlastními daty:
+
+    ```javascript
+    cy.get('#price').then(($el) => {
+      const price = parseFloat($el.text().replace('€', ''));
+      expect(price).to.be.lessThan(100);
     });
     ```
 
 
-- **Should Style:**  
+- **Should styl:**  
   - **Výhody:**  
-    - Velmi čitelné a expresivní (např. `should('be.visible')`).
-    - Podporuje řetězení vícero Assertions v přirozené, plynulé syntaxi.
-    - Automaticky opakuje Assertions při použití s příkazy Cypress.
+    - Velmi čitelný a výstižný (např. `should('be.visible')`).
+    - Podporuje řetězení více asercí přirozeným jazykem.
+    - Automaticky opakuje aserce při použití s příkazy Cypressu.
   - **Nevýhody:**  
-    - Vyžaduje rozšíření prototypů objektů, což nemusí být preferováno ve všech prostředích.
-- **Expect Style:**  
+    - Požaduje rozšíření prototypů objektů, což nemusí být v každém prostředí vhodné.
+- **Expect styl:**  
   - **Výhody:**  
-    - Jasná syntaxi založená na funkcích, kterou mnoho vývojářů považuje za známou.
-    - Není potřeba rozšiřovat prototypy.
+    - Jasný funkcionální styl, který je vývojářům povědomý.
+    - Není třeba rozšiřovat prototypy.
   - **Nevýhody:**  
-    - Při použití s příkazy Cypress se automaticky neopakuje, protože se obvykle používá uvnitř callbacku `.then()`.
-- **Assert Style:**  
+    - Při použití s příkazy Cypressu se aserce automaticky neopakuje, protože je obvykle volán uvnitř `.then()` bloku.
+- **Assert styl:**  
   - **Výhody:**  
-    - Více tradiční a přímočaré, podobné Assertions v jiných jazycích.
+    - Tradičnější a přímočařejší, podobné asercím v jiných jazycích.
   - **Nevýhody:**  
-    - Může být méně čitelné a vyžaduje více boilerplate kódu.
+    - Méně čitelné a vyžaduje více šablonového kódu.
 
 
-#### **C. Běžné metody Assertions v Cypress**
+#### **C. Běžné asertovací metody v Cypressu**
 - **Viditelnost a existence:**
   - `should('be.visible')`, `should('exist')`, `should('not.exist')`
-- **Validace obsahu:**
+- **Ověření obsahu:**
   - `should('have.text', 'očekávaný text')`
-  - `should('contain', 'částečný text')`
+  - `should('contain', 'část textu')`
 - **Kontrola atributů:**
   - `should('have.attr', 'názevAtributu', 'hodnota')`
-- **Kontrola CSS a stylů:**
+- **Kontroly CSS a stylů:**
   - `should('have.css', 'vlastnost', 'hodnota')`
-- **Kontrola stavu:**
+- **Stavové kontroly:**
   - `should('be.disabled')`, `should('be.enabled')`, `should('be.checked')`
 
-#### **D. Pokročilá Assertions**
-- **Více Assertions:**
-  - Řetěz více `should()` příkazů pro komplexní validaci.
-  - Příklad: Zkontrolujte, že je prvek viditelný a obsahuje specifický text.
-- **Podmínková Assertions:**
-  - Použijte `.then()` k provedení Assertions na základě dynamického obsahu nebo podmínek.
-- **Vlastní Assertions:**
-  - Definujte vlastní logiku Assertions, když vestavěná nejsou dostatečná.
+#### **D. Pokročilé aserce**
+- **Vícenásobné aserce:**
+  - Řetězte více příkazů `should()` pro komplexní validaci.
+  - Příklad: Ověření, že prvek je viditelný a obsahuje konkrétní text.
+- **Podmíněné aserce:**
+  - Použijte `.then()`, chcete-li provádět aserce na základě dynamického obsahu nebo podmínek.
+- **Vlastní aserce:**
+  - Definujte vlastní asertovací logiku v případě, že vestavěné nestačí.
 
 
-##### **Více Assertions a řetězení Assertions**
+##### **Vícenásobné aserce a řetězení asercí**
 
-**Řetězení Assertions pomocí `should()`:**
+**Řetězení asercí pomocí `should()`:**
 - **Příklad:**
   ```javascript
   cy.get('[data-testid="username-input"]')
     .should('be.visible')
-    .and('have.attr', 'placeholder', 'Zadejte své uživatelské jméno')
+    .and('have.attr', 'placeholder', 'Enter your username')
     .and(($input) => {
-      // Vlastní kontrola, aby se zajistilo, že vstup je ve výchozím stavu prázdný
+      // Vlastní kontrola, že vstup je ve výchozím stavu prázdný
       expect($input.val()).to.equal('');
     });
   ```
 - **Vysvětlení:**  
-  Výše uvedený řetězec:
-  - Ověřuje, že je prvek viditelný.
-  - Kontroluje, že atribut placeholder má očekávanou hodnotu.
-  - Provádí vlastní Assertions, aby zajistil, že je hodnota vstupu prázdná.
+  Tento řetězec:
+  - Ověří, že prvek je viditelný.
+  - Zkontroluje, že atribut placeholder má očekávanou hodnotu.
+  - Provede vlastní asertci, že pole je prázdné.
   
-**Více Assertions v jednom příkazu:**
-- Použití několika volání `should()` nebo řetězení pomocí `and()` vám umožňuje potvrdit několik podmínek na stejném prvku, aniž byste museli znovu dotazovat DOM, což je efektivní a zlepšuje čitelnost.
+**Vícenásobné aserce v jednom příkazu:**
+- Používání více volání `should()` nebo řetězení pomocí `and()` umožňuje ověřit více podmínek na jednom prvku bez opakovaného dotazování na DOM, což je efektivní a zlepšuje čitelnost.
 
 
-### **Proč používat `should()` namísto `expect()` v Cypress**
+### **Proč používat `should()` namísto `expect()` v Cypressu**
 
-- **Mechanismus automatického opakování:**
-  - **`should()`** je integrováno s opakovatelností Cypress. Pokud Assertions zpočátku selže kvůli dočasnému stavu (např. načítání prvku asynchronně), Cypress automaticky zopakuje Assertions, dokud neprojde nebo nedojde časový limit.
-  - **`expect()`** se používá uvnitř bloků `.then()`, což znamená, že vykonává pouze jednou. Pokud prvek není v očekávaném stavu v ten okamžik, test selže okamžitě.
+- **Automatický retry mechanismus:**
+  - **`should()`** je integrován s Cypress opakováním. Pokud aserce selže kvůli dočasnému stavu (například prvek se teprve načítá), Cypress se automaticky pokusí aserci zopakovat až do splnění nebo uplynutí timeoutu.
+  - **`expect()`** se používá uvnitř `.then()` bloků, a proto se provede pouze jednou. Když aktuálně prvek není ve správném stavu, test okamžitě selže.
   
 - **Řetězení:**
-  - `should()` umožňuje řetězit více Assertions na stejném subjektu, čímž se snižuje potřeba opakovaných dotazů na DOM a zjednodušuje testy.
+  - `should()` umožňuje řetězit více asercí nad stejným objektem, tím se snižuje počet dotazů na DOM a testy jsou stručnější.
   
 - **Čitelnost:**
-  - Plynulý, jazykový styl `should()` činí Assertions testů snadno čitelnými a pochopitelnými na první pohled.
+  - Plynulý, přirozený styl `should()` zvyšuje čitelnost a rychlost pochopení asercí.
 
-- **Konzistence s příkazy Cypress:**
-  - Používání `should()` přímo na příkazech Cypress se bezproblémově integruje s frontou příkazů Cypress, což zajišťuje, že Assertions se opakují společně s vykonáváním příkazů.
+- **Konzistence s příkazy Cypressu:**
+  - Použitím `should()` přímo na Cypress příkazech se aserce hladce integrují s Cypress command queue a jsou automaticky opakovány podle potřeby.
 
-**Srovnání příkladů:**
+**Ukázka porovnání:**
 
-Použití **`should()`** (preferované):
+Použití **`should()`** (doporučeno):
 ```javascript
 cy.get('[data-testid="submit-button"]')
   .should('be.visible')
   .and('not.be.disabled');
 ```
 
-Použití **`expect()`** (méně ideální v kontextu Cypress):
+Použití **`expect()`** (méně vhodné v kontextu Cypressu):
 ```javascript
 cy.get('[data-testid="submit-button"]').then(($btn) => {
   expect($btn).to.be.visible;
   expect($btn).to.not.be.disabled;
 });
 ```
-- Ve druhém příkladu, pokud není tlačítko ihned viditelné, test selže bez opakování.
+- Ve druhém příkladu, pokud tlačítko není ihned viditelné, test okamžitě selže, bez opakování.
 
 
-#### **E. Osvedčené postupy pro Assertions a validace**
-- **Jasná a popisná Assertions:**
-  - Pište Assertions, které jasně vysvětlují, co kontrolují.
-  - Používejte vlastní zprávy nebo dodatečné protokolování, pokud je to nutné.
-  - Pište Assertions, které jasně uvádějí, co očekáváte, že se stane.  
+#### **E. Osvědčené postupy pro aserce a validace**
+- **Jasné a popisné aserce:**
+  - Pište aserce, které přesně vysvětlují, co ověřují.
+  - V případě potřeby používejte vlastní chybové zprávy nebo logování.
+  - Pište aserce, které jasně uvádějí, co očekáváte.  
      _Příklad:_  
      ```javascript
      cy.get('[data-testid="error-message"]')
        .should('be.visible')
-       .and('contain', 'Neplatné údaje');
+       .and('contain', 'Invalid credentials');
      ```
-   - Vyvarujte se nejednoznačným nebo příliš složitým Assertions, která mísí více kontrol bez jasného oddělení.
+   - Vyhněte se nejasným nebo příliš složitým asercím, které kombinují více ověření dohromady bez jasné separace.
 
 - **Granulární testování:**
-  - Testujte jednu podmínku na Assertions, kdykoli je to možné. To pomáhá přesně určit selhání.
-  - Preferujte testování jedné podmínky na Assertions, kdykoli je to možné, aby bylo možné izolovat problémy.  
-     Nicméně když jsou podmínky příbuzné (např. viditelnost prvku a obsah), je vhodné řetězit s `should()`.
-- **Vyvarujte se překrývajícím se Assertions:**
-  - Zajistěte, aby byla Assertions logicky oddělena, abyste se vyhnuli zmatku při ladění selhání.
-  - Nedělejte to samé Assertions několika způsoby v rámci jednoho testovacího kroku; místo toho zajistěte, aby mělo každé Assertions unikátní účel.
+  - Ověřujte jednu podmínku na aserci, když to lze. To usnadňuje nalezení chyb.
+  - Preferujte ověřování jedné podmínky na aserci, abyste oddělili případné chyby.  
+     Pokud však podmínky souvisejí (například viditelnost a obsah), použijte řetězení s `should()`.
+- **Vyhýbejte se překrývajícím se asercím:**
+  - Dbejte na to, aby aserce byly logicky oddělené, což usnadňuje odhalení konkrétní chyby.
+  - Neověřujte stejnou podmínku vícekrát v jednom kroku testu; každá aserce by měla mít unikátní účel.
 
-- **Využijte opakovatelnost Cypress:** 
-  - Cypress automaticky opakuje Assertions, dokud neprojdou nebo nevyprší časový limit, takže pište Assertions, která jsou odolná vůči problémům s načasováním.
-- **Používejte správné řetězení:**
-  - Řetězujte Assertions, aby se snížila redundance kódu a zlepšila čitelnost.
+- **Využívejte opakovací mechanismus Cypressu:**
+  - Cypress automaticky opakuje aserce, dokud neprojdou nebo neuplyne timeout, proto pište aserce odolné vůči časování.
+- **Správné řetězení:**
+  - Řetězte aserce pro snížení opakování kódu a zlepšení čitelnosti.
 
 ---
 
-### **2. Příklady kódu**
+### **2. Ukázky kódu**
 
-#### **A. Základní Assertions pomocí `should`**
+#### **A. Základní aserce pomocí `should`**
 
 ```javascript
-// Ověřte, že je tlačítko pro přihlášení viditelné a povolené
+// Ověřte, že tlačítko pro přihlášení je viditelné a aktivní
 cy.get('[data-testid="login-button"]')
   .should('be.visible')
   .and('not.be.disabled');
 ```
 
-#### **B. Ověření obsahu textu**
+#### **B. Ověření textového obsahu**
 
 ```javascript
-// Zkontrolujte, zda úspěšná zpráva obsahuje očekávaný text
+// Ověřte, že zpráva o úspěchu obsahuje očekávaný text
 cy.get('[data-testid="success-message"]')
   .should('be.visible')
-  .and('contain', 'Přihlášení úspěšné');
+  .and('contain', 'Login successful');
 ```
 
 #### **C. Kontrola atributů prvku**
 
 ```javascript
-// Ověřte, že prvek obrázku má správný atribut src
+// Ověřte, že obrázek má správný src atribut
 cy.get('[data-testid="hero-image"]')
   .should('have.attr', 'src', 'images/hero.jpg');
 ```
 
-#### **D. Použití `expect` pro Assertions**
+#### **D. Použití `expect` pro aserce**
 
 ```javascript
-// Použití expect pro Assertions založené na proměnných
+// Použití expect pro aserce na proměnných
 cy.get('[data-testid="user-count"]').then(($count) => {
   const countText = $count.text();
   expect(parseInt(countText)).to.be.greaterThan(0);
 });
 ```
 
-#### **E. Řetězení více Assertions**
+#### **E. Řetězení více asercí**
 
 ```javascript
-// Řetězování Assertions k ověření více podmínek na vstupu formuláře
+// Ověření více podmínek na formulářovém vstupu pomocí řetězení
 cy.get('[data-testid="username-input"]')
   .should('be.visible')
-  .and('have.attr', 'placeholder', 'Zadejte své uživatelské jméno')
+  .and('have.attr', 'placeholder', 'Enter your username')
   .and(($input) => {
-    // Vlastní Assertions pro kontrolu, zda vstup není prázdný po psaní
+    // Vlastní aserce: pole není prázdné po vyplnění
     expect($input.val()).to.not.be.empty;
   });
 ```
 
-#### **F. Podmínková Assertions s `.then()`**
+#### **F. Podmíněné aserce s `.then()`**
 
 ```javascript
-// Použití .then() pro podmínkové Assertions na základě dynamického obsahu
+// Použití .then() k podmíněnému ověření na základě dynamického obsahu
 cy.get('[data-testid="error-message"]').then(($el) => {
   if ($el.is(':visible')) {
-    expect($el).to.contain('Neplatné údaje');
+    expect($el).to.contain('Invalid credentials');
   } else {
-    cy.log('Zpráva o chybě není viditelná, test mohl proběhnout.');
+    cy.log('Chybová zpráva není vidět, test možná prošel.');
   }
 });
 ```
 
 ---
 
-### **3. Potenciální otázky studentů**
+### **3. Potenciální studentské dotazy**
 
-1. **Jaký je rozdíl mezi `should` a `expect` v Cypress?**
+1. **Jaký je rozdíl mezi `should` a `expect` v Cypressu?**
    - **Odpověď:**  
-     `should()` je řetězitelný příkaz, který se automaticky opakuje, dokud nevydrží, zatímco `expect()` se používá pro jednorázová Assertions uvnitř bloku `.then()`.
+     `should()` je řetězitelný příkaz, který se automaticky opakuje, dokud aserce neprojde, zatímco `expect()` se používá pro jednorázové aserce uvnitř bloku `.then()`.
 
-2. **Jak se Cypress vyrovnává s Assertionsi, pokud se prvky načítají?**
+2. **Jak Cypress pracuje s asercemi, když načítání prvků trvá déle?**
    - **Odpověď:**  
-     Cypress automaticky opakuje Assertions, dokud neprojdou nebo nevyprší výchozí časový limit, což zajišťuje, že asynchronní prvky se zpracovávají hladce.
+     Cypress automaticky opakuje aserce, dokud aserce neprojde nebo nevyprší defaultní timeout, což umožňuje hladkou práci s asynchronními prvky.
 
-3. **Mohu psát vlastní Assertions v Cypress?**
+3. **Mohu psát vlastní aserce v Cypressu?**
    - **Odpověď:**  
-     Ano, můžete psát vlastní Assertions uvnitř bloků `.then()`, aby zpracovaly složitou validační logiku.
+     Ano, můžete psát vlastní aserce uvnitř bloků `.then()` pro složitější validační logiku.
 
-4. **Proč bych se měl vyhnout překrývajícím se Assertions?**
+4. **Proč se vyhýbat překrývajícím se asercím?**
    - **Odpověď:**  
-     Překrývající se Assertions mohou ztížit určení, která podmínka selhala. Udržování oddělených Assertions usnadňuje ladění a údržbu testů.
+     Překrývající se aserce ztěžují identifikaci, která podmínka selhala. Oddělené aserce usnadňují ladění a údržbu testů.
 
-5. **Co se stane, pokud Assertions selže?**
+5. **Co se stane, když aserce selže?**
    - **Odpověď:**  
-     Cypress zastaví vykonávání testu a zaznamená chybu, poskytující podrobnosti o selhání, včetně snímků a protokolů pro ladění.
+     Cypress přestane test vykonávat a vypíše chybu včetně detailů o selhání, včetně screenshotů a logů pro ladění.
 
 ---
 
 ### **4. Další doporučení**
 
 - **Interaktivní ladění:**
-  - Povzbuďte studenty, aby používali interaktivní testovací runner Cypress pro sledování, jak se Assertions opakují.
+  - Doporučte studentům použití interaktivního Test Runneru Cypress pro sledování, jak se aserce opakují.
 - **Skupinová cvičení:**
-  - Spárujte studenty, aby psali testovací případy, které zahrnují vícero Assertions, a diskutovali o logice za každým z nich.
-- **Kontrola dokumentace:**
-  - Nechte studenty prozkoumat [Dokumentaci k Assertions Cypress](https://docs.cypress.io/guides/references/assertions) pro další učení.
+  - Pracujte ve dvojicích a pište testovací případy s více asercemi a diskutujte logiku každé z nich.
+- **Studium dokumentace:**
+  - Nechte studenty prozkoumat [Cypress Assertions Documentation](https://docs.cypress.io/guides/references/assertions) pro další studium.

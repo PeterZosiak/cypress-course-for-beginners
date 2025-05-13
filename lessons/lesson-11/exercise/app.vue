@@ -7,10 +7,6 @@
     <main>
       <NuxtPage />
     </main>
-
-    <footer>
-      <p>&copy; {{ new Date().getFullYear() }} Cypress Online Course. All rights reserved.</p>
-    </footer>
   </div>
 </template>
 
