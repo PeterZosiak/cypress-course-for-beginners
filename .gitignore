@@ -5,3 +5,4 @@ node_modules/
 **/.output
 **/.nuxtignore
 **/.vscode
+lessons/lesson-11/exercise/tests_POM/cypress/downloads/downloads.html
