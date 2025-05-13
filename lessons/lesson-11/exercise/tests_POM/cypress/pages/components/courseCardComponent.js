@@ -11,6 +11,13 @@ export default class CourseCardComponent {
       //return cy.get('div[data-testid="' + this.componentSelector + '"]')
     }
     
+    // attempt to make the following comment dynamic
+    /*getcommentNumber = () => {
+      return cy.get('li[data-testid="comment-"]').then(($comments) => {
+        return $comments.length;
+        });
+    }*/
+    
     nazovKurzu = () => this.nadradenyElement().find('h3') 
     descripCourse = () => this.nadradenyElement().find('p').first()
     cenaKurzu = () => this.nadradenyElement().find('p[class="price"]') 
@@ -23,11 +30,10 @@ export default class CourseCardComponent {
       const author = $el.find('strong').text(); // "John"
       return fullText.replace(`${author}:`, '').trim(); // "Great course for beginners!"
      });
-    inputComment = (courseNumber) => 
-      this.nadradenyElement().find(`input[data-testid="comment-input-${courseNumber}"]`);
 
-    addCommentButton = (courseNumber) => 
-      this.nadradenyElement().find(`button[data-testid="submit-comment-${courseNumber}"]`);  
+    inputComment = (courseNumber) => this.nadradenyElement().find(`input[data-testid="comment-input-${courseNumber}"]`);
+    addCommentButton = (courseNumber) => this.nadradenyElement().find(`button[data-testid="submit-comment-${courseNumber}"]`);  
+
   }
 
   //Na stranke Course (localhost:3000/courses)  pridat komentar pre kazdy jeden kurz. 
