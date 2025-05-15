@@ -1,6 +1,8 @@
+//import { rmdir, readFileSync} from 'fs'
 const { defineConfig } = require("cypress");
-const { readFileSyns } = require("fb");
-const config = process.env.config || "test1";
+const { readFileSync } = require("fs");
+const config = process.env.CONFIG || "test1";
+
 console.log("config", config)
 
 module.exports = defineConfig({
@@ -8,7 +10,7 @@ module.exports = defineConfig({
   viewportHeight: 720,
   defaultCommandTimeout: 1000,
   pageLoadTimeout: 60000,
-  watchForFileChanges: false,
+  watchForFileChanges: false, 
   video: true,
   screenshotOnRunFailure: true,
   retries: {
@@ -16,13 +18,19 @@ module.exports = defineConfig({
     runMode: 2,
   },
 e2e: {
-  baseUrl: config === "prod"
-    ? 'https://www.google.com' : 'https://www.facebook.com',
+  //baseUrl: config === "prod" ? 'https://www.google.com' : 'https://www.facebook.com',
 
   setupNodeEvents(on, config) {
     // Implement node event listeners here
-
+    var envName = config.env.envName;
+    console.log("envName", envName)  
     
+
+    let envconfig = readFileSync(`./cypress/config/data.${envName}.json`, 'utf-8');
+    const configValues = JSON.parse(envconfig);
+
+    config.env = { ...configValues};
+    return config;
   },
 },
 
