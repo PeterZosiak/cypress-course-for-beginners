@@ -1,1214 +1,992 @@
-## **Lekce 3: Řídící struktury a funkce v jazyce JavaScript**
-
-### **1\. Obsahová osnova**
-
-#### **A. Úvod do řídících struktur**
-
-- **Co jsou řídící struktury?**  
-  - Mechanismy, které řídí průběh provádění programu.  
-  - Umožňují vývojářům určovat pořadí, v jakém se má kód provádět, na základě podmínek nebo iterací.  
-- **Typy řídících struktur:**  
-  - **Podmíněné věty:** `if`, `else if`, `else`, `switch`.  
-  - **Smyčky:** `for`, `while`, `do...while`, `for...of`, `for...in`.
-
-#### **B. Podmíněné výroky**
-
-- **`if` příkazy:**  
-  - Provede blok kódu, pokud je zadaná podmínka pravdivá.  
-  - Syntaxe a základní použití.  
-  - Příklady scénářů v automatizaci testování.  
-- **`else if` a `else` příkazy:**  
-  - Poskytuje další podmínky a možnosti nouzového řešení.  
-  - Zlepšení rozhodování ve skriptech.  
--  **`Swich` příkazy:**  
-  - Vyhodnotí výraz vůči více případům.  
-  - Zjednodušení vícenásobných podmíněných kontrol.
-
-#### **C. Smyčky**
-
-- **`for` smyčka:**  
-  - Iteruje zadaný počet opakování.  
-  - Syntaxe a praktické příklady.  
-- **`while` smyčka:**  
-  - Pokračuje v provádění, dokud je podmínka pravdivá.  
-  - Případy použití v automatizaci testů.  
-- **`do...while` smyčka:**  
-  - Podobně jako `while,` ale zaručuje alespoň jedno provedení.  
-- **`for...of` a `for...in` smyčky:**  
-  - Iterace nad iterovatelnými objekty (pole, textové řetězce), resp. vlastnostmi objektů.
-
-#### **D. Úvod do funkcí**
-
-- **Co jsou to funkce?**  
-  - Opakovaně použitelné bloky kódu určené k provádění konkrétních úloh.  
-  - Zlepšení modularity a organizace kódu.  
-- **Deklarace funkcí vs. výrazy:**  
-  - Rozdíly v syntaxi a hoisting chování.  
-  - Kdy použít jednotlivé typy.  
-- **Parametry a návratové hodnoty:**  
-  - Předávání dat do funkcí a získávání výsledků.  
-- **Rozsah a uzávěrky:**  
-  - Porozumění přístupnosti proměnných v rámci funkcí.  
-  - Úvod do uzávěrek a jejich významu.
-
-#### **E. Osvědčené postupy pro řídící struktury a funkce**
-
-- **Čitelnost a udržovatelnost:**  
-  - Psaní jasných a srozumitelných řídících struktur.  
-  - Soustředění funkcí na jeden účel.  
-- **Vyhnout se hlubokému vnoření:**  
-  - Strategie pro prevenci nadměrného odsazení a složitosti.  
-- **Pojmenovací konvence:**  
-  - Popisné názvy funkcí a proměnných vyjadřující záměr.  
-- **Zásada DRY (neopakuj se):**  
-  - Omezení duplikace kódu efektivním využíváním funkcí a smyček.
-
-#### **F. Praktické příklady**
-
-- **Implementace podmíněné logiky v testech:**  
-  - Použití příkazů `if` pro různé testovací scénáře.  
-- **Procházení testovacích dat ve smyčce:**  
-  - Iterace nad poli testovacích vstupů pro testování řízené daty.  
-- **Vytváření užitečných funkcí:**  
-  - Psaní funkcí pro zapouzdření opakujících se testovacích akcí, což zvyšuje možnost opakovaného použití.
-
----
-
-### **2\. Praktické činnosti: Cvičení a návrhy webových funkcí**
-
-#### **A. Cvičení s podmíněnými výroky**
-
-- **Cvičení:**  
-  - Napište funkci JavaScriptu, která přijme jako vstup skóre uživatele a přiřadí známku na základě předem definovaných kritérií pomocí příkazů `if`, `else if` a `else.`  
-  - Příklad:  
-      
-    funkce assignGrade(skóre) {  
-      
-      if (score \>= 90\) {  
-      
-        return 'A';  
-      
-      } else if (score \>= 80\) {  
-      
-        return 'B';  
-      
-      } else if (score \>= 70\) {  
-      
-        return 'C';  
-      
-      } else if (score \>= 60\) {  
-      
-        return 'D';  
-      
-      } else {  
-      
-        return 'F';  
-      
-      }  
-      
-    }
-
+## **Lekce 3: Řídicí struktury a funkce v JavaScriptu**
     
-- **Návrh webových funkcí:**  
-  - Vytvořte jednoduchý formulář HTML, do kterého mohou uživatelé zadat své skóre, a po odeslání funkce JavaScript vypočítá a zobrazí odpovídající známku.
-
-#### **B. Cvičení smyčkování v polích**
-
-- **Cvičení:**  
-  - Napište funkci jazyka JavaScript, která pomocí cyklu `for` přijme pole čísel a vrátí nové pole obsahující pouze sudá čísla.  
-  - Příklad:  
-      
-    function filterEvenNumbers(numbers) {  
-      
-      let evenNumbers \= \[\];  
-      
-      for (let i \= 0; i \< numbers.length; i++) {  
-      
-        if (numbers\[i\] % 2 \=== 0\) {  
-      
-          evenNumbers.push(numbers\[i\]);  
-      
-        }  
-      
-      }  
-      
-      return evenNumbers;  
-      
-    }
-
+### **1. Osnova obsahu**
     
-- **Návrh webových funkcí:**  
-  - Vytvořte malou webovou aplikaci, do které mohou uživatelé zadat seznam čísel a aplikace zobrazí filtrovaný seznam sudých čísel pomocí funkce JavaScript.
-
-#### **C. Cvičení na vytváření a používání funkcí**
-
-- **Cvičení:**  
-  - Napište funkci JavaScriptu, která jako parametry přijme dvě čísla a vrátí jejich součet. Tuto funkci pak použijte v cyklu k výpočtu celkového součtu pole dvojic čísel.  
-  - Příklad:  
-      
-    function add(a, b) {  
-      
-      return a \+ b;  
-      
-    }  
-      
-    let pairs \= \[\[1, 2\], \[3, 4\], \[5, 6\]\];  
-      
-    let totalSum \= 0;  
-      
-    for (let i \= 0; i \< pairs.length; i++) {  
-      
-      totalSum \+= add(pairs\[i\]\[0\], pairs\[i\]\[1\]);  
-      
-    }  
-      
-    console.log(totalSum); // Výstupy: 21
-
-    
-- **Návrh webových funkcí:**  
-  - Implementujte na webové stránce funkci, pomocí které mohou uživatelé zadat několik dvojic čísel a aplikace vypočítá a zobrazí celkový součet pomocí funkce `sčítání` v rámci cyklu.
-
-#### **D. Cvičení o rozsahu a uzávěrkách**
-
-- **Cvičení:**  
-  - Demonstrujte koncept rozsahu tím, že se napíše funkce do jiné funkce a ukáže se, jak jsou proměnné přístupné.  
-  - Příklad:  
-      
-    function outerFunction() {  
-      
-      let outerVariable \= 'I am outside\!';  
-      
-        
-      
-      function innerFunction() {  
-      
-        let innerVariable \= 'I am inside\!';  
-      
-        console.log(outerVariable); // Accessible  
-      
-        console.log(innerVariable); // Accessible  
-      
-      }  
-      
-        
-      
-      innerFunction();  
-      
-      console.log(innerVariable); // ReferenceError: innerVariable is not defined  
-      
-    }  
-      
-    outerFunction();  
-    
-
-    
-- **Návrh webových funkcí:**  
-  - Vytvoření interaktivního příkladu na webové stránce, který ilustruje rozsah proměnných tím, že uživatelům umožní zjistit, které proměnné jsou přístupné v rámci různých rozsahů funkcí.
-
----
-
-### **3\. Potenciální otázky studentů**
-
-#### **A. řídící struktury:**
-
-1. **Jaký je rozdíl mezi příkazy `if` a `switch`?**  
-     
-   - **Odpověď:**   
-     Příkazy `if` a `switch` se používají pro podmíněné spuštění,příkazy `if` jsou univerzálnější a mohou zpracovávat širší škálu podmínek, včetně složitých výrazů. Příkazy `switch` jsou stručnější při práci s více diskrétními hodnotami jedné proměnné nebo výrazu.
-
-   
-
-2. **Kdy mám použít cyklus `while` místo cyklu `for`?**  
-     
-   - **Odpověď:**   
-     Smyčka `while` se používá v případě, že počet iterací není předem znám a závisí na splnění podmínky během provádění. Smyčky `for` jsou vhodnější, když je počet iterací předem určen nebo je lze snadno určit.
-
-#### **B. Funkce:**
-
-1. **Jaký je rozdíl mezi deklarací funkce a výrazem funkce?**  
-     
-   - **Odpověď:**  
-     Deklarace funkcí jsou tzv. hoisted, což znamená, že jsou načteny do paměti ve fázi kompilace a mohou být volány před jejich skutečnou deklarací v kódu. Výrazy funkcí se stejným způsobem neukládají a nelze je volat před jejich definicí.
-
-   
-
-2. **Lze funkce předávat jako argumenty jiným funkcím?**  
-     
-   - **Odpověď:**  
-     Ano, v JavaScriptu jsou funkce “first-class citizens” a mohou být předávány jako argumenty jiným funkcím, vraceny z funkcí a přiřazovány proměnným.
-
-#### **C. Smyčky:**
-
-1. **Jaký je rozdíl mezi smyčkami `for...of` a `for...in?`**  
-     
-   - **Odpověď:**  
-     `for...of` se používá k iteraci hodnot iterovatelného objektu (např. pole, textové řetězce), zatímco `for...in` se používá k iteraci vyjmenovatelných vlastností objektu.
-
-   
-
-2. **Jak mohu zabránit nekonečné smyčce v kódu?**  
-     
-   - **Odpověď:**  
-      Zajistěte, aby byla nakonec splněna ukončovací podmínka smyčky. Pečlivě spravujte čítače a podmínky smyčky, abyste se vyhnuli scénářům, kdy smyčka pokračuje donekonečna.
-
-#### **D. Osvědčené postupy:**
-
-1. **Proč je důležité, aby funkce byly zaměřené a měly jediný účel?**  
-     
-   - **Odpověď:**  
-     Funkce, které provádějí jedinou úlohu, jsou snáze pochopitelné, testovatelné, laditelné a udržovatelné. Podporují znovupoužitelnost kódu a snižují složitost jednotlivých funkcí.
-
-   
-
-2. **Co znamená princip DRY (Don't Repeat Yourself) v kontextu psaní funkcí?**  
-     
-   - **Odpověď:**  
-     DRY podporuje vývojáře v tom, aby se vyhýbali duplicitě kódu tím, že opakující se kód abstrahují do opakovaně použitelných funkcí. Díky tomu je kódová základna čistší a snadněji se udržuje.
-
----
-
-### **4\. Doplňkové materiály: Doporučení**
-
-#### **A. Oficiální dokumentace a příručky:**
-
-- **řídící tok JavaScriptu:**  
-  - [řídící tok MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Control_flow_and_error_handling)  
-- **Funkce JavaScriptu:**  
-  - [Funkce MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Functions)  
-- **Smyčky JavaScriptu:**  
-  - [Příkazy smyčky MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Loops_and_iteration)
-
-#### **B. Výukové materiály a články:**
-
-- **řídící struktury jazyka JavaScript:**  
-  - [W3Schools řídící struktury JavaScriptu](https://www.w3schools.com/js/js_if_else.asp)  
-- **Porozumění funkcím JavaScriptu:**  
-  - [Funkce FreeCodeCampu](https://www.freecodecamp.org/news/javascript-functions-explained/)  
-- **Smyčky v jazyce JavaScript:**  
-  - [Vysvětlení smyček v jazyce JavaScript](https://www.programiz.com/javascript/for-loop)
-
-#### **C. Interaktivní výukové platformy:**
-
-- **Codecademy:**  
-  - [Naučte se řídící tok JavaScriptu](https://www.codecademy.com/learn/introduction-to-javascript/modules/learn-javascript-control-flow)  
-- **FreeCodeCamp:**  
-  - [řídící struktury jazyka JavaScript](https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/basic-javascript/)  
-- **JavaScript.info:**  
-  - [řídící tok JavaScriptu](https://javascript.info/ifelse)
-
-#### **D. Videonávody:**
-
-- **Traversy Media:**  
-  - [Výukový kurz řídícího toku JavaScriptu](https://www.youtube.com/watch?v=IsG4vegnf10)  
-- **The Net Ninja:**  
-  - [Výukový kurz funkcí jazyka JavaScript](https://www.youtube.com/watch?v=Y8KqKUxm_8c)  
-- **Academind:**  
-  - [JavaScript pro začátečníky: Funkce a tok řízení](https://www.youtube.com/watch?v=PkZNo7MFNFg)
-
-#### **E. Platformy pro praxi:**
-
-- **HackerRank:**  
-  - [Výzvy řídících struktur v jazyce JavaScript](https://www.hackerrank.com/domains/tutorials/10-days-of-javascript)  
-- **LeetCode:**  
-  - [Problémy s funkcemi jazyka JavaScript](https://leetcode.com/problemset/all/?search=javascript%20functions)  
-- **Cvičení:**  
-  - [JavaScript Track \- Funkce](https://exercism.io/tracks/javascript/exercises)
-
-#### **F. Společenství a podpora:**
-
-- **Stack Overflow:**  
-  - [řídící struktury jazyka JavaScript](https://stackoverflow.com/questions/tagged/javascript+control-flow)  
-  - [Funkce JavaScriptu](https://stackoverflow.com/questions/tagged/javascript+functions)  
-- **Reddit:**  
-  - [r/javascript](https://www.reddit.com/r/javascript/)  
-- **Komunity Discord:**  
-  - Připojte se k serverům Discord zaměřeným na JavaScript a získejte pomoc a diskusi v reálném čase.
-
----
-
-### **5\. Navrhované rozdělení lekcí na 3 hodiny**
-
-#### **Hodina 1: Úvod do řídících struktur (60 minut)**
-
-- **Co jsou řídící struktury? (15 minut):**  
-  - Přehled o tom, jak řídící struktury řídí průběh provádění.  
-- **Podmíněné výroky (30 minut):**  
-  - Podrobné vysvětlení `if`, `else if`, `else` a `switch`.  
-  - Praktické příklady relevantní pro automatizaci testování.  
-- **Přestávka (5 minut)**
-
-#### **Hodina 2: Smyčky a funkce (60 minut)**
-
-- **Smyčky (25 minut):**  
-  - Vysvětlení různých typů smyček: `for`, `while`, `do...while`, `for...of`, `for...in`.  
-  - Případy použití v testech Cypress, například iterace nad testovacími daty.  
-- **Úvod do funkcí (25 minut):**  
-  - Deklarace funkcí vs. výrazy.  
-  - Parametry, návratové hodnoty a rozsah.  
-- **Přestávka (5 minut)**
-
-#### **Hodina 3: Praktické činnosti a otázky a odpovědi (60 minut)**
-
-- **Praktická cvičení (40 minut):**  
-  - **Podmíněné výroky:**  
-    - Vytvořte funkci pro přiřazení známky pomocí `if...else if...else`.  
-  - **Smyčky:**  
-    - Napište cyklus pro filtrování sudých čísel z pole.  
-  - **Funkce:**  
-    - Vyvinout užitečnou funkci pro provádění opakovaných testovacích akcí.  
-- **Sekce otázek a odpovědí (20 minut):**  
-  - Řešte případné dotazy studentů.  
-  - Vyjasněte si pochybnosti a upevněte klíčové pojmy probírané v lekci.
-
----
-
-### **6\. Další doporučení**
-
-#### **A. Interaktivní ukázky:**
-
-- **Kódování v reálném čase:**  
-  - Ukázka zápisu příkazů `if...else` a cyklů v reálném čase.  
-  - Ukázat, jak definovat a vyvolávat funkce, se zvýrazněním rozsahu a parametrů.  
-- **Ladění (debugging) pomocí `console.log`:**  
-  - Pomocí `console.log` v řídících strukturách a funkcích můžete sledovat průběh provádění a hodnoty proměnných.
-
-#### **B. Poutavá vizuální stránka:**
-
-- **Vývojové diagramy:**  
-  - Pomocí vývojových diagramů znázorněte, jak řídící struktury řídí tok programu.  
-- **Úryvky kódu:**  
-  - Prezentujte jasné a stručné příklady kódu na snímcích, které demonstrují koncepty.  
-- **Diagramy:**  
-  - Vizuální znázornění rozsahu funkcí a přístupnosti proměnných.
-
-#### **C. Podporovat účast:**
-
-- **Párové programování:**  
-  - Nechte studenty pracovat ve dvojicích na řešení cvičení, čímž podpoříte spolupráci a vzájemné učení.  
-- **Živé ankety a kvízy:**  
-  - Zařaďte rychlé kvízy, abyste vyhodnotili porozumění a udrželi vysokou angažovanost.
-
-#### **D. Poskytněte jasné pokyny:**
-
-- **Průvodci krok za krokem:**  
-  - Nabídněte podrobné pokyny ke každé praktické činnosti, abyste zajistili, že se jí budou moci všichni studenti věnovat.  
-- **Tipy pro řešení problémů:**  
-  - Předvídat běžné problémy (např. syntaktické chyby ve smyčkách nebo funkcích) a poskytovat řešení.
-
-#### **E. Podporovat podpůrné prostředí:**
-
-- **Podporujte otázky:**  
-  - Vytvořte otevřenou atmosféru, ve které se studenti budou cítit dobře, když požádají o pomoc.  
-- **Uveďte více příkladů:**  
-  - Nabídněte různé příklady pro každý koncept, abyste uspokojili různé styly učení a upevnili porozumění.
-
----
-
-## **Podrobné definice**
-
-### **1\. Co jsou řídící struktury?**
-
-**Definice:** Řídící struktury jsou programové konstrukce, které určují průběh provádění programu. Určují pořadí, v jakém jsou příkazy prováděny, a umožňují vývojářům implementovat do kódu rozhodovací a opakující se úlohy.
-
-**Podrobné vysvětlení:**
-
-- **Účel:** řídící struktury umožňují vytvářet dynamické a flexibilní programy tím, že kód může reagovat různě na základě různých podmínek nebo opakovat určité operace vícekrát.  
-    
-- **Typy řídících struktur:**  
-    
-  1. **Podmíněné výroky:** Provádějí různé bloky kódu na základě toho, zda je podmínka pravdivá nebo nepravdivá.  
-  2. **Smyčky:** Smyčky: Opakujte blok kódu několikrát, dokud platí zadaná podmínka.
-
-
-- **Význam v programování:**  
-    
-  - **Rozhodování:** Umožňuje programům rozhodovat a selektivně provádět kód.  
-  - **Opakování:** Usnadňuje provádění opakujících se úloh bez zbytečného kódu.  
-  - **Efektivita:** Zvyšuje efektivitu a čitelnost kódu omezením duplicit a stručným zpracováním složité logiky.
-
-**Vizuální reprezentace:**
-
-- **Vývojové diagramy (flowcharts):** Často se používají k vizualizaci řídících struktur a zobrazují průběh provádění na základě podmínek a iterací.
-
----
-
-### **2\. Podmíněné výroky**
-
-**Definice:** Podmíněné příkazy jsou řídící struktury, které provádějí určité bloky kódu na základě toho, zda je daná podmínka vyhodnocena jako pravdivá nebo nepravdivá.
-
-**Podrobné vysvětlení:**
-
-- **Typy podmíněných příkazů:**  
-    
-  1. **`if` příkazy:**  
-       
-     - **Účel:** Provede blok kódu, pokud je zadaná podmínka pravdivá.  
-     - **Syntaxe:**  
-         
-       if (condition) {  
-         
-         // code to execute if condition is true  
-         
-       }  
-         
-     - **Příklad:**  
-         
-       let score \= 85;  
-         
-       if (score \>= 80\) {  
-         
-         console.log("Great job\!");  
-         
-       }
-
-       
-  2. **`else if` příkaz:**  
-       
-     - **Účel:** Poskytuje další podmínky, pokud je předchozí podmínka `if` nepravdivá.  
-     - **Syntaxe:**  
-         
-       if (condition1) {  
-         
-         // code if condition1 is true  
-         
-       } else if (condition2) {  
-         
-         // code if condition2 is true  
-         
-       }  
-         
-     - **Příklad:**  
-         
-       let score \= 75;  
-         
-       if (score \>= 90\) {  
-         
-         console.log("Excellent\!");  
-         
-       } else if (score \>= 80\) {  
-         
-         console.log("Great job\!");  
-         
-       }
-
-       
-  3. **`Else` příkaz:**  
-       
-     - **Účel:** Provede blok kódu, pokud jsou všechny předchozí podmínky false.  
-     - **Syntaxe:**  
-         
-       if (condition1) {  
-         
-         // code if condition1 is true  
-         
-       } else if (condition2) {  
-         
-         // code if condition2 is true  
-         
-       } else {  
-         
-         // code if all conditions are false  
-         
-       }  
-         
-     - **Příklad:**  
-         
-       let score \= 55;  
-         
-       if (score \>= 90\) {  
-         
-         console.log("Excellent\!");  
-         
-       } else if (score \>= 80\) {  
-         
-         console.log("Great job\!");  
-         
-       } else {  
-         
-         console.log("Keep trying\!");  
-         
-       }
-
-       
-  4. **Příkaz `switch`:**  
-       
-     - **Účel:** Vyhodnotí výraz podle více hodnot případů a provede odpovídající bloky kódu.  
-     - **Syntaxe:**  
-         
-       switch (expression) {  
-         
-         case value1:  
-         
-           // code to execute if expression \=== value1  
-         
-           break;  
-         
-         case value2:  
-         
-           // code to execute if expression \=== value2  
-         
-           break;  
-         
-         default:  
-         
-           // code to execute if expression doesn't match any case  
-         
-       }  
-         
-     - **Příklad:**  
-         
-       let day \= "Monday";  
-         
-       switch (day) {  
-         
-         case "Monday":  
-         
-           console.log("Start of the work week\!");  
-         
-           break;  
-         
-         case "Friday":  
-         
-           console.log("End of the work week\!");  
-         
-           break;  
-         
-         default:  
-         
-           console.log("Midweek days.");  
-         
-       }
-
-**Případy použití v automatizaci testování:**
-
-- **Dynamické chování testu:** Úprava testovacích kroků na základě měnících se stavů aplikace nebo uživatelských vstupů.  
-- **Zpracování chyb:** Provedení různých akcí, když testy za určitých podmínek projdou nebo neprojdou.
-
----
-
-### **3\. Smyčky**
-
-**Definice:** Smyčky jsou řídící struktury, které opakovaně provádějí blok kódu, dokud platí zadaná podmínka.
-
-**Podrobné vysvětlení:**
-
-- **Typy smyček:**  
-    
-  1. **`for` smyčka:**  
-       
-     - **Účel:** Provede blok kódu s předem stanoveným počtem opakování  
-     - **Syntaxe:**  
-         
-       for (initialization; condition; increment) {  
-         
-         // code to execute  
-         
-       }  
-         
-     - **Příklad:**  
-         
-       for (let i \= 0; i \< 5; i++) {  
-         
-         console.log("Iteration:", i);  
-         
-       }
-
-       
-  2. **`while` smyčka:**  
-       
-     - **Účel:** Pokračuje ve vykonávání bloku kódu, dokud je podmínka pravdivá.  
-     - **Syntaxe:**  
-         
-       while (condition) {  
-         
-         // code to execute  
-         
-       }  
-         
-     - **Příklad:**  
-         
-       let i \= 0;  
-         
-       while (i \< 5\) {  
-         
-         console.log("Iteration:", i);  
-         
-         i++;  
-         
-       }
-
-       
-  3. **`do...while` smyčka:**  
-       
-     - **Účel:** Provede blok kódu jednou před ověřením podmínky a poté jej opakuje, dokud je podmínka pravdivá.  
-     - **Syntaxe:**  
-       do {  
-         
-         // code to execute  
-         
-       } while (condition);  
-         
-     - **Příklad:**  
-         
-       let i \= 0;  
-         
-       do {  
-         
-         console.log("Iteration:", i);  
-         
-         i++;  
-         
-       } while (i \< 5);
-
-       
-  4. **`for...of` smyčka:**  
-       
-     - **Účel:** Iteruje nad iterovatelnými objekty (jako jsou pole, řetězce) a přistupuje k jejich hodnotám.  
-     - **Syntaxe:**  
-         
-       for (const element of iterable) {  
-         
-         // code to execute  
-         
-       }  
-         
-     - **Příklad:**  
-         
-       const fruits \= \["Apple", "Banana", "Cherry"\];  
-         
-       for (const fruit of fruits) {  
-         
-         console.log("Fruit:", fruit);  
-         
-       }
-
-       
-  5. **`for...in` smyčka:**  
-       
-     - **Účel:** Iteruje přes vyjmenovatelné vlastnosti objektu.  
-     - **Syntaxe:**  
-         
-       for (const key in object) {  
-         
-         // code to execute  
-         
-       }  
-         
-     - **Příklad:**  
-         
-       const user \= { name: "Alice", age: 25, role: "Tester" };  
-         
-       for (const key in user) {  
-         
-         console.log(key \+ ":", user\[key\]);  
-         
-       }
-
-**Případy použití v automatizaci testování:**
-
-- **Testování založené na datech:** Iterace nad poli testovacích dat za účelem provedení opakovaných testovacích případů s různými vstupy.  
-- **Dávkové (batch) operace:** Provedení série testovacích kroků vícekrát za různých podmínek nebo konfigurací.
-
----
-
-### **4\. Rozsah a uzávěrky**
+#### **A. Úvod do řídicích struktur**
+- **Co jsou řídicí struktury?**
+  - Mechanismy, které řídí tok vykonávání v programu.
+  - Umožňují vývojářům určovat pořadí, v jakém se kód vykonává na základě podmínek nebo iterací.
+- **Typy řídicích struktur:**
+  - **Podmíněné příkazy:** `if`, `else if`, `else`, `switch`.
+  - **Cyklus:** `for`, `while`, `do...while`, `for...of`, `for...in`.
+
+
+##### **Co jsou řídicí struktury?**
 
 **Definice:**
-
-- **Rozsah:** Přístupnost proměnných a funkcí v různých částech kódu během běhu programu.  
-- **Uzávěrky:** Funkce v JavaScriptu, kdy má vnitřní funkce přístup k proměnným v rozsahu své vnější obklopující funkce, a to i po ukončení provádění vnější funkce.
+Řídicí struktury jsou programovací konstrukce, které určují tok vykonávání v rámci programu. Rozhodují o tom, v jakém pořadí se vykonávají jednotlivé příkazy, což umožňuje vývojářům realizovat rozhodování a opakující se úlohy v jejich kódu.
 
 **Podrobné vysvětlení:**
+- **Účel:** Řídicí struktury umožňují tvorbu dynamických a flexibilních programů tím, že umožňují kódu reagovat různě na základě různých podmínek nebo opakovat určité operace vícekrát.
+  
+- **Typy řídicích struktur:**
+  1. **Podmíněné příkazy:** Spouští různé bloky kódu v závislosti na tom, zda je podmínka splněna, nebo ne.
+  2. **Cykly:** Opakují blok kódu tak dlouho, dokud daná podmínka zůstává splněná.
 
-#### **A. Rozsah:**
+- **Důležitost v programování:**
+  - **Rozhodování:** Umožňuje programům dělat rozhodnutí a vybírat, který kód vykonat.
+  - **Opakování:** Usnadňuje provádění opakovaných úloh bez zbytečného opakování kódu.
+  - **Efektivita:** Zlepšuje efektivitu a čitelnost kódu tím, že snižuje duplicitní kód a stručně řeší složitou logiku.
 
-1. **Globální rozsah:**  
-     
-   - **Definice:** Proměnné deklarované mimo jakoukoli funkci nebo blok jsou v globálním rozsahu a jsou přístupné kdekoli v kódu.  
-   - **Příklad:**  
-       
-     var globalVar \= "I'm global\!";  
-       
-     function displayGlobal() {  
-       
-       console.log(globalVar); // Accessible  
-       
-     }  
-       
-     displayGlobal(); // Outputs: I'm global\!  
-       
-     console.log(globalVar); // Accessible
+**Vizuální znázornění:**
+- **Vývojové diagramy:** Často se používají pro vizualizaci řídicích struktur, zobrazující tok vykonávání na základě podmínek a iterací.
 
-     
-2. **Rozsah funkce:**  
-     
-   - **Definice:** Proměnné deklarované v rámci funkce jsou přístupné pouze v rámci této funkce a jejich vnořených (vnitřních) funkcí.  
-   - **Příklad:**  
-       
-     function outerFunction() {  
-       
-       var functionVar \= "I'm inside a function\!";  
-       
-       function innerFunction() {  
-       
-         console.log(functionVar); // Accessible  
-       
-       }  
-       
-       innerFunction();  
-       
-       console.log(functionVar); // Accessible  
-       
-     }  
-       
-     outerFunction();  
-       
-     console.log(functionVar); // ReferenceError: functionVar is not defined
 
-     
-3. **Rozsah bloku:**  
-     
-   - **Definice:** Proměnné deklarované v rámci bloku (`{}`) pomocí `let` nebo `const` jsou přístupné pouze v rámci tohoto bloku.  
-   - **Příklad:**  
-       
-     if (true) {  
-       
-       let blockVar \= "I'm inside a block\!";  
-       
-       console.log(blockVar); // Accessible  
-       
-     }  
-       
-     console.log(blockVar); // ReferenceError: blockVar is not defined
+#### **B. Podmíněné příkazy**
+- **Příkaz `if`:**
+  - Spouští blok kódu, pokud je daná podmínka splněna.
+  - Syntaxe a základní použití.
+  - Příkladové scénáře v testovací automatizaci.
+- **Příkazy `else if` a `else`:**
+  - Umožňují přidat další podmínky a alternativy.
+  - Rozšiřují možnosti rozhodování ve skriptech.
+- **Příkaz `switch`:**
+  - Vyhodnotí výraz podle více případů.
+  - Zjednodušuje opakované podmíněné kontroly.
 
-#### **B. Uzávěry:**
+##### **Podmíněné příkazy**
 
-1. **Definice:**  
-     
-   - Uzávěrka vzniká, když si vnitřní funkce zachovává přístup k proměnným své vnější funkce i po ukončení jejího provádění.
+**Definice:**
+Podmíněné příkazy jsou řídicí struktury, které vykonávají specifické bloky kódu podle toho, zda je daná podmínka pravdivá, nebo nepravdivá.
 
-   
+**Podrobné vysvětlení:**
+- **Typy podmíněných příkazů:**
+  1. **Příkaz `if`:**
+     - **Účel:** Spouští blok kódu, pokud je daná podmínka splněna.
+     - **Syntaxe:**
+       ```javascript
+       if (podmínka) {
+         // kód, který se spustí, když je podmínka pravdivá
+       }
+       ```
+     - **Příklad:**
+       ```javascript
+       let score = 85;
+       if (score >= 80) {
+         console.log("Skvělá práce!");
+       }
+       ```
 
-2. **Příklad:**  
-     
-   function outerFunction() {  
-     
-     let outerVar \= "I'm from the outer scope\!";  
-     
-       
-     
-     function innerFunction() {  
-     
-       console.log(outerVar); // Accessing outerVar  
-     
-     }  
-     
-       
-     
-     return innerFunction;  
-     
-   }  
-     
-   const myInnerFunction \= outerFunction();  
-     
-   myInnerFunction(); // Outputs: I'm from the outer scope\!  
-     
-3. **Případy použití v automatizaci testování:**  
-     
-   - **Privátní proměnné:** zapouzdření proměnných, které by neměly být globálně přístupné.  
-   - **Továrny na funkce (Function Factories):** Vytváření specializovaných funkcí s předkonfigurovanými parametry nebo chováním.
+  2. **Příkaz `else if`:**
+     - **Účel:** Umožňuje přidat další podmínky, pokud předchozí `if` nebyla pravdivá.
+     - **Syntaxe:**
+       ```javascript
+       if (podmínka1) {
+         // kód, když je podmínka1 pravdivá
+       } else if (podmínka2) {
+         // kód, když je podmínka2 pravdivá
+       }
+       ```
+     - **Příklad:**
+       ```javascript
+       let score = 75;
+       if (score >= 90) {
+         console.log("Výborně!");
+       } else if (score >= 80) {
+         console.log("Skvělá práce!");
+       }
+       ```
 
-   
+  3. **Příkaz `else`:**
+     - **Účel:** Spouští blok kódu, pokud žádná z předchozích podmínek nebyla splněna.
+     - **Syntaxe:**
+       ```javascript
+       if (podmínka1) {
+         // kód, když je podmínka1 pravdivá
+       } else if (podmínka2) {
+         // kód, když je podmínka2 pravdivá
+       } else {
+         // kód, když žádná podmínka není pravdivá
+       }
+       ```
+     - **Příklad:**
+       ```javascript
+       let score = 55;
+       if (score >= 90) {
+         console.log("Výborně!");
+       } else if (score >= 80) {
+         console.log("Skvělá práce!");
+       } else {
+         console.log("Jen tak dál!");
+       }
+       ```
 
-4. **Výhody:**  
-     
-   - **Ochrana dat:** Určité proměnné jsou skryty před globálním rozsahem, což zabraňuje nechtěným úpravám.  
-   - **Rozšířená funkčnost:** Umožňuje vytvářet všestrannější a flexibilnější funkce, které mohou udržovat stav při vícenásobném vyvolání.
+  4. **Příkaz `switch`:**
+     - **Účel:** Vyhodnotí výraz podle více hodnot a spustí odpovídající blok kódu.
+     - **Syntaxe:**
+       ```javascript
+       switch (výraz) {
+         case hodnota1:
+           // kód, když výraz === hodnota1
+           break;
+         case hodnota2:
+           // kód, když výraz === hodnota2
+           break;
+         default:
+           // kód, když žádný případ neodpovídá
+       }
+       ```
+     - **Příklad:**
+       ```javascript
+       let day = "Monday";
+       switch (day) {
+         case "Monday":
+           console.log("Začátek pracovního týdne!");
+           break;
+         case "Friday":
+           console.log("Konec pracovního týdne!");
+           break;
+         default:
+           console.log("Střed týdne.");
+       }
+       ```
 
-**Vizuální reprezentace:**
+**Použití v testovací automatizaci:**
+- **Dynamické chování testů:** Úprava testovacích kroků podle stavu aplikace nebo vstupů uživatele.
+- **Ošetření chyb:** Spouštění různých akcí podle toho, zda testy prošly nebo selhaly za určitých podmínek.
 
-- **Uzavírací schéma:** Znázorňuj, jak si vnitřní funkce zachovává přístup k proměnným vnější funkce i po jejím vykonání.
+
+#### **C. Cykly**
+- **Cyklus `for`:**
+  - Iteruje pevně stanovený počet opakování.
+  - Syntaxe a příklady použití.
+- **Cyklus `while`:**
+  - Spouští se, dokud je podmínka pravdivá.
+  - Příklady z testovací automatizace.
+- **Cyklus `do...while`:**
+  - Podobné jako `while`, zaručuje alespoň jedno provedení.
+- **Cykly `for...of` a `for...in`:**
+  - Iterace přes iterovatelné objekty (pole, řetězce) a vlastnosti objektů.
+
+##### **Cykly**
+
+**Definice:**
+Cykly jsou řídicí struktury, které opakovaně vykonávají blok kódu, dokud je splněna podmínka.
+
+**Podrobné vysvětlení:**
+- **Typy cyklů:**
+  1. **Cyklus `for`:**
+     - **Účel:** Spustí blok kódu předem daný počet opakování.
+     - **Syntaxe:**
+       ```javascript
+       for (inicializace; podmínka; přírůstek) {
+         // kód k vykonání
+       }
+       ```
+     - **Příklad:**
+       ```javascript
+       for (let i = 0; i < 5; i++) {
+         console.log("Iterace:", i);
+       }
+       ```
+
+  2. **Cyklus `while`:**
+     - **Účel:** Spouští blok kódu, dokud je podmínka pravdivá.
+     - **Syntaxe:**
+       ```javascript
+       while (podmínka) {
+         // kód k vykonání
+       }
+       ```
+     - **Příklad:**
+       ```javascript
+       let i = 0;
+       while (i < 5) {
+         console.log("Iterace:", i);
+         i++;
+       }
+       ```
+
+  3. **Cyklus `do...while`:**
+     - **Účel:** Spustí blok kódu jednou před kontrolou podmínky, pak opakuje, dokud je podmínka pravdivá.
+     - **Syntaxe:**
+       ```javascript
+       do {
+         // kód k vykonání
+       } while (podmínka);
+       ```
+     - **Příklad:**
+       ```javascript
+       let i = 0;
+       do {
+         console.log("Iterace:", i);
+         i++;
+       } while (i < 5);
+       ```
+
+  4. **Cyklus `for...of`:**
+     - **Účel:** Iterace přes iterovatelné objekty (pole, řetězce) a přístup k jejich hodnotám.
+     - **Syntaxe:**
+       ```javascript
+       for (const prvek of iterovatelné) {
+         // kód k vykonání
+       }
+       ```
+     - **Příklad:**
+       ```javascript
+       const fruits = ["Apple", "Banana", "Cherry"];
+       for (const fruit of fruits) {
+         console.log("Ovoce:", fruit);
+       }
+       ```
+
+  5. **Cyklus `for...in`:**
+     - **Účel:** Iterace přes vlastnosti objektu.
+     - **Syntaxe:**
+       ```javascript
+       for (const klíč in objekt) {
+         // kód k vykonání
+       }
+       ```
+     - **Příklad:**
+       ```javascript
+       const user = { name: "Alice", age: 25, role: "Tester" };
+       for (const key in user) {
+         console.log(key + ":", user[key]);
+       }
+       ```
+
+**Použití v testovací automatizaci:**
+- **Testování s různými daty:** Iterace přes pole testovacích dat pro opakované testovací případy s různými vstupy.
+- **Sériové operace:** Provedení posloupnosti testovacích kroků pod různými podmínkami nebo konfiguracemi.
+
+
+#### **D. Úvod do funkcí**
+  **Definice:**  
+  **Funkce** je znovupoužitelný blok kódu vykonávající specifický úkol. Umožňuje zabalit logiku pod jméno a to pak volat kdykoliv je potřeba—bez opakování stejného kódu.
+
+  Představte si to jako **recept**: jednou si ho napíšete a pak podle něj vaříte, aniž byste postup museli psát znovu.
+
+- **Co jsou funkce?**
+  - Znovupoužitelné bloky kódu určené k vykonání konkrétního úkolu.
+  - Zvyšují modularitu a organizaci kódu.
+- **Deklarace vs. výrazy funkcí:**
+  - Rozdíly v syntaxi a chování při vyzdvihování (hoisting).
+  - Kdy použít který typ.
+- **Parametry a návratové hodnoty:**
+  - Předávání dat do funkcí a získávání výsledků.
+- **Rozsah platnosti (scope) a closures:**
+  - Pochopení přístupnosti proměnných ve funkcích.
+  - Úvod do closures a jejich významu.
+
+
+  ##### **Struktura funkce (syntaxe)**
+
+  ```javascript
+  function functionName(parameter1, parameter2) {
+    // Blok kódu
+    return result;
+  }
+  ```
+
+  ---
+
+  ##### **Parametry a argumenty**
+
+  - **Parametry** jsou zástupné názvy při definování funkce.
+  - **Argumenty** jsou skutečné hodnoty, které předáváte při volání funkce.
+
+  ```javascript
+  function greetUser(name) {
+    console.log("Hello, " + name + "!");
+  }
+
+  greetUser("Anna"); // Výstup: Hello, Anna!
+  ```
+
+  ---
+
+  ##### **Návratové hodnoty**
+
+  Funkce může poslat výsledek zpět pomocí klíčového slova `return`.
+
+  ```javascript
+  function multiply(a, b) {
+    return a * b;
+  }
+
+  let result = multiply(3, 4); // result = 12
+  console.log(result);         // Výstup: 12
+  ```
+
+  Pokud se `return` nepoužije, funkce vrací `undefined`.
+
+  ---
+
+  ##### **Jednoduché příklady**
+
+  ✅ **Sečtěte dvě čísla**
+  ```javascript
+  function add(x, y) {
+    return x + y;
+  }
+
+  console.log(add(5, 7)); // Výstup: 12
+  ```
+
+  ✅ **Zjistěte, zda je číslo sudé**
+  ```javascript
+  function isEven(num) {
+    return num % 2 === 0;
+  }
+
+  console.log(isEven(4)); // Výstup: true
+  console.log(isEven(9)); // Výstup: false
+  ```
+
+  ✅ **Zobrazte informace o uživateli**
+  ```javascript
+  function showUserInfo(name, age) {
+    console.log(`Name: ${name}, Age: ${age}`);
+  }
+
+  showUserInfo("Lucas", 29); // Výstup: Name: Lucas, Age: 29
+  ```
+
+  ##### **Deklarace vs. výraz funkce**
+
+  🔹 **Deklarace funkce**  
+  K dispozici **už před zápisem v kódu** (díky hoistingu):
+
+  ```javascript
+  sayHi();
+
+  function sayHi() {
+    console.log("Ahoj!");
+  }
+  ```
+
+  🔹 **Výraz funkce**  
+  Přiřazuje se do proměnné—**není vyzdvihován**, musí být nejdříve definován:
+
+  ```javascript
+  const sayBye = function() {
+    console.log("Sbohem!");
+  };
+
+  sayBye();
+  ```
+
+  ---
+
+  ##### **Bonus: Šipkové funkce**
+
+  Šipkové funkce jsou kratší způsob zápisu funkčních výrazů:
+
+  ```javascript
+  const greet = (name) => {
+    return `Hello, ${name}!`;
+  };
+
+  console.log(greet("Sarah"));
+  ```
 
 ---
 
-## **Příklady kódu pro "Doporučené postupy pro řídící struktury a funkce"**
+##### **Scope a closures**
 
-Zavedení osvědčených postupů zajistí, že váš kód bude čistý, udržovatelný a efektivní. Níže je uvedeno několik příkladů kódu, které demonstrují tyto postupy v kontextu řídících struktur a funkcí.
+**Definice:**
+- **Scope:** Dostupnost proměnných a funkcí v různých částech kódu za běhu.
+- **Closures:** Vlastnost JavaScriptu, kdy vnořená funkce má přístup k proměnným své vnější funkce, i po jejím skončení.
 
-### **A. Čitelnost a udržovatelnost**
+**Podrobné vysvětlení:**
+
+###### **A. Scope:**
+1. **Globální scope:**
+   - **Definice:** Proměnné deklarované mimo funkci nebo blok jsou v globálním rozsahu a dostupné kdekoliv v kódu.
+   - **Příklad:**
+     ```javascript
+     var globalVar = "Jsem globální!";
+     function displayGlobal() {
+       console.log(globalVar); // Dostupné
+     }
+     displayGlobal(); // Výstup: Jsem globální!
+     console.log(globalVar); // Dostupné
+     ```
+
+2. **Funkční scope:**
+   - **Definice:** Proměnné deklarované v rámci funkce jsou přístupné pouze uvnitř této funkce a jejích vnořených funkcí.
+   - **Příklad:**
+     ```javascript
+     function outerFunction() {
+       var functionVar = "Jsem uvnitř funkce!";
+       function innerFunction() {
+         console.log(functionVar); // Dostupné
+       }
+       innerFunction();
+       console.log(functionVar); // Dostupné
+     }
+     outerFunction();
+     console.log(functionVar); // ReferenceError: functionVar není definována
+     ```
+
+3. **Blokový scope:**
+   - **Definice:** Proměnné deklarované v bloku (`{}`) pomocí `let` nebo `const` jsou dostupné pouze v tomto bloku.
+   - **Příklad:**
+     ```javascript
+     if (true) {
+       let blockVar = "Jsem v bloku!";
+       console.log(blockVar); // Dostupné
+     }
+     console.log(blockVar); // ReferenceError: blockVar není definována
+     ```
+
+###### **B. Closures:**
+1. **Definice:**
+   - Closure vzniká tehdy, když vnořená funkce uchovává přístup k proměnným své vnější funkce i po jejím vykonání.
+
+2. **Příklad:**
+   ```javascript
+   function outerFunction() {
+     let outerVar = "Jsem z vnějšího rozsahu!";
+     
+     function innerFunction() {
+       console.log(outerVar); // Přístup k outerVar
+     }
+     
+     return innerFunction;
+   }
+   
+   const myInnerFunction = outerFunction();
+   myInnerFunction(); // Výstup: Jsem z vnějšího rozsahu!
+   ```
+
+3. **Použití v testovací automatizaci:**
+   - **Privátní proměnné:** Zapouzdření proměnných, které nemají být dostupné globálně.
+   - **Továrny na funkce:** Tvorba specializovaných funkcí s přednastavenými parametry nebo chováním.
+
+4. **Výhody:**
+   - **Ochrana dat:** Udržuje některé proměnné skryté před globálním rozsahem a zabraňuje jejich nechtěné změně.
+   - **Rozšířené možnosti:** Umožňuje tvorbu univerzálnějších a flexibilnějších funkcí, které si uchovávají stav napříč voláními.
+
+**Vizuální znázornění:**
+- **Schéma closure:** Ukazuje, jak si vnořená funkce uchovává přístup k proměnným vnější funkce i po jejím vykonání.
+
+    
+#### **E. Doporučené zásady pro řídicí struktury a funkce**
+- **Čitelnost a udržovatelnost:**
+  - Psát jasné a srozumitelné řídicí struktury.
+  - Udržovat funkce zaměřené pouze na jeden úkol.
+- **Vyhýbání se hlubokému vnořování:**
+  - Strategie pro zamezení nadměrné složitosti a odsazování.
+- **Pojmenovávací konvence:**
+  - Výstižná jména funkcí a proměnných s jasným účelem.
+- **Princip DRY (Don't Repeat Yourself):**
+  - Snižování duplicit využíváním funkcí a cyklů.
+
+##### **Příklady kódu pro „Zásady nejlepší praxe pro řídicí struktury a funkce“**
+
+Zavádění těchto zásad zajistí, že váš kód bude čistý, udržovatelný a efektivní. Níže jsou uvedeny příklady prokládané doporučenými postupy v rámci řídicích struktur a funkcí.
+
+##### **A. Čitelnost a udržovatelnost**
 
 **Špatná praxe: Hluboké vnořování**
-
+```javascript
 if (isUserLoggedIn) {
-
   if (user.hasPermission) {
-
     if (user.isActive) {
-
       performSensitiveOperation();
-
     }
-
   }
-
 }
+```
 
-**Správná praxe: Včasné návraty k omezení vnoření**
-
-funkce performOperation(user) {
-
-  if (\!user.isLoggedIn) return;
-
-  if (\!user.hasPermission) return;
-
-  if (\!user.isActive) return;
-
+**Dobrá praxe: Včasný návrat z funkce pro omezení vnořování**
+```javascript
+function performOperation(user) {
+  if (!user.isLoggedIn) return;
+  if (!user.hasPermission) return;
+  if (!user.isActive) return;
   
-
   performSensitiveOperation();
-
 }
+```
 
-### **B. Soustředění funkcí k jednomu účelu**
+##### **B. Funkce pouze s jedním úkolem**
 
-**Špatná praxe: Funkce provádějící více úkolů**
-
+**Špatná praxe: Funkce dělá víc věcí najednou**
+```javascript
 function processUserData(user) {
-
-  // Validate user
-
-  if (\!user.email) {
-
-    console.log("Invalid user");
-
+  // Validace uživatele
+  if (!user.email) {
+    console.log("Neplatný uživatel");
     return;
-
   }
-
   
-
-  // Save user to database
-
+  // Uložení uživatele do databáze
   database.save(user);
-
   
-
-  // Send welcome email
-
+  // Odeslání uvítacího e-mailu
   emailService.sendWelcomeEmail(user.email);
-
 }
+```
 
-**Správná praxe: Oddělené funkce pro každou úlohu**
-
+**Dobrá praxe: Oddělené funkce pro každý úkol**
+```javascript
 function validateUser(user) {
-
-  if (\!user.email) {
-
-    console.log("Invalid user");
-
+  if (!user.email) {
+    console.log("Neplatný uživatel");
     return false;
-
   }
-
   return true;
-
 }
 
 function saveUser(user) {
-
   database.save(user);
-
 }
 
 function sendWelcomeEmail(user) {
-
   emailService.sendWelcomeEmail(user.email);
-
 }
 
 function processUserData(user) {
-
-  if (\!validateUser(user)) return;
-
+  if (!validateUser(user)) return;
   saveUser(user);
-
   sendWelcomeEmail(user);
-
 }
+```
 
-### **C. Vyhnutí se hlubokému vnoření pomocí ochranných klauzulí**
+##### **C. Vyhýbání se hlubokému vnořování pomocí Guard Clauses**
 
-**Špatná praxe: Více úrovní podmínek**
-
+**Špatná praxe: Víceúrovňové podmínky**
+```javascript
 function checkAccess(user) {
-
   if (user) {
-
     if (user.isActive) {
-
       if (user.hasAccess) {
-
         grantAccess();
-
       }
-
     }
-
   }
-
 }
+```
 
-**Správná praxe: Používání ochranných doložek**
-
+**Dobrá praxe: Použijte Guard Clauses**
+```javascript
 function checkAccess(user) {
-
-  if (\!user) return;
-
-  if (\!user.isActive) return;
-
-  if (\!user.hasAccess) return;
-
+  if (!user) return;
+  if (!user.isActive) return;
+  if (!user.hasAccess) return;
   
-
   grantAccess();
-
 }
+```
 
-### **D. Používání popisných názvů**
+##### **D. Použití popisných názvů**
 
-**Špatná praxe: Vágní názvy proměnných a funkcí**
-
+**Špatná praxe: Nejasné názvy proměnných a funkcí**
+```javascript
 function doIt(a, b) {
-
-  if (a \> b) {
-
+  if (a > b) {
     return a;
-
   } else {
-
     return b;
-
   }
-
 }
 
-let x \= doIt(5, 10\);
+let x = doIt(5, 10);
+```
 
-**Správná praxe: Popisné názvy**
-
+**Dobrá praxe: Výstižné názvy**
+```javascript
 function getHigherValue(firstValue, secondValue) {
-
-  if (firstValue \> secondValue) {
-
+  if (firstValue > secondValue) {
     return firstValue;
-
   } else {
-
     return secondValue;
-
   }
-
 }
 
-let higherScore \= getHigherValue(5, 10);
+let higherScore = getHigherValue(5, 10);
 
----
+```
 
-### **E. Jak řídící struktury řídí tok programu**
+#### **F. Praktické příklady**
+- **Implementace podmíněné logiky v testech:**
+  - Použití příkazů `if` pro různé scénáře testů.
+- **Iterace přes testovací data:**
+  - Použití cyklů pro procházení polí testovacích vstupů (data-driven testování).
+- **Vytváření utilitních funkcí:**
+  - Tvorba funkcí pro opakované kroky v testech pro zvýšení znovupoužitelnosti.
 
-**Příklad scénáře: Ověřování uživatele**
 
-Představte si, že píšete testovací skript pro ověření ověření uživatele ve webové aplikaci. Řídící struktury pomáhají určit tok na základě různých uživatelských vstupů a stavů systému.
+
+
+
+### **E. Jak řídicí struktury ovlivňují tok programu**
+
+**Příkladový scénář: Autentizace uživatele**
+
+Představte si, že píšete testovací skript, který ověřuje autentizaci uživatele ve webové aplikaci. Řídicí struktury určují tok podle různých uživatelských vstupů a stavů systému.
 
 **Příklad kódu:**
-
+```javascript
 function authenticateUser(username, password) {
-
-  if (\!username || \!password) {
-
-    console.log("Username and password are required.");
-
+  if (!username || !password) {
+    console.log("Uživatelské jméno i heslo jsou povinné.");
     return;
-
   }
 
-  if (password.length \< 6\) {
-
-    console.log("Password must be at least 6 characters long.");
-
+  if (password.length < 6) {
+    console.log("Heslo musí mít alespoň 6 znaků.");
     return;
-
   }
 
-  // Simulate server-side authentication
-
-  let isAuthenticated \= serverAuthenticate(username, password);
+  // Simulace serverové autentizace
+  let isAuthenticated = serverAuthenticate(username, password);
 
   if (isAuthenticated) {
-
-    console.log("User authenticated successfully\!");
-
-    // Proceed to grant access
-
+    console.log("Uživatel úspěšně autentizován!");
+    // Pokračovat v udělení přístupu
   } else {
-
-    console.log("Authentication failed. Please check your credentials.");
-
-    // Prompt user to retry or reset password
-
+    console.log("Autentizace selhala. Zkontrolujte přihlašovací údaje.");
+    // Umožnit opakování/připomenutí hesla
   }
-
 }
 
-// Simulated server authentication function
-
+// Simulovaná serverová autentizace
 function serverAuthenticate(username, password) {
-
-  // For demonstration, any password "password123" authenticates successfully
-
-  return password \=== "password123";
-
+  // Pro demonstraci - jakékoli heslo "password123" autentizuje úspěšně
+  return password === "password123";
 }
 
-// Test cases
-
-authenticateUser("testUser", "password123"); // Successful authentication
-
-authenticateUser("testUser", "pass");        // Password too short
-
-authenticateUser("", "password123");         // Missing username
-
-authenticateUser("testUser", "wrongPass");   // Authentication failed
+// Testovací případy
+authenticateUser("testUser", "password123"); // Úspěšná autentizace
+authenticateUser("testUser", "pass");        // Heslo je příliš krátké
+authenticateUser("", "password123");         // Chybí uživatelské jméno
+authenticateUser("testUser", "wrongPass");   // Autentizace selhala
+```
 
 **Vysvětlení:**
+1. **Úvodní kontroly:**
+   - Používá příkazy `if` k ověření zadání uživatelského jména a hesla.
+   - Kontroluje minimální délku hesla.
 
-1. **Prvotní kontroly:**  
-     
-   - Používá příkazy `if` k ověření, zda je zadáno uživatelské jméno i heslo.  
-   - Zajistí, aby heslo splňovalo požadavky na minimální délku.
+2. **Autentizační logika:**
+   - Volá funkci `serverAuthenticate` pro simulaci validace na serveru.
+   - Výsledek vyhodnocuje dalším příkazem `if`.
 
-   
-
-2. **Logika ověřování:**  
-     
-   - Volá `serverAuthenticate` pro simulaci ověření na straně serveru.  
-   - Na základě výsledku použije další příkaz `if`, aby určil, zda má uživateli povolit přístup, nebo ho vyzvat k opakování pokusu.
-
-   
-
-3. **Řízení toku:**  
-     
-   - V závislosti na podmínkách program nasměruje tok na různé bloky kódu, čímž zajistí, že přístup získají pouze platní a ověření uživatelé.
+3. **Řízení toku:**
+   - Podle podmínek směřuje program k různým blokům kódu tak, aby přístup získal pouze validní a autentizovaný uživatel.
 
 **Výsledek:**
+- Ukazuje, jak příkazy `if` a `else` ovlivňují běh programu dle různých podmínek a zajišťují robustní a bezpečný proces autentizace.
 
-- Demonstruje, jak příkazy `if` a `else` řídí provádění programu na základě různých podmínek, čímž zajišťuje robustní a bezpečné procesy ověřování.
 
----
+#### **Ilustrace a reálné příklady**
 
-## **Ilustrace a reálné příklady**
+##### **Ukázka, jak řídicí struktury ovlivňují tok programu**
 
-### **1\. Ukažte, jak řídící struktury řídí tok programu.**
+**Příkladový scénář: Automatizované testování odeslání formuláře**
 
-**Příklad scénáře: Automatizované testování odesílání formulářů**
-
-Představte si, že píšete test Cypress pro automatické odeslání registračního formuláře uživatele. Řídící struktury pomáhají řídit různé testovací scénáře na základě uživatelských vstupů a odpovědí aplikace.
+Představte si, že píšete Cypress test pro automatizaci odeslání registračního formuláře. Řídicí struktury spravují různé testovací situace podle vstupů uživatele a odpovědí aplikace.
 
 **Příklad kódu:**
-
-describe('User Registration Form', () \=\> {
-
-  it('Submits the form with valid data', () \=\> {
-
+```javascript
+describe('User Registration Form', () => {
+  it('Submits the form with valid data', () => {
     cy.visit('/register');
 
-    // Fill out the form
+    // Vyplněte formulář
+    cy.get('#username').type('testUser');
+    cy.get('#email').type('testuser@example.com');
+    cy.get('#password').type('SecurePass123');
 
-    cy.get('\#username').type('testUser');
-
-    cy.get('\#email').type('testuser@example.com');
-
-    cy.get('\#password').type('SecurePass123');
-
-    // Conditional Check: Ensure the Submit button is enabled
-
-    cy.get('\#submit').then(($btn) \=\> {
-
-      if (\!$btn.is(':disabled')) {
-
+    // Podmíněná kontrola: Je tlačítko Odeslat povoleno?
+    cy.get('#submit').then(($btn) => {
+      if (!$btn.is(':disabled')) {
         cy.wrap($btn).click();
-
       } else {
-
-        throw new Error('Submit button is disabled');
-
+        throw new Error('Tlačítko Odeslat je zakázáno');
       }
-
     });
 
-    // Verify successful registration
-
-    cy.contains('Registration Successful\!').should('be.visible');
-
+    // Ověřte úspěšnou registraci
+    cy.contains('Registration Successful!').should('be.visible');
   });
 
-  it('Displays error with invalid email', () \=\> {
-
+  it('Displays error with invalid email', () => {
     cy.visit('/register');
 
-    // Fill out the form with invalid email
+    // Vyplněte formulář s neplatným e-mailem
+    cy.get('#username').type('testUser');
+    cy.get('#email').type('invalid-email');
+    cy.get('#password').type('SecurePass123');
 
-    cy.get('\#username').type('testUser');
+    // Pokus o odeslání
+    cy.get('#submit').click();
 
-    cy.get('\#email').type('invalid-email');
-
-    cy.get('\#password').type('SecurePass123');
-
-    // Attempt to submit the form
-
-    cy.get('\#submit').click();
-
-    // Conditional Check: Display error message if email is invalid
-
-    cy.get('.error-message').then(($msg) \=\> {
-
+    // Podmíněná kontrola: Zobrazit chybovou zprávu při neplatném e-mailu
+    cy.get('.error-message').then(($msg) => {
       if ($msg.is(':visible')) {
-
         cy.wrap($msg).should('contain', 'Invalid email address');
-
       } else {
-
-        throw new Error('Error message not displayed for invalid email');
-
+        throw new Error('Chybová zpráva pro neplatný e-mail nebyla zobrazena');
       }
-
     });
-
   });
-
 });
+```
 
 **Vysvětlení:**
+1. **Podmíněné příkazy (`if`):**
+   - Před kliknutím ověří, zda není tlačítko zakázané.
+   - Pokud je tlačítko povoleno, pokračuje; jinak vyhodí chybu.
 
-1. **Podmíněné příkazy (`if)`:**  
-     
-   - Před kliknutím na tlačítko odeslat test zkontroluje, zda tlačítko není zakázáno.  
-   - Pokud je tlačítko povoleno, dojde ke kliknutí; v opačném případě je hlášena chyba.
+2. **Cykly:**
+   - (V tomto příkladu nejsou přímo uvedeny, ale lze použít pro iteraci různých testovacích dat.)
 
-   
-
-2. **Smyčkové struktury:**  
-     
-   - Ačkoli to zde není výslovně uvedeno, smyčky lze použít k iteraci více testovacích případů nebo datových sad, což zvyšuje pokrytí testů.
-
-   
-
-3. **Řízení toku:**  
-     
-   - V závislosti na vstupu uživatele (platný nebo neplatný e-mail) test buď ověří úspěšnou registraci, nebo zkontroluje příslušná chybová hlášení a podle toho nasměruje tok.
+3. **Řízení toku:**
+   - Podle vstupu (platný/neplatný e-mail) test kontroluje úspěch nebo příslušné chybové hlášení.
 
 **Výsledek:**
+- Ukazuje, jak příkazy `if` řídí spouštění testů podle různých stavů a zajišťují správnou reakci na různé vstupy a odpovědi aplikace.
 
-- Demonstruje, jak příkazy `if` řídí provádění testů na základě dynamických podmínek a zajišťují, aby testy vhodně reagovaly na různé uživatelské vstupy a stavy aplikace.
+---
+    
+### **2. Praktická část: cvičení a náměty na webové funkce**
+    
+#### **A. Cvičení s podmíněnými příkazy**
+- **Cvičení:**
+  - Napište funkci v JavaScriptu, která přijímá skóre uživatele a přiřadí známku dle předdefinovaných kritérií pomocí `if`, `else if` a `else`.
+  - Příklad:
+    ```javascript
+    function assignGrade(score) {
+      if (score >= 90) {
+        return 'A';
+      } else if (score >= 80) {
+        return 'B';
+      } else if (score >= 70) {
+        return 'C';
+      } else if (score >= 60) {
+        return 'D';
+      } else {
+        return 'F';
+      }
+    }
+    ```
+- **Návrh na rozšíření do webové aplikace:**
+  - Vytvořte jednoduchý HTML formulář, do kterého mohou uživatelé zadat své skóre; JavaScriptová funkce pak po odeslání vypočítá a zobrazí odpovídající známku.
 
+#### **B. Cvičení s iterací pole**
+- **Cvičení:**
+  - Napište funkci v JavaScriptu, která přijímá pole čísel a vrátí nové pole obsahující pouze sudá čísla pomocí cyklu `for`.
+  - Příklad:
+    ```javascript
+    function filterEvenNumbers(numbers) {
+      let evenNumbers = [];
+      for (let i = 0; i < numbers.length; i++) {
+        if (numbers[i] % 2 === 0) {
+          evenNumbers.push(numbers[i]);
+        }
+      }
+      return evenNumbers;
+    }
+    ```
+- **Návrh na webovou funkci:**
+  - Vytvořte webovou aplikaci, kde uživatelé zadají seznam čísel a aplikace zobrazí pole pouze sudých čísel podle definované funkce.
+
+#### **C. Cvičení s vytvářením a používáním funkcí**
+- **Cvičení:**
+  - Napište funkci v JavaScriptu, která přijímá dvě čísla jako parametry a vrátí jejich součet. Použijte tuto funkci v cyklu, který spočítá celkový součet pro pole dvojic čísel.
+  - Příklad:
+    ```javascript
+    function add(a, b) {
+      return a + b;
+    }
+
+    let pairs = [[1, 2], [3, 4], [5, 6]];
+    let totalSum = 0;
+    for (let i = 0; i < pairs.length; i++) {
+      totalSum += add(pairs[i][0], pairs[i][1]);
+    }
+    console.log(totalSum); // Výstup: 21
+    ```
+- **Návrh pro webovou aplikaci:**
+  - Umožněte uživatelům zadat několik dvojic čísel na stránce; aplikace spočítá a zobrazí celkový součet pomocí funkce `add` v cyklu.
+
+#### **D. Cvičení se scope a closures**
+- **Cvičení:**
+  - Demonstrujte koncept scope vytvořením funkce uvnitř jiné a ukažte, jak jsou proměnné dostupné.
+  - Příklad:
+    ```javascript
+    function outerFunction() {
+      let outerVariable = 'Jsem venku!';
+      
+      function innerFunction() {
+        let innerVariable = 'Jsem uvnitř!';
+        console.log(outerVariable); // Přístupné
+        console.log(innerVariable); // Přístupné
+      }
+      
+      innerFunction();
+      console.log(innerVariable); // ReferenceError: innerVariable není definována
+    }
+
+    outerFunction();
+    ```
+- **Návrh na webovou funkci:**
+  - Vytvořte interaktivní příklad na stránce, kde uživatelé uvidí, které proměnné jsou dostupné v různých rozsazích funkcí.
+
+---
+    
+### **3. Možné otázky studentů**
+    
+#### **A. Řídicí struktury:**
+1. **Jaký je rozdíl mezi příkazy `if` a `switch`?**
+   - **Odpověď:**  
+     Oba příkazy slouží pro podmíněné vykonávání, avšak `if` je univerzálnější a zvládá libovolné i složitější podmínky/výrazy. Příkaz `switch` se lépe hodí, pokud řešíte více konkrétních hodnot jedné proměnné/výrazu.
+
+2. **Kdy použít cyklus `while` místo `for`?**
+   - **Odpověď:**  
+     Použijte `while`, pokud není předem znám počet opakování a závisí na splnění určité podmínky. Cyklus `for` je vhodnější, pokud je počet iterací předem daný nebo snadno určitelný.
+
+#### **B. Funkce:**
+1. **Jaký je rozdíl mezi deklarací a výrazem funkce?**
+   - **Odpověď:**  
+     Deklarace funkcí jsou „zdviženy“ (hoisted) – jsou načteny do paměti v průběhu kompilace a lze je volat ještě před jejich zápisem v kódu. Výrazy funkcí nejsou vyzdvihovány stejným způsobem a nelze je volat před jejich definicí.
+
+2. **Lze předat funkci jako argument jiné funkci?**
+   - **Odpověď:**  
+     Ano, v JavaScriptu jsou funkce objekty první třídy a lze je předávat jako argumenty, vracet je z funkcí nebo je přiřazovat do proměnných.
+
+#### **C. Cykly:**
+1. **Jaký je rozdíl mezi cykly `for...of` a `for...in`?**
+   - **Odpověď:**  
+     `for...of` se používá pro iteraci hodnot iterable objektů (pole, řetězce), zatímco `for...in` se používá pro iteraci vlastností objektu.
+
+2. **Jak zabránit nekonečné smyčce?**
+   - **Odpověď:**  
+     Ujistěte se, že podmínka cyklu bude někdy nesplněná. Dbejte na správu počítačů a podmínek, abyste předešli situaci, kdy cyklus běží nekonečně.
+
+#### **D. Nejlepší praxe:**
+1. **Proč je důležité, aby funkce měla pouze jeden účel?**
+   - **Odpověď:**  
+     Funkce vykonávající jeden úkol jsou přehlednější, lépe se testují, debuguje se a udržují. Zvyšují i znovupoužitelnost a snižují složitost každé funkce.
+
+2. **Co znamená DRY (Don't Repeat Yourself) v kontextu psaní funkcí?**
+   - **Odpověď:**  
+     DRY nabádá k odstranění duplicitního kódu tím, že opakující se části abstrahujete do funkcí. Výsledkem je přehlednější a lépe udržovatelný kód.
+
+---
+    
+### **4. Doplňkový materiál: Doporučení**
+    
+#### **A. Oficiální dokumentace a příručky:**
+- **Řídicí struktury v JavaScriptu:**
+  - [MDN Control Flow](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Control_flow_and_error_handling)
+- **Funkce v JavaScriptu:**
+  - [MDN Functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Functions)
+- **Cykly v JavaScriptu:**
+  - [MDN Loop Statements](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Loops_and_iteration)
+    
+#### **B. Tutoriály a články:**
+- **Řídicí struktury v JavaScriptu:**
+  - [W3Schools JavaScript Control Structures](https://www.w3schools.com/js/js_if_else.asp)
+- **Pochopení funkcí v JavaScriptu:**
+  - [FreeCodeCamp Functions](https://www.freecodecamp.org/news/javascript-functions-explained/)
+- **Cykly v JavaScriptu:**
+  - [JavaScript Loops Explained](https://www.programiz.com/javascript/for-loop)
+    
+#### **C. Interaktivní vzdělávací platformy:**
+- **Codecademy:**
+  - [Learn JavaScript Control Flow](https://www.codecademy.com/learn/introduction-to-javascript/modules/learn-javascript-control-flow)
+- **FreeCodeCamp:**
+  - [JavaScript Control Structures](https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/basic-javascript/)
+- **JavaScript.info:**
+  - [JavaScript Control Flow](https://javascript.info/ifelse)
+    
+#### **D. Videotutoriály:**
+- **Traversy Media:**
+  - [JavaScript Control Flow Tutorial](https://www.youtube.com/watch?v=IsG4vegnf10)
+- **The Net Ninja:**
+  - [JavaScript Functions Tutorial](https://www.youtube.com/watch?v=Y8KqKUxm_8c)
+- **Academind:**
+  - [JavaScript for Beginners: Functions and Control Flow](https://www.youtube.com/watch?v=PkZNo7MFNFg)
+    
+#### **E. Platformy na opakování/praktiku:**
+- **HackerRank:**
+  - [JavaScript Control Structures Challenges](https://www.hackerrank.com/domains/tutorials/10-days-of-javascript)
+- **LeetCode:**
+  - [JavaScript Functions Problems](https://leetcode.com/problemset/all/?search=javascript%20functions)
+- **Exercism:**
+  - [JavaScript Track - Functions](https://exercism.io/tracks/javascript/exercises)
+    
+#### **F. Komunity a podpora:**
+- **Stack Overflow:**
+  - [JavaScript Control Structures](https://stackoverflow.com/questions/tagged/javascript+control-flow)
+  - [JavaScript Functions](https://stackoverflow.com/questions/tagged/javascript+functions)
+- **Reddit:**
+  - [r/javascript](https://www.reddit.com/r/javascript/)
+- **Discord komunity:**
+  - Připojte se na Discord servery zaměřené na JavaScript pro pomoc a diskusi.
+    
+---
+    
+### **5. Doporučené rozložení lekce na 3 hodiny**
+    
+#### **1. hodina: Úvod do řídicích struktur (60 minut)**
+- **Co jsou řídicí struktury? (15 minut):**
+  - Přehled, jak řídicí struktury řídí tok vykonávání.
+- **Podmíněné příkazy (30 minut):**
+  - Vysvětlení `if`, `else if`, `else`, `switch`.
+  - Praktické příklady relevantní pro testovací automatizaci.
+- **Přestávka (5 minut)**
+    
+#### **2. hodina: Cykly a funkce (60 minut)**
+- **Cykly (25 minut):**
+  - Vysvětlení typů cyklů: `for`, `while`, `do...while`, `for...of`, `for...in`.
+  - Příkladová použití, např. iterace dat v testech v Cypress.
+- **Úvod do funkcí (25 minut):**
+  - Deklarace vs. výrazy funkcí.
+  - Parametry, návratové hodnoty, scope.
+- **Přestávka (5 minut)**
+    
+#### **3. hodina: Praktické cvičení a Q&A (60 minut)**
+- **Praktické úkoly (40 minut):**
+  - **Podmíněné příkazy:**
+    - Vytvoření funkce na přiřazení známky pomocí `if...else if...else`.
+  - **Cykly:**
+    - Napsání cyklu pro filtraci sudých čísel z pole.
+  - **Funkce:**
+    - Vývoj utilitní funkce pro opakující se kroky v testech.
+- **Q&A (20 minut):**
+  - Prostor pro dotazy studentů.
+  - Dovyjasnění a upevnění klíčových pojmů lekce.
+    
+---
+    
+### **6. Další doporučení**
+    
+#### **A. Interaktivní ukázky:**
+- **Live coding:**
+  - Ukázka psaní podmíněných příkazů a cyklů v reálném čase.
+  - Ukázka definování a volání funkcí, včetně parametrů a scope.
+- **Ladění pomocí `console.log`:**
+  - Používání `console.log` v řídicích strukturách a funkcích pro sledování průběhu běhu programu a hodnot proměnných.
+    
+#### **B. Poutavé vizuály:**
+- **Vývojové diagramy:**
+  - Použít diagramy pro znázornění toků řízení programu.
+- **Kódové úryvky:**
+  - Zobrazovat přehledné a stručné příklady kódu na slajdech.
+- **Schémata:**
+  - Znázornit rozsah proměnných a funkcí.
+    
+#### **C. Povzbuzujte zapojení:**
+- **Párové programování:**
+  - Práce ve dvojicích na úlohách = lepší spolupráce a sdílení znalostí.
+- **Rychlé ankety a kvízy:**
+  - Průběžné ověřování znalostí a zajištění angažovanosti.
+    
+#### **D. Jasné instrukce:**
+- **Postupné průvodce:**
+  - Detailní pokyny pro každé praktické cvičení = všichni vše zvládnou.
+- **Tipy pro řešení potíží:**
+  - Upozorněte na časté chyby (například chyby syntaxe v cyklech a funkcích) a nabídněte řešení.
+    
+#### **E. Podporující prostředí:**
+- **Povzbuzujte otázky:**
+  - Otevřená atmosféra pro kladení dotazů.
+- **Dávat víc příkladů:**
+  - Nabídněte různé příklady pro každý koncept, aby si každý našel cestu ke správnému pochopení.

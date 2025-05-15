@@ -25,6 +25,7 @@ import Footer from './components/Footer.vue';
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  width: 100%;
   /* Ensure the app takes up at least the full height of the viewport */
 }
 
@@ -41,5 +42,6 @@ import Footer from './components/Footer.vue';
   /* Limit the width of the content */
   margin: 0 auto;
   /* Center the content horizontally */
+  width: 100%;
 }
 </style>

@@ -19,5 +19,10 @@
     "@vitejs/plugin-vue": "^5.2.1",
     "vite": "^6.2.1",
     "vite-plugin-vue-devtools": "^7.7.2"
-  }
+  },
+  "description": "This template should help get you started developing with Vue 3 in Vite.",
+  "main": "cypress.config.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }

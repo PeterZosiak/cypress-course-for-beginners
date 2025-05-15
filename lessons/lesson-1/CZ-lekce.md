@@ -1,674 +1,487 @@
-## **Lekce 1: Uvítání, přehled kurzu a úvod do Node.js**
+## **Lekce 1: Vítejte, přehled kurzu a úvod do Node.js**
 
-### **1\. Osnova**
+### **1. Osnova obsahu**
 
-#### **A. Uvítání a představení**
-
-- **Úvodní přivítání a představení lektora:**  
-  - Stručné osobní představení.  
-  - Přehled zkušeností a odbornosti v oblasti testování a práce s nástrojem Cypress.  
-- **Představení studentů:**  
-  - Rychlé představení (jméno, profesní zázemí, očekávání).
-
+#### **A. Vítání a představení**
+- **Přivítání a představení instruktora:**
+  - Krátké osobní představení.
+  - Přehled vašich zkušeností a odbornosti v oblasti testování a Cypressu.
+- **Představení studentů:**
+  - Rychlé kolečko představování (jméno, zázemí, očekávání).
+  
 #### **B. Přehled kurzu**
-
-- **Hlavní cíle kurzu:**  
-  - Přechod od manuálního testování k automatizovanému.  
-  - Ovládnutí základů frameworku Cypress.  
-- **Struktura kurzu:**  
-  - Rozdělení kurzu do modulů a jednotlivých lekcí.  
-  - Přehled praktických aktivit a závěrečného projektu.  
-- **Očekávání a požadavky:**  
-  - Docházka a účast na lekcích.  
-  - Závazek dokončovat úkoly a cvičení.
-
+- **Cíle kurzu:**
+  - Přechod z manuálního na automatizované testování.
+  - Zvládnutí základů frameworku Cypress.
+- **Struktura kurzu:**
+  - Rozdělení na moduly a lekce.
+  - Přehled praktických činností a závěrečného projektu.
+- **Očekávání a požadavky:**
+  - Docházka a aktivní účast.
+  - Závazek dokončit zadané úkoly a cvičení.
+  
 #### **C. Úvod do automatizovaného testování**
+- **Co je automatizované testování?**
+  - Definice a srovnání s manuálním testováním.
+- **Výhody automatizovaného testování:**
+  - Efektivita a rychlost.
+  - Znovupoužitelnost a konzistence.
+  - Lepší pokrytí testů a spolehlivost.
+- **Typy automatizovaného testování:**
+  - Jednotkové testy (Unit Testing), integrační testy, end-to-end (E2E) testování.
+  
 
-- **Co je automatizované testování?**  
-  - Definice a srovnání s manuálním testováním.  
-- **Výhody automatizovaného testování:**  
-  - Efektivita a rychlost.  
-  - Opakovatelnost a konzistence.  
-  - Rozšířený testovací záběr a vyšší spolehlivost.  
-- **Druhy automatizovaného testování:**  
-  - Jednotkové testy (Unit Testing), integrační testy (Integration Testing), testy od začátku do konce (End-to-End, E2E).
+#### **Výhody automatizovaného testování**
 
-#### **D. Přehled frameworku Cypress**
+##### **Definice:**
+Automatizované testování znamená použití specializovaných nástrojů a skriptů ke spouštění testů na softwarových aplikacích automaticky, bez manuálního zásahu.
 
-- **Co je Cypress?**  
-  - Představení Cypressu a jeho role v E2E testování.  
-- **Proč zvolit Cypress?**  
-  - Klíčové vlastnosti: průběžné načítání v reálném čase, automatické čekání, jednoduchý debugging (ladění).  
-  - Porovnání s dalšími nástroji (např. Selenium).
+##### **Podrobné vysvětlení:**
+
+1. **Efektivita a rychlost:**
+   - **Rychlé provedení:** Automatizované testy běží podstatně rychleji než manuální, poskytují rychlou zpětnou vazbu na změny v kódu.
+   - **Časté testování:** Umožňují spouštění testů vícekrát denně, což je nezbytné pro CI/CD pipeline.
+
+2. **Znovupoužitelnost a konzistence:**
+   - **Znovupoužitelné skripty:** Testovací skripty lze použít v různých projektech a scénářích, což snižuje náročnost vytváření nových testů.
+   - **Konzistentní výsledky:** Automatizované testy pokaždé vykonávají stejné kroky, čímž odstraňují lidské chyby a zajišťují spolehlivé výsledky.
+
+3. **Lepší pokrytí testů:**
+   - **Komplexní testování:** Umožnuje testovat širokou škálu scénářů včetně krajních případů (edge cases), na které by se v manuálním testování mohlo zapomenout.
+   - **Regresní testování:** Rychlé ověření, že nové změny kódu neovlivnily stávající funkcionality.
+
+4. **Nákladová efektivita:**
+   - **Snížené náklady na práci:** Počáteční nastavení může být náročnější, ale z dlouhodobého hlediska automatizace šetří čas i zdroje díky minimalizaci potřeby opakovaného manuálního testování.
+   - **Včasné odhalení chyb:** Odhalení a oprava chyb v rané fázi vývoje snižuje náklady na jejich odstranění po vydání.
+
+5. **Vyšší přesnost:**
+   - **Preciznost:** Automatizované testy vykonávají předdefinované kroky přesně a nevynechávají žádné detaily, což zajišťuje důkladné ověření chování aplikace.
+   - **Spolehlivá práce s daty:** Konzistentně spravují testovací data i prostředí a poskytují důvěryhodné výsledky testů.
+
+6. **Škálovatelnost:**
+   - **Podpora velkých projektů:** Snadno zvládají rozsáhlé sady testů a komplexní aplikace bez nutnosti úměrně navyšovat úsilí.
+
+7. **CI/CD (kontinuální integrace a doručení):**
+   - **Bezproblémová integrace:** Testy lze jednoduše zapojit do CI/CD pipeline, umožňují průběžné testování a rychlé nasazení změn.
+   - **Okamžitá zpětná vazba:** Vývojáři ihned ví, zda změny kódu testy prošly.
+
+#### **D. Přehled Cypressu jako testovacího frameworku**
+- **Co je Cypress?**
+  - Úvod do Cypressu a jeho role v E2E testování.
+- **Proč zvolit Cypress?**
+  - Klíčové funkce: okamžité načtení změn, automatické čekání, snadné ladění.
+  - Srovnání s jinými nástroji (např. Selenium).
+
+##### **Co je Cypress?**
+
+###### **Definice:**
+Cypress je open-source end-to-end testovací framework navržený speciálně pro moderní webové aplikace. Umožňuje vývojářům i QA inženýrům snadno psát, spouštět a ladit testy přímo v prohlížeči.
+
+##### **Podrobné vysvětlení:**
+
+1. **End-to-End testovací framework:**
+   - **Kompletní testování:** Cypress umožňuje testování celých uživatelských scénářů, od interakcí na UI až po odezvy backendové API.
+
+2. **Přátelské pro vývojáře:**
+   - **Jednoduché nastavení:** K použití Cypressu je potřeba minimální konfigurace, což zpřístupňuje framework i začátečníkům v automatizovaném testování.
+   - **Okamžité načítání změn:** Cypress automaticky detekuje změny v testech a ihned je znovu spustí, což urychluje vývoj.
+
+3. **Navrženo pro moderní webové aplikace:**
+   - **Založeno na JavaScriptu:** Cypress je psán v JavaScriptu a přirozeně se integruje s frameworky jako React, Angular, Vue.js.
+   - **Moderní architektura:** Narozdíl od tradičních nástrojů běží Cypress přímo v prohlížeči.
+
+4. **Silné ladicí nástroje:**
+   - **Interaktivní běžec testů:** Poskytuje vizuální rozhraní s možností sledovat testy v reálném čase, inspektovat prvky a prohlížet podrobné logy.
+   - **Time Travel:** Poskytuje možnost krokovat (hover) jednotlivými příkazy a zjistit, co se stalo v každém kroku.
+
+5. **Automatické čekání:**
+   - **Bez ručního čekání:** Cypress automaticky čeká na načtení prvků a dokončení příkazů, snižuje potřebu manuální synchronizace.
+
+6. **Kontrola síťové komunikace:**
+   - **Zachytávání a mockování požadavků:** Cypress umožňuje zachytávat a měnit síťové požadavky, což usnadňuje testování různých scénářů a API.
+
+7. **Rozšiřitelnost:**
+   - **Pluginy a integrace:** Podporuje širokou škálu rozšíření a snadno se integruje s dalšími nástroji dle potřeb projektu.
+
+8. **Podrobná dokumentace:**
+   - **Návody a příklady:** Cypress nabízí obsáhlou dokumentaci a příklady použití.
+
+##### **Proč zvolit Cypress?**
+
+###### **Definice:**
+Cypress se vyznačuje unikátní architekturou, snadným používáním a robustní sadou funkcí přizpůsobenou modernímu vývoji webu.
+
+1. **Rychlost a efektivita:**
+   - **Rychlé provádění testů:** Spouští testy přímo v prohlížeči s rychlou odezvou a snižuje celkový čas testování.
+   - **Okamžité načtení změn:** Testy se po úpravě automaticky načítají, zvyšuje produktivitu.
+
+2. **Jednoduché nastavení a používání:**
+   - **Snadná instalace:** Cypress lze nainstalovat během několika minut přes npm.
+   - **Minimální konfigurace:** K zahájení psaní testů stačí jen základní nastavení.
+
+3. **Okamžitá zpětná vazba a ladění:**
+   - **Interaktivní test runner:** Zobrazí testy v reálném čase, s možností interakce a inspekce.
+   - **Time Travel ladění:** Možnost krokovat příkazy pro snadnější identifikaci chyb.
+
+4. **Automatické čekání:**
+   - **Vestavěná synchronizace:** Cypress čeká na načtení prvků a dokončí příkazy než pokračuje, což zjednodušuje testy a eliminuje "flaky" chování.
+
+5. **Síťová kontrola a mockování:**
+   - **Zachytávání požadavků:** Umožňuje manipulaci se síťovými požadavky pro simulaci scénářů a mockování odpovědí backendu.
+
+6. **Bohatá sada asercí a příkazů:**
+   - **Vestavěné aserce:** Usnadňuje ověřování chování aplikací.
+   - **Vlastní příkazy:** Lze definovat vlastní příkazy pro opakované úkony.
+
+7. **Integrace s CI/CD:**
+   - **Kompatibilita:** Hladce spolupracuje s CI systémy jako GitHub Actions, GitLab CI, Jenkins.
+   - **Cypress Dashboard:** Pokročilá analytika a monitoring testů.
+
+8. **Silná komunita a podpora:**
+   - **Aktivní komunita:** Přispívá pluginy i radami.
+   - **Obsáhlá dokumentace:** Uživatelé mají k dispozici podrobné návody a řešení.
+
+9. **Moderní architektura:**
+   - **Přímá interakce s prohlížečem:** Přináší přesnější a spolehlivější výsledky než nástroje mimo prohlížeč.
+   - **Kompatibilita s moderními frameworky:** Ideální pro dnešní dynamické webové aplikace.
+
+10. **Udržovatelnost a škálovatelnost:**
+    - **Čitelný testovací kód:** Podporuje psaní přehledných a snadno udržovatelných testů.
+    - **Znovupoužitelné komponenty:** Možnost tvorby opakovatelných částí testů.
 
 #### **E. Úvod do Node.js**
+- **Co je Node.js?**
+  - Přehled Node.js a jeho důležitosti v moderním webovém vývoji.
+- **Node.js a Cypress:**
+  - Jak Cypress využívá Node.js ke spouštění testů.
 
-- **Co je Node.js?**  
-  - Přehled Node.js a jeho význam v moderním webovém vývoji.  
-- **Node.js a Cypress:**  
-  - Jak Cypress využívá Node.js k provádění testů.
+#### **Co je Node.js?**
+
+##### **Definice:**
+Node.js je open-source multiplatformní JavaScript runtime, který umožňuje vývojářům spouštět JavaScript mimo webový prohlížeč, typicky na serveru.
+
+##### **Podrobné vysvětlení:**
+
+1. **JavaScriptové běhové prostředí:**
+   - **Serverový JavaScript:** Spouští JavaScript na serveru, což umožňuje stavět škálovatelné síťové aplikace.
+   - **V8 Engine:** Stojí na Chrome V8 enginu, poskytuje vysoký výkon.
+
+2. **Událostmi řízený neblokující I/O:**
+   - **Asynchronní operace:** Událostně řízený model s neblokujícím I/O efektivně zvládá mnoho současných požadavků.
+   - **Škálovatelnost:** Toto řešení umožňuje zpracovat velké množství požadavků bez velké zátěže.
+
+3. **Správa balíčků pomocí npm:**
+   - **Široký ekosystém:** Node.js je dodáván s npm – největším ekosystémem open-source knihoven a nástrojů.
+   - **Správa závislostí:** Zjednodušuje správu závislostí projektů.
+
+4. **Multiplatformní kompatibilita:**
+   - **Podpora více OS:** Funguje na Windows, macOS i Linuxu.
+   - **Jednotný jazyk:** Umožňuje vývoj jak na klientu, tak serveru v JavaScriptu.
+
+5. **Široké využití:**
+   - **Web servery a API:** Vhodný pro rychlé a škálovatelné web servery, REST API i reálné aplikace jako chat nebo online hry.
+   - **Příkazové nástroje:** Umožňuje tvorbu CLI utilit a skriptů.
+   - **Mikroservisy:** Umožňuje tvorbu udržitelných, modulárních aplikací.
+
+6. **Aktivní komunita a vývoj:**
+   - **Živý ekosystém:** Aktivní komunita neustále zlepšuje Node.js.
+   - **Pravidelné aktualizace:** Zajišťují bezpečnost a moderní přístup.
+
+7. **Integrace s moderními nástroji:**
+   - **Build nástroje:** Webpack, Gulp, Grunt pro efektivní buildy a automatizaci.
+   - **Testovací frameworky:** Podpora nástrojů jako Mocha, Jest, Cypress.
+
+8. **Výkon a efektivita:**
+   - **Vysoká propustnost:** Optimalizován pro I/O-intenzivní operace.
+   - **Nízká latence:** Minimalizuje odezvy pro uživatele.
+
+#### **Jak Cypress využívá Node.js ke spouštění testů**
+
+##### **Definice:**
+Cypress používá Node.js jako své runtime prostředí pro spouštění testovacích skriptů, správu závislostí a integraci s dalšími nástroji, což zvyšuje výkon i možnosti frameworku.
+
+##### **Podrobné vysvětlení:**
+
+1. **Provozní prostředí:**
+   - **Spouštění testovacích skriptů:** Testy napsané v JavaScriptu se provádějí v Node.js.
+   - **Serverové úkony:** Node.js zajišťuje např. obsluhu síťových požadavků během testování.
+
+2. **Správa balíčků pomocí npm:**
+   - **Správa závislostí:** Cypress se instaluje přes npm, umožňuje aktualizace i rozšíření.
+   - **Automatizace skriptů:** Pomocí npm skriptů lze automatizovat spouštění testů.
+
+3. **Integrace s vývojářskými nástroji:**
+   - **Build nástroje a task runnery:** Snadná integrace s Webpackem a Gulpem.
+   - **CI/CD pipelines:** Node.js umožňuje hladké zapojení Cypressu do Continous Integration.
+
+4. **Systém pluginů:**
+   - **Rozšiřování funkcí:** Cypress pluginy (Node.js moduly) nabízí rozšíření podle potřeb projektu.
+   - **Přínos komunity:** Široká paleta pluginů z komunity (kódové pokrytí, vizuální testování...)
+
+5. **Práce se souborovým systémem:**
+   - **Čtení/zápis souborů:** Node.js umožňuje práci s testovacími daty, logy apod.
+   - **Konfigurace prostředí:** Načítání a aplikování konfigurací, např. z `cypress.config.js`.
+
+6. **Síťová komunikace a testování API:**
+   - **Zachytávání požadavků:** Umožňuje mockování a manipulaci s API v průběhu testů.
+   - **Backend interakce:** Možnost komplexního testování frontend i backend částí.
+
+7. **Optimalizace výkonu:**
+   - **Efektivní spouštění testů:** Neblokující architektura Node.js zajišťuje efektivní provádění i při více požadavcích.
+   - **Správa zdrojů:** Efektivní využití HW prostředků při testování.
+
+8. **Režim živých aktualizací (Watch mode):**
+   - **Okamžité aktualizace:** Node.js zajišťuje live reload při změně kódu nebo testů.
+   - **Interaktivní vývoj:** Umožňuje ihned sledovat efekt změn v testech.
+
+9. **Multiplatformní podpora:**
+   - **Jednotnost napříč OS:** Cypress běží stejně na Windows, macOS i Linuxu.
+   - **Flexibilita nasazení:** Možnost provozu lokálně i v cloudových CI systémech.
 
 #### **F. Nastavení vývojového prostředí**
-
-- **Instalace potřebných nástrojů:**  
-  - **Node.js a npm:**  
-    - Návod k instalaci krok za krokem.  
-    - Ověření instalace pomocí příkazové řádky.  
-  - **Editor kódu (VS Code):**  
-    - Představení Visual Studio Code.  
-    - Doporučená rozšíření pro práci s Cypress a JavaScriptem.  
-  - **Git:**  
-    - Instalace Gitu.  
-    - Základní příkazy Gitu a nastavení repozitáře na GitHubu nebo GitLabu.
-
-#### **G. Začínáme pracovat s GitHubem/GitLabem**
-
-- **Vytvoření repozitáře:**  
-  - Podrobný návod na vytvoření nového repozitáře.  
-- **Klonování repozitáře:**  
-  - Klonování repozitáře do lokálního počítače.  
-- **Základní operace v Gitu:**  
+- **Instalace potřebných nástrojů:**
+  - **Node.js a npm:**
+    - Krok za krokem průvodce instalací.
+    - Ověření instalace v příkazovém řádku.
+  - **Kódový editor (VS Code):**
+    - Úvod do Visual Studio Code.
+    - Důležité rozšíření pro Cypress a JavaScript.
+  - **Git:**
+    - Instalace Gitu.
+    - Základní příkazy a nastavení repozitáře na GitHubu/GitLabu.
+  
+#### **G. Začínáme s GitHub/GitLab**
+- **Vytvoření repozitáře:**
+  - Průvodce vytvořením nového repozitáře.
+- **Klonování repozitáře:**
+  - Klonování na lokální počítač.
+- **Základní operace s Gitem:**
   - `git add`, `git commit`, `git push`.
-
+  
 #### **H. Přehled průběhu lekce**
+- **Agenda lekce:**
+  - Co očekávat v příštích třech hodinách.
+- **Otázky a odpovědi:**
+  - Prostor pro dotazy.
 
-- **Agenda lekce:**  
-  - Co očekávat během následujících tří hodin.  
-- **Dotazy a odpovědi:**  
-  - Prostor pro okamžité dotazy.
-
-### **2\. Aktivity: Praktická cvičení a návrhy funkčnosti webu**
+### **2. Praktické aktivity: Cvičení a webové funkce**
 
 #### **A. Instalace a ověření Node.js a npm**
+- **Cvičení:**
+  - Studenti si nainstalují Node.js z [nodejs.org](https://nodejs.org/).
+  - Ověření instalace pomocí:
+    - `node -v`
+    - `npm -v`
+- **Webová funkce:**
+  - Vytvořit jednoduchý JavaScript soubor (`hello.js`), který vypíše "Hello, Cypress!" do konzole.
+  - Skript spustit pomocí `node hello.js`.
 
-- **Praktické cvičení:**  
-  - Studenti nainstalují Node.js z webu [nodejs.org](https://nodejs.org/).  
-  - Ověření instalace pomocí příkazů:  
-    - `node -v`  
-    - `npm -v`  
-- **Webová funkcionalita:**  
-  - Vytvořte jednoduchý JavaScriptový soubor (`hello.js`) který vypíše do konzole zprávu: “Hello, Cypress\!”  
-  - Spusťte skript příkazem: `node hello.js`.
-
-#### **B. Nastavení Gitu a repozitáře na GitHubu/GitLabu**
-
-- **Praktické cvičení:**  
-  - Nainstalujte Git z [git-scm.com](https://git-scm.com/).  
-  - Nastavte Git pomocí příkazů `git config --global user.name "Your Name"` a `git config --global user.email "you@example.com"`.  
-  - Vytvořte nový repozitář na GitHubu nebo GitLabu.  
-  - Klonujte repozitář do svého počítače příkazem: `git clone <repository-url>`.  
-- **Webová funkcionalita:**  
-  - V repozitáři vytvořte soubor `README.md` s krátkým popisem projektu.  
-  - Použijte příkazy `add, commit` a `push`, abyste soubor `README.md` nahráli na GitHub/GitLab.
+#### **B. Nastavení Gitu a repozitáře na GitHub/GitLab**
+- **Cvičení:**
+  - Instalace Gitu z [git-scm.com](https://git-scm.com/).
+  - Nastavit Git pomocí `git config --global user.name "Vaše jméno"` a `git config --global user.email "vy@priklad.cz"`.
+  - Vytvořit nový repozitář na GitHubu nebo GitLabu.
+  - Klonovat repozitář na lokální stroj pomocí `git clone <adresa-repozitáře>`.
+- **Webová funkce:**
+  - Vytvořit `README.md` s krátkým popisem projektu.
+  - Přidat, commitnout a pushnout `README.md` na GitHub/GitLab.
 
 #### **C. Úvod do Visual Studio Code (VS Code)**
+- **Cvičení:**
+  - Instalace VS Code z [code.visualstudio.com](https://code.visualstudio.com/).
+  - Instalace důležitých rozšíření:
+    - **Cypress Snippets** pro příkazy Cypressu.
+    - **ESLint** pro kontrolu JavaScriptu.
+- **Webová funkce:**
+  - Otevřít klonovaný repozitář ve VS Code.
+  - Vytvořit základní HTML soubor (`index.html`).
+  - Přidat JavaScript pro manipulaci s DOM (např. úprava textu na stránce).
 
-- **Praktické cvičení:**  
-  - Nainstalujte VS Code z [code.visualstudio.com](https://code.visualstudio.com/).  
-  - Nainstalujte si klíčová rozšíření:  
-    - **Cypress Snippets** pro příkazy Cypress.  
-    - **ESLint** pro lintování JavaScriptu.  
-- **Webová funkcionalita:**  
-  - Otevřete klonovaný repozitář ve VS Code.  
-  - Vytvořte jednoduchý HTML soubor (`index.html`) se základní strukturou.  
-  - Přidejte nějaký JavaScript kód pro manipulaci s DOM (například změna obsahu textu).
+#### **D. Základní práce s Gitem**
+- **Cvičení:**
+  - Provést změnu v `README.md` (např. přidat sekci "Začínáme").
+  - Změnu přidat do stage pomocí `git add README.md`.
+  - Commitnout změnu příkazem `git commit -m "Přidána sekce Začínáme"`.
+  - Pushnout změnu na GitHub/GitLab pomocí `git push`.
+- **Webová funkce:**
+  - Zkontrolovat změny v online repozitáři.
 
-#### **D. Základní operace s Gitem**
+### **3. Možné otázky studentů**
 
-- **Praktické cvičení:**  
-  - Proveďte změnu v souboru `README.md` (např. přidejte sekci „Jak začít“).  
-  - Připravte změnu pomocí `git add README.md`.  
-  - Prověďte změnu pomocí `git commit -m "Add Getting Started section"`.  
-  - Nahrajte změnu na GitHub/GitLab pomocí `git push`.  
-- **Webová funkcionalita:**  
-  - Ověřte, že změny se správně projevily v online repozitáři.
+1. **Obecné dotazy k kurzu:**
+   - Jaké předchozí znalosti potřebuji pro tento kurz?
+   - Jak mi kurz pomůže v současné práci?
+   - Jak nejlépe sledovat a studovat materiály kurzu?
 
-### **3\. Možné dotazy studentů**
+2. **Automatizované testování:**
+   - Jaký je praktický rozdíl mezi manuálním a automatizovaným testováním?
+   - Může automatizace plně nahradit manuální testování?
 
-1. **Obecné otázky ke kurzu:**  
-     
-   - Jaké předchozí znalosti potřebuji pro tento kurz?  
-   - Jak mi tento kurz pomůže v mé současné práci?  
-   - Jaký je nejlepší způsob, jak držet krok s materiály kurzu?
+3. **Framework Cypress:**
+   - Proč zvolit Cypress místo Selenium?
+   - Jaká jsou omezení Cypressu?
 
-   
+4. **Node.js:**
+   - Proč je Node.js nezbytný pro Cypress?
+   - Musím detailně umět Node.js pro efektivní práci s Cypress?
 
-2. **Automatizované testování:**  
-     
-   - Jak se automatizované testování prakticky liší od manuálního testování?  
-   - Může automatizované testování zcela nahradit manuální testování?
+5. **Nastavení vývojového prostředí:**
+   - Co když narazím na chyby při instalaci Node.js nebo npm?
+   - Existují alternativy k VS Code?
 
-   
+6. **Git a GitHub/GitLab:**
+   - Jak důležitá je správa verzí v testovací automatizaci?
+   - Co dělat, pokud omylem smažu svůj lokální repozitář?
 
-3. **Cypress Framework:**  
-     
-   - Proč bychom měli zvolit Cypress místo jiných frameworků, jako je Selenium?  
-   - Jaké jsou omezení Cypressu?
+7. **Praktická cvičení:**
+   - Jak mohu mimo cvičení trénovat dále?
+   - Budeme pracovat na reálných projektech v průběhu kurzu?
 
-   
+8. **Logistika kurzu:**
+   - Kolik času týdně mám kurzu věnovat?
+   - Budou k dispozici záznamy a práce na domácích úkolech?
 
-4. **Node.js:**  
-     
-   - Proč je Node.js nezbytný pro Cypress?  
-   - Musíme se naučit Node.js do hloubky, abych mohli efektivně používat Cypress?
-
-   
-
-5. **Nastavení vývojového prostředí:**  
-     
-   - Co mám dělat, pokud narazím na problémy při instalaci Node.js nebo npm?  
-   - Existují alternativy k VS Code pro psaní kódu?
-
-   
-
-6. **Git a GitHub/GitLab:**  
-     
-   - Jak důležitá je správa verzí v automatizaci testování?  
-   - Co mám dělat, když omylem smažu svůj lokální repozitář?
-
-   
-
-7. **Praktická cvičení:**  
-     
-   - Jak mohu trénovat více mimo rámec poskytnutých cvičení?  
-   - Budeme během kurzu pracovat na reálných projektech?
-
-   
-
-8. **Organizace kurzu:**  
-     
-   - Kolik času bych měl týdně věnovat tomuto kurzu?  
-   - Budou k dispozici záznamy nebo materiály, které si mohu později projít?
-
-### **4\. Doporučené doplňkové materiály**
+### **4. Doporučené doplňující materiály**
 
 #### **A. Oficiální dokumentace a návody:**
-
-- **Dokumentace Cypress:**  
-  - [Cypress Getting Started Guide](https://docs.cypress.io/guides/getting-started/installing-cypress)  
-- **Dokumentace Node.js:**  
-  - [Node.js Official Docs](https://nodejs.org/en/docs/)  
-- **Dokumentace Gitu:**  
-  - [Git Official Documentation](https://git-scm.com/doc)
+- **Cypress dokumentace:**
+  - [Cypress průvodce začátkem](https://docs.cypress.io/guides/getting-started/installing-cypress)
+- **Node.js dokumentace:**
+  - [Oficiální dokumentace Node.js](https://nodejs.org/en/docs/)
+- **Git dokumentace:**
+  - [Oficiální dokumentace Git](https://git-scm.com/doc)
 
 #### **B. Tutoriály a články:**
+- **Základy JavaScriptu:**
+  - [MDN JavaScript Guide](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide)
+- **Git a GitHub tutoriál:**
+  - [GitHub Learning Lab](https://lab.github.com/)
+- **VS Code tutoriály:**
+  - [Dokumentace VS Code](https://code.visualstudio.com/docs)
 
-- **Základy JavaScriptu:**  
-  - [JavaScript Guide by MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide)  
-- **Tutoriál o Gitu a GitHubu:**  
-  - [GitHub Learning Lab](https://lab.github.com/)  
-- **Tutoriály pro VS Code:**  
-  - [VS Code Documentation](https://code.visualstudio.com/docs)
-
-#### **C. Interaktivní vzdělávací platformy:**
-
-- **Codecademy:**  
-  - [JavaScript Courses](https://www.codecademy.com/learn/introduction-to-javascript)  
-- **FreeCodeCamp:**  
-  - [JavaScript Algorithms and Data Structures](https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/)  
-- **GitHub Learning Lab:**  
-  - [Introduction to GitHub](https://lab.github.com/githubtraining/introduction-to-github)
+#### **C. Interaktivní výukové platformy:**
+- **Codecademy:**
+  - [Kurzy JavaScriptu](https://www.codecademy.com/learn/introduction-to-javascript)
+- **FreeCodeCamp:**
+  - [JavaScript algoritmy a datové struktury](https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/)
+- **GitHub Learning Lab:**
+  - [Úvod do GitHubu](https://lab.github.com/githubtraining/introduction-to-github)
 
 #### **D. Videa a webináře:**
-
-- **Cypress YouTube kanál:**  
-  - [Cypress.io on YouTube](https://www.youtube.com/c/Cypressio)  
-- **Tutoriály Node.js:**  
-  - [Traversy Media \- Node.js Crash Course](https://www.youtube.com/watch?v=fBNz5xF-Kx4)  
-- **Tutoriály pro Git:**  
-  - [Academind \- Git Tutorial for Beginners](https://www.youtube.com/watch?v=RGOj5yH7evk)
+- **Cypress YouTube kanál:**
+  - [Cypress.io na YouTube](https://www.youtube.com/c/Cypressio)
+- **Node.js tutoriály:**
+  - [Traversy Media – Node.js Crash Course](https://www.youtube.com/watch?v=fBNz5xF-Kx4)
+- **Git tutoriály:**
+  - [Academind – Git Tutorial for Beginners](https://www.youtube.com/watch?v=RGOj5yH7evk)
 
 #### **E. Komunita a podpora:**
-
-- **Cypress komunita:**  
-  - [Cypress Discuss Forum](https://www.cypress.io/community/)  
-- **Stack Overflow:**  
-  - [Cypress Tag on Stack Overflow](https://stackoverflow.com/questions/tagged/cypress)  
-- **Komunity GitHub/GitLab:**  
-  - Účastněte se diskuzí o repozitářích a snažte se sledovat řešení různých problémů pro praktické učení.
-
----
-
-### **5\. Návrh na rozdělení do 3 hodinových lekcí**
-
-#### **1\. hodina: Úvod a přehled kurzu (60 minut)**
-
-- **Úvod (15 minut):**  
-  - Představení lektora a studentů.  
-- **Přehled kurzu (20 minut):**  
-  - Cíle, struktura a očekávání.  
-- **Úvod do automatizovaného testování (25 minut):**  
-  - Co je automatizované testování?  
-  - Přínosy a typy testování.
-
-#### **2\. hodina: Úvod do Cypress a Node.js (60 minut)**
-
-- **Přehled Cypress (30 minut):**  
-  - Co je Cypress?  
-  - Klíčové funkce a srovnání s jinými frameworky.  
-- **Úvod do Node.js (30 minut):**  
-  - Co je Node.js?  
-  - Role Node.js v Cypress.  
-  - Stručná ukázka fungování Node.js.
-
-#### **3\. hodina: Nastavení vývojového prostředí a základy GitHub/GitLab (60 minut)**
-
-- **Nastavení nástrojů (30 minut):**  
-  - Instalace Node.js a npm.  
-  - Instalace VS Code a klíčových rozšíření.  
-  - Instalace Gitu.  
-- **Základy GitHub/GitLab (20 minut):**  
-  - Vytváření a klonování repozitářů.  
-  - Základní příkazy Gitu.  
-- **Otázky a odpovědi (10 minut):**  
-  - Vyřešení dotazů a nejasností.
+- **Cypress komunita:**
+  - [Cypress diskusní fórum](https://www.cypress.io/community/)
+- **Stack Overflow:**
+  - [Tag Cypress na Stack Overflow](https://stackoverflow.com/questions/tagged/cypress)
+- **Komunity GitHub/GitLab:**
+  - Zapojte se do diskuzí a řešení problémů v repozitářích – praktické učení.
 
 ---
 
-### **6\. Další doporučení**
+### **5. Navržený rozpis lekce na 3 hodiny**
 
-- **Interaktivní ukázky:**  
-    
-  - Živá ukázka instalace Node.js a ověření instalace.  
-  - Provedení kroků nastavení Git repozitáře a základních operací s Gitem.
+#### **1. hodina: Úvod a přehled kurzu (60 minut)**
+- **Úvod (15 minut):**
+  - Představení instruktora a studentů.
+- **Přehled kurzu (20 minut):**
+  - Cíle, struktura, očekávání.
+- **Úvod do automatizovaného testování (25 minut):**
+  - Co je automatizace?
+  - Výhody a typy testů.
 
+#### **2. hodina: Úvod do Cypressu a Node.js (60 minut)**
+- **Přehled Cypressu (30 minut):**
+  - Co je Cypress?
+  - Klíčové vlastnosti a srovnání frameworků.
+- **Úvod do Node.js (30 minut):**
+  - Co je Node.js?
+  - Role v Cypressu.
+  - Krátká ukázka Node.js v praxi.
 
-- **Zapojení vizuálních prvků:**  
-    
-  - Použijte diagramy k ilustraci vztahu mezi Node.js, Cypress a testovacím workflow.  
-  - Sdílejte screenshoty jednotlivých kroků při nastavování vývojového prostředí.
-
-
-- **Podpora zapojení studentů:**  
-    
-  - Povzbuzujte studenty, aby během praktických cvičení sdíleli svou obrazovku, pokud s tím budou souhlasit.  
-  - Vytvářejte atmosféru spolupráce, kde se studenti cítí pohodlně klást otázky a vzájemně si pomáhat.
-
-
-- **Poskytnutí jasných instrukcí:**  
-    
-  - Zajistěte, aby všechny kroky instalace byly podrobně a srozumitelně popsány.  
-  - Nabídněte tipy na řešení běžných problémů, které se mohou během nastavení vyskytnout.
-
----
-
-Dodržováním této detailní struktury v rámci **Lekce 1** poskytnete studentům pevný základ, který je připraví na hlubší ponoření se do Cypressu a automatizovaného testování v následujících lekcích. 
-
-## **Přínosy automatizovaného testování**
-
-### **Definice:**
-
-Automatizované testování spočívá v použití specializovaných nástrojů a skriptů, které umožňují automatické provádění testů softwarových aplikací bez manuálního zásahu.
-
-### **Podrobný popis:**
-
-1. **Efektivita a rychlost:**  
-     
-   - **Rychlé provedení:** Automatizované testy probíhají výrazně rychleji než manuální testy, což zajišťuje rychlou zpětnou vazbu na změny v kódu.  
-   - **Časté testování:** Umožňuje provádět testy několikrát denně, což podporuje kontinuální integraci (continuous integration, CI) a nasazení (continuous deployment, CD).
-
-   
-
-2. **Znovupoužitelnost a konzistence:**  
-     
-   - **Znovupoužitelné skripty:** Testovací skripty lze využít v různých projektech a scénářích, což snižuje úsilí k tvorbě nových testů.  
-   - **Konzistentní výsledky:** Automatizované testy pokaždé provádějí přesně stejné kroky, čímž eliminují lidské chyby a zajišťují spolehlivé výsledky.
-
-   
-
-3. **Rozšířený rozsah testování:**  
-     
-   - **Komplexní testování:** Automatizace umožňuje pokrytí širokého spektra scénářů včetně hraničních případů, které by při manuálním testování mohly být přehlédnuty.  
-   - **Regresní testování:** Rychle ověřuje, že nové změny v kódu nenarušují stávající funkce.
-
-   
-
-4. **Nákladová efektivita:**  
-     
-   - **Snížení nákladů na pracovní sílu:** Ačkoli počáteční nastavení vyžaduje investici, automatizace šetří čas a zdroje díky minimalizaci opakovaného manuálního testování.  
-   - **Včasné odhalení chyb:** Identifikace a oprava chyb na začátku vývojového cyklu snižuje náklady a úsilí spojené s opravami po vydání.
-
-   
-
-5. **Zlepšená přesnost:**  
-     
-   - **Preciznost:** Automatizované testy provádějí předepsané kroky bezchybně, čímž zajišťují důkladné ověření chování aplikace.  
-   - **Spolehlivé zpracování dat:** Testy efektivně spravují testovací data a prostředí, a díky tomu zajišťují důvěryhodné výsledky.
-
-   
-
-6. **Škálovatelnost:**  
-     
-   - **Podpora velkých projektů:** Automatizace snadno zvládne rozsáhlé testovací sady a velké aplikace bez úměrného zvýšení testovacího úsilí.
-
-   
-
-7. **Kontinuální integrace a doručení (CI/CD):**  
-     
-   - **Plynulá integrace:** Automatizované testy se snadno začleňují do CI/CD pipeline, což umožňuje kontinuální testování a rychlé nasazování.  
-   - **Okamžitá zpětná vazba:** Poskytují vývojářům okamžitou zpětnou vazbu na změny v kódu, což urychluje iterace a zlepšení.
+#### **3. hodina: Nastavení prostředí a základy GitHub/GitLab (60 minut)**
+- **Nastavení nástrojů (30 minut):**
+  - Instalace Node.js a npm.
+  - Instalace VS Code a rozšíření.
+  - Instalace Git.
+- **Základy GitHub/GitLab (20 minut):**
+  - Vytvoření a klonování repo.
+  - Základní příkazy Gitu.
+- **Q&A sekce (10 minut):**
+  - Prostor pro okamžité dotazy.
 
 ---
 
-## **Co je Cypress?**
+### **6. Dodatečná doporučení**
 
-### **Definice:**
+- **Interaktivní demonstrace:**
+  - Živá ukázka instalace Node.js a jeho ověření.
+  - Průchod založením repo a základními git operacemi.
+  
+- **Poutavá vizuální podpora:**
+  - Využijte diagramy k vysvětlení vztahu Node.js, Cypress a testovací workflow.
+  - Snímky obrazovky kroků instalace.
 
-Cypress je open-source framework pro end-to-end testování, navržený speciálně pro moderní webové aplikace. Umožňuje vývojářům a QA inženýrům jednoduše psát, spouštět a ladit testy přímo v prohlížeči.
+- **Podpora zapojení:**
+  - Vyzvěte studenty, ať sdílí obrazovku během cvičení.
+  - Podporujte otevřenou a kooperativní atmosféru.
 
-### **Podrobný popis:**
-
-1. **Framework pro end-to-end testování:**  
-     
-   - **Komplexní testování:** Cypress umožňuje testování celého uživatelského workflow – od interakcí na frontendové části až po odpovědi backendového API, čímž zajišťuje, že všechny komponenty webové aplikace fungují podle očekávání.
-
-   
-
-2. **Přívětivý pro vývojáře:**  
-     
-   - **Jednoduché nastavení:** Cypress vyžaduje minimální konfiguraci, což ho činí přístupným i pro začátečníky v oblasti automatizovaného testování.  
-   - **Okamžité znovunačítání:** Testy se automaticky znovu načítají při provádění změn, což poskytuje okamžitou zpětnou vazbu a urychluje proces vývoje.
-
-   
-
-3. **Navržený pro moderní webové aplikace:**  
-     
-   - **Postavený na JavaScriptu:** Cypress je napsaný v JavaScriptu, což mu umožňuje přirozenou integraci s moderními frameworky, jako jsou React, Angular nebo Vue.js.  
-   - **Moderní architektura:** Na rozdíl od tradičních nástrojů Cypress pracuje přímo v prohlížeči, což zajišťuje přesnější a spolehlivější výsledky testů.
-
-   
-
-4. **Výkonné nástroje pro debugging:**  
-     
-   - **Interaktivní Test Runner:** Nabízí vizuální rozhraní, kde můžete sledovat testy v reálném čase, kontrolovat prvky a prohlížet podrobné logy.  
-   - **Time Travel:** Umožňuje najet na jednotlivé příkazy v Test Runneru a zjistit, co se stalo v každém kroku, což usnadňuje identifikaci problémů.
-
-   
-
-5. **Automatické čekání:**  
-     
-   - **Žádné manuální synchronizace:** Cypress automaticky čeká na zobrazení prvků a dokončení příkazů, než přejde na další krok, což eliminuje potřebu ručního nastavování pauz nebo čekání.
-
-   
-
-6. **Kontrola síťového provozu:**  
-     
-   - **Zachytávání a úpravy požadavků:** Cypress dokáže zachytávat a upravovat síťové požadavky, což umožňuje testování různých scénářů a efektivní práci s API odpověďmi.
-
-   
-
-7. **Rozšiřitelnost:**  
-     
-   - **Pluginy a integrace:** Cypress podporuje širokou škálu pluginů a lze ho integrovat s dalšími nástroji a službami, čímž rozšiřuje jeho funkčnost a přizpůsobitelnost různým potřebám testování.
-
-   
-
-8. **Komplexní dokumentace:**  
-     
-   - **Podrobné návody a příklady:** Cypress poskytuje rozsáhlou dokumentaci, tutoriály a ukázkové projekty, které uživatelům pomáhají maximálně využít možnosti frameworku.
+- **Jasné pokyny:**
+  - Všechny kroky popsat jasně a jednoduše.
+  - Přidat tipy na řešení obvyklých problémů při instalaci.
 
 ---
 
-## **Proč zvolit Cypress?**
+## **Odpovědi pro klíčové sekce**
 
-### **Definice:**
+### **Část o automatizaci testování:**
 
-Cypress je oblíbený framework pro testování díky své unikátní architektuře, snadnému použití a robustní sadě funkcí, které jsou přizpůsobené potřebám moderního webového vývoje..
-
-### **Podrobný popis:**
-
-1. **Rychlost a efektivita:**  
-     
-   - **Rychlé provádění testů:** Cypress spouští testy přímo v prohlížeči, což zajišťuje rychlou zpětnou vazbu a zkracuje celkový čas testování.  
-   - **Okamžité znovunačítání:** Testy se automaticky načítají při změnách v souborech v reálném čase, což zvyšuje produktivitu a eliminuje potřebu manuálního restartování testů.
-
-   
-
-2. **Snadné nastavení a použití:**  
-     
-   - **Jednoduchá instalace:** Díky jednoduché instalaci přes npm můžete Cypress zprovoznit během několika minut.  
-   - **Minimální konfigurace:** Vyžaduje pouze základní nastavení, což umožňuje okamžité psaní testů bez složité přípravy.
-
-   
-
-3. **Okamžitá zpětná vazba a Debugging:**  
-     
-   - **Interaktivní Test Runner:** Vizuální rozhraní zobrazuje průběh testů v reálném čase, umožňuje interakci s aplikací a kontrolu každého kroku testu.  
-   - **Time Travel Debugging:** Funkce umožňuje inspekci a opětovné přehrání jednotlivých kroků testu, což usnadňuje identifikaci a opravu problémů.
-
-   
-
-4. **Automatické čekání:**  
-     
-   - **Vestavěná synchronizace:** Cypress automaticky čeká na načtení prvků a dokončení příkazů, čímž zjednodušuje psaní testů a minimalizuje jejich nestabilitu.
-
-   
-
-5. **Kontrola sítě a simulace:**  
-     
-   - **Zachytávání požadavků:** Cypress dokáže zachytit a upravit síťové požadavky, což umožňuje testování různých scénářů a efektivní manipulaci s API odpověďmi.  
-   - **Simulace odpovědí:** Vytváření kontrolovaných testovacích prostředí pomocí simulovaných odpovědí backendu zajišťuje konzistentní a spolehlivé výsledky.
-
-   
-
-6. **Bohatá sada příkazů a asercí:**  
-     
-   - **Vestavěné aserce:** Cypress obsahuje výkonnou knihovnu pro validaci chování aplikace, která zjednodušuje testování..  
-   - **Vlastní příkazy:** Uživatelé mohou vytvářet vlastní příkazy pro opakující se úkoly, což zlepšuje čitelnost a údržbu testů.
-
-   
-
-7. **Snadná integrace do CI/CD:**  
-     
-   - **Kompatibilita s CI/CD:** Cypress se snadno integruje s populárními nástroji jako GitHub Actions, GitLab CI nebo Jenkins, což usnadňuje automatizované testování v rámci vývojového workflow.  
-   - **Cypress Dashboard:** Poskytuje pokročilé analytiky testů a přehledy, které pomáhají týmům sledovat a zlepšovat výkon testů v průběhu času.
-
-   
-
-8. **Silná komunita a podpora:**  
-     
-   - **Aktivní komunita:** Komunita vývojářů a testerů přispívá k rozvoji Cypressu, poskytuje podporu, pluginy a sdílené know-how.  
-   - **Komplexní dokumentace:** Podrobně udržovaná dokumentace zajišťuje, že uživatelé mají k dispozici všechny potřebné informace pro efektivní použití Cypressu.
-
-   
-
-9. **Moderní architektura:**  
-     
-   - **Přímá interakce s prohlížečem:** Cypress pracuje přímo v prohlížeči, což zajišťuje přesnější a spolehlivější výsledky testů ve srovnání s nástroji, které běží mimo kontext prohlížeče.  
-   - **Kompatibilita s moderními webovými technologiemi:** Je navržen pro hladkou spolupráci s dnešními dynamickými webovými aplikacemi a frameworky.
-
-   
-
-10. **Udržitelnost a škálovatelnost:**  
-      
-    - **Čitelný testovací kód:** Cypress podporuje psaní přehledného a snadno udržovatelného testovacího kódu, což usnadňuje škálování testovacích sad s růstem aplikací.  
-    - **Znovupoužitelné komponenty:** Umožňuje vytváření znovupoužitelných testovacích komponent a vzorů, což zvyšuje škálovatelnost automatizovaného testování.
-
----
-
-## **Co je Node.js?**
-
-### **Definice:**
-
-Node.js je open-source multiplatformní runtime prostředí pro JavaScript, které umožňuje vývojářům spouštět JavaScriptový kód mimo webový prohlížeč, obvykle na straně serveru.
-
-### **Podrobný popis:**
-
-1. **JavaScriptové runtime prostředí:**  
-     
-   - **JavaScript na straně serveru:** Node.js umožňuje spouštění JavaScriptového kódu na serveru, což usnadňuje vývoj škálovatelných síťových aplikací.  
-   - **V8 Engine:** Node.js je postaven na JavaScriptovém enginu V8 od Googlu, který zajišťuje vysoký výkon při zpracování JavaScriptového kódu.
-
-   
-
-2. **Událostmi řízené a neblokující I/O:**  
-     
-   - **Asynchronní operace:** Node.js využívá událostmi řízený a neblokující I/O model, což ho činí efektivním při práci s více současnými připojeními bez velkých nákladů na výkon.  
-   - **Škálovatelnost:** Díky této architektuře dokáže Node.js snadno obsluhovat velké množství požadavků současně.
-
-   
-
-3. **Správa balíčků pomocí npm:**  
-     
-   - **Široký ekosystém:** Node.js zahrnuje npm (Node Package Manager), největší ekosystém open-source knihoven, nástrojů a frameworků, což urychluje vývoj a integraci.  
-   - **Správa závislostí:** Zjednodušuje práci s projektovými závislostmi a umožňuje využívat velké množství předem připravených modulů.
-
-   
-
-4. **Kompatibilita napříč platformami:**  
-     
-   - **Podpora více operačních systémů:** Node.js runs on various platforms, including Windows, macOS, and Linux, providing flexibility for development and deployment.  
-   - **Jednotný jazyk pro vývoj:** Umožňuje vývojářům používat JavaScript jak na straně klienta, tak na straně serveru, což podporuje konzistenci a opětovné využití kódu.
-
-   
-
-5. **Různorodé možnosti využití:**  
-     
-   - **Webové servery a API:** Ideální pro vývoj rychlých a škálovatelných webových serverů, RESTful API a aplikací v reálném čase, jako jsou chatovací systémy nebo online hry.  
-   - **Nástroje příkazové řádky:** Umožňuje vytváření výkonných nástrojů a utilit pro příkazovou řádku, které automatizují úkoly a zefektivňují vývojové procesy.  
-   - **Mikroslužby:** Podporuje vývoj architektur založených na mikroslužbách, což zvyšuje modularitu a udržovatelnost aplikací.
-
-   
-
-6. **Aktivní komunita a nepřetržitý vývoj:**  
-     
-   - **Živý ekosystém:** Velká a aktivní komunita přispívá k neustálému vylepšování a rozšiřování Node.js, čímž zajišťuje jeho aktuálnost s moderními vývojovými postupy.  
-   - **Pravidelné aktualizace:** Node.js je pravidelně aktualizován o nové funkce, vylepšení výkonu a bezpečnostní opravy, což z něj činí důvěryhodný nástroj v rychle se měnícím technologickém prostředí.
-
-   
-
-7. **Integrace s moderními nástroji:**  
-     
-   - **Nástroje pro sestavení a automatizaci:** Node.js hladce spolupracuje s nástroji jako Webpack, Gulp nebo Grunt, což usnadňuje efektivní sestavování a automatizaci úkolů.  
-   - **Testovací frameworky:** Podporuje různé testovací frameworky (např. Mocha, Jest, Cypress), což umožňuje komplexní testovací strategie.
-
-   
-
-8. **Výkon a efektivita:**  
-     
-   - **Vysoká propustnost:** Optimalizované pro vysoký výkon, Node.js efektivně zpracovává I/O-intenzivní úlohy, což ho činí vhodným pro aplikace vyžadující zpracování dat v reálném čase.  
-   - **Nízká latence:** Minimalizuje odezvu, což zajišťuje rychlé a spolehlivé doručení dat uživatelům.
-
----
-
-## **Jak Cypress využívá Node.js pro spouštění testů**
-
-### **Definice:**
-
-Cypress používá Node.js jako své základní runtime prostředí ke spouštění testovacích skriptů, správě závislostí a integraci s různými vývojovými a testovacími nástroji, čímž zvyšuje svou funkčnost a výkon.
-
-### **Podrobný popis:**
-
-1. **Runtime prostředí:**  
-     
-   - **Spouštění testovacích skriptů:** Testovací skripty v Cypressu jsou psány v JavaScriptu a spouštěny v prostředí Node.js, což umožňuje plynulou integraci s moderními JavaScriptovými pracovními postupy.  
-   - **Operace na straně serveru:** Node.js zajišťuje serverové operace potřebné pro Cypress, například obsluhu testované aplikace a správu síťových požadavků.
-
-   
-
-2. **Správa balíčků pomocí npm:**  
-     
-   - **Správa závislostí:** Cypress je instalován a spravován pomocí npm, což usnadňuje přístup k aktualizacím, pluginům a dalším knihovnám, které rozšiřují možnosti testování.  
-   - **Automatizace skriptů:** Prostřednictvím npm lze nastavit skripty pro automatizaci spouštění testů, přípravné kroky a další opakující se úkoly, čímž se zefektivňuje testovací workflow.
-
-   
-
-3. **Integrace s vývojovými nástroji:**  
-     
-   - **Nástroje pro sestavení a automatizaci:** Cypress can be integrated with build tools like Webpack and task runners like Gulp, leveraging Node.js to compile and bundle test scripts and application code.  
-   - **CI/CD pipelines:** Node.js umožňuje snadnou integraci Cypressu do CI/CD pipeline, což automatizuje spouštění testů jako součást procesu nasazení.
-
-   
-
-4. **Systém pluginů:**  
-     
-   - **Rozšíření funkčnosti:** Pluginy pro Cypress jsou moduly Node.js, které rozšiřují možnosti Cypressu a umožňují přizpůsobení testovacího frameworku konkrétním potřebám projektu.  
-   - **Příspěvky komunity:** Ekosystém Node.js podporuje širokou škálu pluginů pro Cypress vyvinutých komunitou, které přidávají funkce jako pokrytí kódu, vizuální testování a další.
-
-   
-
-5. **Práce se souborovým systémem:**  
-     
-   - **Čtení a zápis souborů:** Node.js allows Cypress to interact with the file system, enabling operations like reading fixture files, writing logs, and managing test data dynamically during test execution.  
-   - **Konfigurace prostředí:** Cypress využívá Node.js ke čtení a aplikaci konfigurací prostředí z konfiguračních souborů, jako je `cypress.config.js`, což zajišťuje správné nastavení proměnných pro testy.
-
-   
-
-6. **Testování sítí a API:**  
-     
-   - **Zachytávání požadavků:** Node.js podporuje schopnost Cypressu zachytávat a upravovat síťové požadavky, což testerům umožňuje simulovat různé scénáře a manipulovat odpověďmi API.  
-   - **Interakce s backendem:** Umožňuje hladkou komunikaci s backendovými službami, což zajišťuje komplexní testování frontendových i backendových komponent v rámci jednoho frameworku.
-
-   
-
-7. **Optimalizace výkonu:**  
-     
-   - **Efektivní spouštění testů:** Neblokující architektura Node.js zajišťuje, že Cypress dokáže efektivně spouštět testy i při zpracování více souběžných operací.  
-   - **Správa prostředků:** Node.js efektivně spravuje systémové prostředky během testování, čímž udržuje vysoký výkon a spolehlivost.
-
-   
-
-8. **Automatické načítání a sledovací mód:**  
-     
-   - **Živé aktualizace:** Node.js umožňuje funkci reálného času v Cypressu, která detekuje změny v testovacích skriptech nebo aplikačním kódu a automaticky spouští testy znovu, což vývojářům poskytuje okamžitou zpětnou vazbu.  
-   - **Interaktivní vývoj:** Podporuje interaktivní vývoj, kde vývojáři vidí účinky svých změn v reálném čase, což zvyšuje produktivitu a přesnost testů.
-
-   
-
-9. **Podpora napříč platformami:**  
-     
-   - **Konzistence mezi prostředími:** Node.js zajišťuje, že Cypress funguje konzistentně na různých operačních systémech (Windows, macOS, Linux), což poskytuje jednotné prostředí pro testování.  
-   - **Flexibilita nasazení:** Díky možnostem Node.js lze Cypress nasadit v různých prostředích, jako jsou lokální stroje, CI servery nebo cloudové platformy.
-
----
-
-## **Odpovědi na klíčové otázky**
-
-### **Část: Automatizované testování:**
-
-**Otázka: Co je automatizované testování a jak se liší od manuálního testování?**
+**Otázka: Co je automatizované testování a jak se liší od manuálního?**
 
 **Odpověď:**  
-Automatizované testování využívá specializované nástroje a skripty k automatickému provádění testů na softwarových aplikacích bez zásahu člověka. Na rozdíl od manuálního testování, při kterém testeři ručně krok za krokem provádějí testovací scénáře, automatizované testování spouští předem definované skripty, které provádějí stejné akce konzistentně a opakovaně. Tento přístup zvyšuje efektivitu, snižuje riziko lidského pochybení a poskytuje rychlejší zpětnou vazbu na změny v kódu, což je ideální pro časté testovací cykly, například v agilním vývoji.
+Automatizované testování využívá specializované nástroje a skripty pro automatické provádění testů softwaru, bez zásahu člověka. Na rozdíl od manuálního testování, kdy tester sám krok po kroku provádí testovací případy, automatizace spouští předem připravené skripty, které opakovaně a konzistentně provádějí stejné akce. Tento přístup je efektivnější, méně náchylný k chybám a poskytuje rychlejší zpětnou vazbu na změny v kódu, což je ideální pro časté cykly testování v agilním vývoji.
 
-**Otázka: Jaké jsou hlavní výhody zavedení automatizovaného testování v našich projektech?**
-
-**Odpověď:**  
-Automatizované testování přináší řadu výhod, včetně:
-
-- **Vyšší efektivity:** Testy se spouštějí rychleji a mohou být opakovaně prováděny s minimálním úsilím.  
-- **Lepší přesnosti:** Eliminuje lidské pochybení, což zajišťuje konzistentní a spolehlivé výsledky testů.  
-- **Úspory nákladů:** Snižuje dlouhodobé náklady spojené s manuálním testováním a opravami chyb.  
-- **Komplexnější testovací pokrytí:** Umožňuje důkladné testování různých scénářů, včetně případů, které nenastávají moc často (edge cases).  
-- **Podpora CI/CD:** Snadno se integruje do pipeline pro kontinuální integraci a nasazování, čímž automatizuje testování jako součást vývojového procesu.
-
-### **Část: Framework Cypress**
-
-**Otázka: Co je Cypress a v čem se liší od ostatních frameworků, jako je Selenium?**
+**Otázka: Jaké jsou hlavní přínosy zařazení automatizace testování do projektu?**
 
 **Odpověď:**  
-Cypress je open-source framework pro end-to-end testování navržený speciálně pro moderní webové aplikace. Na rozdíl od Selenium, které funguje mimo prohlížeč a komunikuje s ním prostřednictvím ovladačů, běží Cypress přímo uvnitř prohlížeče. Tato jedinečná architektura umožňuje rychlejší provádění testů, spolehlivější výsledky a bohatší možnosti ladění. Navíc Cypress nabízí funkce jako real-time reload, automatické čekání a interaktivní testovací rozhraní, což jej činí uživatelsky přívětivějším a snadnějším na nastavení ve srovnání se Selenium.
+Automatizace testování přináší řadu výhod včetně:
+- **Vyšší efektivity:** Testy běží rychleji a lze je spouštět opakovaně s minimálním úsilím.
+- **Lepší přesnosti:** Odstraňuje lidské chyby, zaručuje konzistentní a spolehlivé výsledky.
+- **Úspory nákladů:** Snižuje dlouhodobé náklady na ruční testování a opravy chyb.
+- **Komplexní pokrytí testů:** Umožňuje testování řady scénářů včetně okrajových případů.
+- **Podpora CI/CD:** Lze snadno integrovat do pipeline, testují se automaticky při každé změně kódu.
 
-**Otázka: Jaké klíčové funkce Cypress zlepšují testovací zážitek?**
+### **Část o frameworku Cypress:**
+
+**Otázka: Co je Cypress a čím se liší od jiných frameworků jako Selenium?**
 
 **Odpověď:**  
-Mezi klíčové funkce Cypress patří:
+Cypress je open-source end-to-end testovací framework pro moderní webové aplikace. Na rozdíl od Selenium, které běží mimo prohlížeč a komunikuje s ním přes ovladače, Cypress běží přímo uvnitř prohlížeče. Díky tomu je výrazně rychlejší, spolehlivější a nabízí lepší možnosti ladění. Cypress dále poskytuje okamžité načítání změn, automatické čekání a interaktivní běžec testů s vizuálním rozhraním, které je uživatelsky mnohem přívětivější.
 
-- **Znovunačtení v reálném čase:** Automaticky znovu načítá testy při provádění změn a poskytuje okamžitou zpětnou vazbu.  
-- **Automatické čekání:** Eliminuje potřebu manuálních čekacích příkazů tím, že automaticky čeká na načtení prvků a dokončení příkazů.  
-- **Interaktivní testovací rozhraní:** Umožňuje vizuálně sledovat běh testů v reálném čase, prozkoumávat elementy a ladit problémy přímo v prohlížči.  
-- **Time Travel Debugging:** Umožňuje vývojářům projít jednotlivé příkazy a zobrazit, co se dělo v každém kroku.  
-- **Kontrala síťového provozu (network traffic):** Poskytuje možnost zachytávat a simulovat síťové požadavky, což usnadňuje testování různých scénářů.
+**Otázka: Jaké klíčové vlastnosti má Cypress, které zlepšují zážitek z testování?**
 
-### **Část: Node.js**
+**Odpověď:**  
+Mezi klíčové vlastnosti Cypressu patří:
+- **Okamžité načítání změn:** Po změně testu se automaticky spustí.
+- **Automatické čekání:** Není potřeba ručně zadávat čekání na načtení prvků.
+- **Interaktivní běžec testů:** Zobrazuje testy v reálném čase, s možností inspekce a ladění.
+- **Time Travel ladění:** Možnost zpětně procházet jednotlivé příkazy v průběhu testu.
+- **Kontrola síťové komunikace:** Možnost zachytávat a mockovat síťové požadavky.
+
+### **Část o Node.js:**
 
 **Otázka: Co je Node.js a proč je důležitý pro moderní webový vývoj?**
 
 **Odpověď:**  
-Node.js je open-source multiplatformní JavaScriptové runtime prostředí, které umožňuje vývojářům spouštět JavaScriptový kód mimo webový prohlížeč, obvykle na straně serveru. Postaveno na JavaScriptovém enginu V8 od Googlu, Node.js umožňuje vývoj škálovatelných síťových aplikací díky svému neblokujícímu, událostmi řízenému I/O modelu. To z něj činí ideální volbu pro tvorbu rychlých a efektivních webových serverů, aplikací v reálném čase a zvládání mnoha současných připojení s minimálními nároky na výkon. Díky rozsáhlému ekosystému npm (Node Package Manager) poskytuje Node.js široké spektrum knihoven a nástrojů, které urychlují vývoj a podporují inovace v moderním webovém vývoji.
+Node.js je open-source multiplatformní JavaScriptové běhové prostředí umožňující spouštět JavaScript mimo prohlížeč, typicky na serveru. Je postaven na engine Chrome V8 a umožňuje škálovatelný vývoj síťových aplikací díky svému event-driven, neblokujícímu I/O modelu. Je vhodný pro tvorbu rychlých web serverů, reálných aplikací a práce s mnoha současnými připojeními s minimální režií. Jeho bohatý ekosystém (npm) přináší spoustu knihoven, které zrychlují vývoj.
 
-**Otázka: Jak Cypress využívá Node.js k efektivnímu spouštění testů?**
+**Otázka: Jak využívá Cypress Node.js k efektivnímu spouštění testů?**
 
 **Odpověď:**  
-Cypress využívá Node.js jako základní runtime prostředí ke spouštění testovacích skriptů, správě závislostí a integraci s různými vývojovými a testovacími nástroji. Node.js umožňuje Cypressu zvládat serverové operace, jako je obsluha testované aplikace a správa síťových požadavků. Kromě toho je Cypress instalován a spravován pomocí npm, což usnadňuje přístup k aktualizacím, pluginům a dalším knihovnám. Díky neblokující, událostmi řízené architektuře Node.js dokáže Cypress efektivně provádět testy i při zpracování více souběžných operací. Node.js rovněž usnadňuje hladkou integraci do CI/CD pipeline, což umožňuje automatické spouštění testů jako součást vývojového procesu.
-
+Cypress využívá Node.js jako běhové prostředí pro spouštění test skriptů, správu závislostí a integraci s dalšími nástroji. Node.js zajišťuje serverové operace potřebné pro Cypress (např. obsluha síťových požadavků), stejně jako instalaci a správu Cypressu přes npm. Díky event-driven architektuře může Cypress efektivně provádět mnoho operací současně. Node.js také umožňuje jednoduchou integraci Cypressu do CI/CD pipeline a automatizované testování v různých prostředích.
