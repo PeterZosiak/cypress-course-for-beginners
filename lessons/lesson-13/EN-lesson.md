@@ -68,6 +68,7 @@
      - `typescript`: The TypeScript compiler.
      - `@types/node`: Type definitions for Node.js, necessary for Cypress tasks and Node APIs.
      - `@types/cypress`: Provides type definitions for Cypress commands, enabling IntelliSense and type checking.
+     //npm install cypress typescript @types/node @types/cypress --save-dev
 
 2. **Configuring tsconfig.json for Cypress:**
    - Create a `tsconfig.json` file in the root of your project if one does not exist.
