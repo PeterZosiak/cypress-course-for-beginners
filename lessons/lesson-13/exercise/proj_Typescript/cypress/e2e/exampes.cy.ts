@@ -23,7 +23,7 @@ describe('template spec', () => {
     }
 
     cy.get('input[name="name"]').type(newUser.email)
-    /*const pivo = 5
+    const pivo = 5
     const pivoString = "5"
     cy.get('input').type(pivoString)
     cy.get('input').type(pivo.toString()) // change type on string

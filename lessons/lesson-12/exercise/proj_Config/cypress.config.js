@@ -10,6 +10,7 @@ module.exports = defineConfig({
   viewportHeight: 720,
   defaultCommandTimeout: 1000,
   pageLoadTimeout: 60000,
+
   watchForFileChanges: false, 
   video: true,
   screenshotOnRunFailure: true,
@@ -22,14 +23,14 @@ e2e: {
 
   setupNodeEvents(on, config) {
     // Implement node event listeners here
-    var envName = config.env.envName;
+    var envName = config.env.name || "test"; // if name undefined, default value = test
     console.log("envName", envName)  
     
 
     let envconfig = readFileSync(`./cypress/config/data.${envName}.json`, 'utf-8');
     const configValues = JSON.parse(envconfig);
 
-    config.env = { ...configValues};
+    config.env = { ...configValues}; //Overwrites config.env with values from the .JSON file configValues.
     return config;
   },
 },
@@ -40,3 +41,11 @@ env: {
   apiUrl: "https://jsonplaceholder.typicode.com",
 }
 });
+
+// npx cypress open --env name=producrion
+// npx cypress open --env name=staging
+// npx cypress open --env name=test
+
+// npx cypress run --env name=producrion
+// npx cypress run --env name=staging  
+// npx cypress run --env name=test  

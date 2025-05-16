@@ -1,0 +1,14 @@
+creating of project TypeScript Cypress:
+
+[in folder exercise]
+npm install
+npm run dev
+mkdir TypeScrProj [foldername]
+
+[in folder TypeScrProj]
+npm init -y
+npm install cypress
+npm install typescript --save-dev
+npm install @types/node @types/cypress
+npm install cypress typescript @types/node @types/cypress --save-dev
+npx cypress open
