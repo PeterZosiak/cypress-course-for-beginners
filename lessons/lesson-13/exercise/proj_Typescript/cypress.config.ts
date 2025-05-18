@@ -1,9 +1,11 @@
 import { defineConfig } from "cypress";
 
 export default defineConfig({
+  watchForFileChanges: false,
   e2e: {
+    baseUrl: 'http://localhost:5173/',
     setupNodeEvents(on, config) {
-       cy.visit('http://localhost:5173/')
+      
       // implement node event listeners here
     },
   },
