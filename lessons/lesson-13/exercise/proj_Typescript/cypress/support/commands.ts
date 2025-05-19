@@ -1,8 +1,11 @@
-// cypress/support/commands.ts
-declare namespace Cypress {
-  interface Chainable {
-    login(username: string, password: string): Chainable<Element>;
-    myCommand(parametr: string): void
+// declare namespace Cypress { //old way
+declare global {
+  namespace Cypress {
+    interface Chainable {
+      //login(username: string, password: string): Chainable<Element>; //old way
+      login(username: string, password: string): Chainable<JQuery<HTMLElement>>;
+      myCommand(parameter: string): void;
+    }
   }
 }
 
@@ -12,9 +15,21 @@ Cypress.Commands.add('login', (username: string, password: string) => {
   return cy.get('[data-testid="login-submit-button"]').click();
 });
 
-Cypress.Commands.add('myCommand', () => {
-    //cy.log('That is my command');
-    cy.myCommand("qwerty");
-}
-   
-)
+Cypress.Commands.add('myCommand', (itmyparameter: string) => {
+  cy.log(`Parameter: ${itmyparameter}`);
+});
+
+// cypress/support/index.ts
+// declare global {
+//   namespace Cypress {
+//     interface Chainable {
+//       /**
+//        * Custom command to select DOM element by data-cy attribute.
+//        * @example cy.dataCy('greeting')
+//        */
+//       dataCy(value: string): Chainable<JQuery<HTMLElement>>
+//     }
+//   }
+// }
+export {}
+

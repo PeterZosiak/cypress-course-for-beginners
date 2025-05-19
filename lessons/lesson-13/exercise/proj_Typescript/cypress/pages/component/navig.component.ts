@@ -1,8 +1,8 @@
  export default new class NavigationComponent {
-  homeLink = () => cy.get('[id=data-testid="menu-home"]').find('a');
-  registrationLink = () => cy.get('[id=data-testid="menu-registration"]').find('a');
-  aboutUsLink = () => cy.get('[id=data-testid="menu-about"]').find('a');
-  contactLink = () => cy.get('[id=data-testid="menu-contact"]').find('a');
+  homeLink = () => cy.get('li[data-testid="menu-home"]').find('a');
+  registrationLink = () => cy.get('li[data-testid="menu-registration"]').find('a');
+  aboutUsLink = () => cy.get('li[data-testid="menu-about"]').find('a');
+  contactLink = () => cy.get('li[data-testid="menu-contact"]').find('a');
 
   navigateToPage (page: NavigationLinks) {
     switch (page) {

@@ -10,12 +10,17 @@ describe('Example tests', () => {
         homePage.nadpis().should('be.visible').and('have.text', 'Welcome to Our Demo App');
     });
 
-    it.only('should navigate to all pages and validate headings', () => {
+   it.only('should navigate to all pages and validate headings', () => {
+        //cy.visit('/registration');
+        //cy.visit('/about');
+        //cy.visit('/contact');    
+    
         cy.visit('/');
         navigationComponent.navigateToPage(NavigationLinks.ABOUTUS);
+
+        //cy.login("username", "password");
+        cy.myCommand("qwerty111");
         
     });
-    //cy.visit('/registration');
-    //cy.visit('/about');
-    //cy.visit('/contact');
+
 });
