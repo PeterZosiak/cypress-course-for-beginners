@@ -1,0 +1,21 @@
+{
+  "name": "proj_typescript",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "cypress": "^14.3.3"
+  },
+  "devDependencies": {
+    "@types/cypress": "^1.1.6",
+    "@types/jquery": "^3.5.32",
+    "@types/node": "^22.15.19",
+    "typescript": "^5.8.3"
+  }
+}
