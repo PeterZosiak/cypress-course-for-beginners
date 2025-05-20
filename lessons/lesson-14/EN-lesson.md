@@ -4,7 +4,7 @@
 
 - Utilize the `baseUrl` configuration to simplify test navigation and relative URL usage.
 - Understand and organize tests using contexts to manage different scenarios.
-- Leverage advanced Cypress commands like `cy.origin` and `cy.session` for handling multiple domains and session management.
+- Leverage advanced Cypress commands like `cy.origin` for handling multiple domains
 - Implement best practices for test structure and maintainability.
 
 ---
@@ -62,6 +62,8 @@
 1. **Understanding Cypress Contexts:**
    - **Definition:**  
      Contexts (or logical groupings) are used to organize tests that share a common setup or belong to a specific user scenario.
+     
+    
    - **Usage:**  
      While Cypress doesn’t have a built‑in context function (as `context()` is just an alias for `describe()`), you can use nested `describe()` blocks to create meaningful groups.
 
@@ -91,6 +93,11 @@
        });
      });
      ```
+
+      In the Cypress world, a test context usually refers to the test’s execution environment — this includes:
+        - the JavaScript scope Cypress runs your code in,
+        - the domain (origin) of the page you're visiting,
+        - the browser state like cookies, localStorage, sessions, and even variables in memory.
 ---
 
 ## Multidomain Testing in Cypress
@@ -175,78 +182,7 @@ Multidomain testing refers to scenarios where your application spans more than o
     });
     ```
 
-2. **cy.session: Managing Sessions Across Tests**
-   - **Purpose:**  
-     `cy.session` caches and restores the state (like cookies, localStorage) to reduce the need for repetitive setup (such as logging in) across multiple tests.
-   - **Example Usage:**
-     ```javascript
-     // Example: Using cy.session to cache login state
-     cy.session('loginSession', () => {
-       cy.visit('/login');
-       cy.get('[data-testid="login-username-input"]').type('demoUser');
-       cy.get('[data-testid="login-password-input"]').type('demoPass');
-       cy.get('[data-testid="login-submit-button"]').click();
-       cy.get('[data-testid="login-success-message"]').should('be.visible');
-     });
-     
-     // Later in tests, the session is automatically restored
-     cy.visit('/dashboard');
-     ```
-   - **Benefits:**  
-     Speeds up tests by avoiding re-login; ensures consistent test state.
 
-    #### Importance of `cy.session()` in Multidomain Testing and Performance Perspective
-
-    **What is `cy.session()`?**  
-    `cy.session()` caches and restores session state (e.g., cookies, localStorage, sessionStorage) across tests. This is particularly useful in multidomain testing and performance optimization.
-
-    **Importance in Multidomain Testing:**
-
-    - **Consistent Session Across Domains:**  
-      When your tests require a login or session state that spans multiple domains, `cy.session()` can help preserve the authenticated state. For example, if your application’s authentication occurs on one domain and the user is then redirected to another domain, caching the session can simplify test setup.
-
-    - **Reduced Setup Overhead:**  
-      Instead of logging in before every test, `cy.session()` allows you to set up a session once and then reuse it. This is especially beneficial when dealing with multidomain scenarios where login actions might be complex.
-
-    **Performance Perspective:**
-
-    - **Faster Test Execution:**  
-      By caching session data, tests run faster because repetitive login or setup actions are not re-executed for each test. This reduces overall test run time.
-      
-    - **Stability:**  
-      Consistent session states across tests lead to fewer flaky tests caused by inconsistent login flows or network delays.
-
-    **Example Usage of `cy.session()` in a Multidomain Scenario:**
-
-    ```javascript
-    describe('Dashboard Tests with Session Management', () => {
-      // Create a session that caches the login process including the multidomain flow.
-      beforeEach(() => {
-        cy.session('loginSession', () => {
-          // Visit main application login page
-          cy.visit('/login');
-          cy.get('[data-testid="login-with-oauth"]').click();
-
-          // Use cy.origin to handle external authentication
-          cy.origin('https://auth.example.com', () => {
-            cy.get('[data-testid="auth-username"]').type('externalUser');
-            cy.get('[data-testid="auth-password"]').type('externalPass');
-            cy.get('[data-testid="auth-submit"]').click();
-          });
-
-          // Verify we land on dashboard after authentication
-          cy.url().should('include', '/dashboard');
-          cy.get('[data-testid="welcome-message"]').should('contain', 'Welcome');
-        });
-      });
-
-      it('should display dashboard elements using cached session', () => {
-        cy.session('loginSession'); // Restore the session
-        cy.visit('/dashboard');
-        cy.get('[data-testid="dashboard-title"]').should('be.visible');
-      });
-    });
-    ```
 
 ### Additional Code Examples for Multidomain Testing
 
@@ -274,35 +210,6 @@ describe('Multidomain Navigation', () => {
   });
 });
 ```
-
-**Example: Using `cy.session()` to Cache Multidomain Session**
-
-```javascript
-describe('Cached Multidomain Session', () => {
-  beforeEach(() => {
-    cy.session('multidomainSession', () => {
-      // Perform login on main domain
-      cy.visit('/login');
-      cy.get('[data-testid="login-with-oauth"]').click();
-      cy.origin('https://auth.example.com', () => {
-        cy.get('[data-testid="auth-username"]').type('externalUser');
-        cy.get('[data-testid="auth-password"]').type('externalPass');
-        cy.get('[data-testid="auth-submit"]').click();
-      });
-      // Assume redirection to main app dashboard
-      cy.url().should('include', '/dashboard');
-    });
-  });
-
-  it('should use the cached session to visit the dashboard quickly', () => {
-    cy.session('multidomainSession');
-    cy.visit('/dashboard');
-    cy.get('[data-testid="dashboard-title"]').should('contain', 'Dashboard');
-  });
-});
-```
-
-
 ---
 
 #### **D. Activities**
@@ -315,7 +222,7 @@ describe('Cached Multidomain Session', () => {
 
 3. **Experiment with cy.origin and cy.session:**
    - **Task:**  
-     Write a test that navigates to a different domain using `cy.origin` (simulate external authentication) and another that uses `cy.session` to cache login state.
+     Write a test that navigates to a different domain using `cy.origin` (simulate external authentication).
    - **Objective:**  
      Demonstrate how to handle multi-domain scenarios and reduce setup overhead.
 
@@ -344,26 +251,6 @@ describe('Cross-Origin Login', () => {
 });
 ```
 
-**Using cy.session:**
-```javascript
-describe('Dashboard Access', () => {
-  beforeEach(() => {
-    cy.session('user-session', () => {
-      cy.visit('/login');
-      cy.get('[data-testid="login-username-input"]').type('demoUser');
-      cy.get('[data-testid="login-password-input"]').type('demoPass');
-      cy.get('[data-testid="login-submit-button"]').click();
-      cy.get('[data-testid="login-success-message"]').should('be.visible');
-    });
-  });
-
-  it('should navigate to dashboard with session restored', () => {
-    cy.visit('/dashboard');
-    cy.get('[data-testid="dashboard-title"]').should('be.visible');
-  });
-});
-```
-
 ---
 
 ### **Potential Student Questions and Answers**
@@ -376,9 +263,6 @@ describe('Dashboard Access', () => {
 
 3. **Q:** *What is the purpose of cy.origin?*  
    **A:** `cy.origin` allows you to execute commands in the context of a different domain. This is useful when testing cross-origin interactions, such as third-party authentication.
-
-4. **Q:** *How does cy.session improve test performance?*  
-   **A:** `cy.session` caches session data (like cookies and localStorage), so you don’t have to perform login steps repeatedly across tests. This saves time and reduces flakiness in tests that rely on authentication.
 
 5. **Q:** *Can I override baseUrl for specific tests?*  
    **A:** While baseUrl is a global configuration, you can override it in individual tests using absolute URLs in `cy.visit()`. However, it’s best to use the global baseUrl for consistency unless you have a specific need to do otherwise.
@@ -410,6 +294,63 @@ describe('Cypress lost value', () => {
   })
 });
 ```
+
+#### Why Does Cypress Reset Everything When You Change the Domain?
+
+This is rooted in **web browser security rules**:
+
+##### What’s happening?
+
+When you do something like:
+
+```javascript
+cy.visit('https://domain1.com');
+// do something...
+cy.visit('https://domain2.com');
+// test fails or loses variables...
+```
+
+Cypress will **automatically reset the entire browser context** when the domain origin changes.
+
+### 🔹 Why?
+
+Because of **Same-Origin Policy (SOP)** in browsers:
+
+* JavaScript from one origin (`https://domain1.com`) cannot directly interact with content on another origin (`https://domain2.com`).
+* Cypress enforces this rule to protect the **consistency of your tests** and to avoid **leaking data or scope** across domains.
+
+When Cypress detects an origin change:
+
+* It **resets the test iframe**
+* All **in-memory variables**, DOM, cookies, and JavaScript **scope is cleared**
+* This ensures test isolation and security
+
+---
+
+#### Example: Why Variable is `undefined` on domain change
+
+```javascript
+let token;
+
+it('gets token from domain1', () => {
+  cy.visit('https://domain1.com');
+  cy.getCookie('authToken').then((cookie) => {
+    token = cookie.value;
+  });
+});
+
+it('tries to use token on domain2', () => {
+  cy.visit('https://domain2.com');
+  cy.log(token); // 🔴 token is undefined here
+});
+```
+
+##### What’s the problem?
+
+* Variable `token` was declared **in the main test file scope**.
+* When Cypress navigates to a new domain, it clears the execution context.
+* So `token` is lost — Cypress starts from a clean slate.
+
 
 In Cypress, each test (`it` block) runs in isolation, meaning that variables set in one test are not reliably carried over to another. Even if you declare a global variable like `var value1`, Cypress resets state between tests for test isolation and to ensure tests don't have hidden dependencies. Additionally, Cypress commands are asynchronous, so the assignment to `value1` in the first test might not be fully resolved or might be reset by the time the second test runs.
 
@@ -464,9 +405,6 @@ When you need to share a value between tests—especially across different domai
 
 2. **Combine Related Flows:**  
    If the two domains are part of one user flow (e.g., logging in on domain1 and then performing an action on domain2), combine these steps into one test block. This approach keeps the test self-contained.
-
-3. **Using cy.session() for Shared Authentication:**  
-   If you need to maintain session state (like authentication cookies) across tests, use `cy.session()`. However, note that `cy.session()` preserves browser state (cookies, localStorage, etc.), not arbitrary values. For sharing custom values, you'll need another approach.
 
 4. **Persisting Data with cy.task():**  
    You can use a custom task to save data (e.g., writing to a file or using an in-memory store) that can be accessed across tests. This is useful for sharing data between tests, even across domains.
@@ -544,33 +482,8 @@ describe('Multidomain Flow with Persisted Value', () => {
 });
 ```
 
-##### **Solution 3: Use cy.session() for Shared Authentication**
 
-While `cy.session()` doesn’t share arbitrary values, it can preserve authentication state. If your value is related to session data (like user tokens), consider using `cy.session()`:
-
-```javascript
-describe('Multidomain Session Flow', () => {
-  beforeEach(() => {
-    cy.session('userSession', () => {
-      cy.visit('https://domain1.com');
-      cy.loginDomain1().then((value) => {
-        // Session is established here; value might be stored indirectly via cookies or localStorage.
-      });
-    });
-  });
-
-  it('navigates to domain2 with shared session', () => {
-    cy.session('userSession'); // Restores session data
-    cy.visit('https://domain2.com');
-    // Test actions on domain2 with the shared session state
-    cy.loginDomain2().should('succeed');
-  });
-});
-```
-
-You can also persist values across tests by writing them to a file and later reading that file in another test. This approach leverages Cypress’s `cy.task()` command combined with Node’s file system API. It’s useful when you need to store data externally and share it between tests, even across sessions.
-
-##### **Solution 4: Store in files**
+##### **Solution 3: Store in files**
 
 1. **Define Tasks in the `setupNodeEvents` Function:**
 

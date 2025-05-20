@@ -107,6 +107,79 @@
      Increase default timeouts when interacting with slow-loading elements or external APIs.
 
 3. **Managing Application State**
+
+2. **cy.session: Managing Sessions Across Tests**
+   - **Purpose:**  
+     `cy.session` caches and restores the state (like cookies, localStorage) to reduce the need for repetitive setup (such as logging in) across multiple tests.
+   - **Example Usage:**
+     ```javascript
+     // Example: Using cy.session to cache login state
+     cy.session('loginSession', () => {
+       cy.visit('/login');
+       cy.get('[data-testid="login-username-input"]').type('demoUser');
+       cy.get('[data-testid="login-password-input"]').type('demoPass');
+       cy.get('[data-testid="login-submit-button"]').click();
+       cy.get('[data-testid="login-success-message"]').should('be.visible');
+     });
+     
+     // Later in tests, the session is automatically restored
+     cy.visit('/dashboard');
+     ```
+   - **Benefits:**  
+     Speeds up tests by avoiding re-login; ensures consistent test state.
+
+    #### Importance of `cy.session()` in Multidomain Testing and Performance Perspective
+
+    **What is `cy.session()`?**  
+    `cy.session()` caches and restores session state (e.g., cookies, localStorage, sessionStorage) across tests. This is particularly useful in multidomain testing and performance optimization.
+
+    **Importance in Multidomain Testing:**
+
+    - **Consistent Session Across Domains:**  
+      When your tests require a login or session state that spans multiple domains, `cy.session()` can help preserve the authenticated state. For example, if your application’s authentication occurs on one domain and the user is then redirected to another domain, caching the session can simplify test setup.
+
+    - **Reduced Setup Overhead:**  
+      Instead of logging in before every test, `cy.session()` allows you to set up a session once and then reuse it. This is especially beneficial when dealing with multidomain scenarios where login actions might be complex.
+
+    **Performance Perspective:**
+
+    - **Faster Test Execution:**  
+      By caching session data, tests run faster because repetitive login or setup actions are not re-executed for each test. This reduces overall test run time.
+      
+    - **Stability:**  
+      Consistent session states across tests lead to fewer flaky tests caused by inconsistent login flows or network delays.
+
+    **Example Usage of `cy.session()` in a Multidomain Scenario:**
+
+    ```javascript
+    describe('Dashboard Tests with Session Management', () => {
+      // Create a session that caches the login process including the multidomain flow.
+      beforeEach(() => {
+        cy.session('loginSession', () => {
+          // Visit main application login page
+          cy.visit('/login');
+          cy.get('[data-testid="login-with-oauth"]').click();
+
+          // Use cy.origin to handle external authentication
+          cy.origin('https://auth.example.com', () => {
+            cy.get('[data-testid="auth-username"]').type('externalUser');
+            cy.get('[data-testid="auth-password"]').type('externalPass');
+            cy.get('[data-testid="auth-submit"]').click();
+          });
+
+          // Verify we land on dashboard after authentication
+          cy.url().should('include', '/dashboard');
+          cy.get('[data-testid="welcome-message"]').should('contain', 'Welcome');
+        });
+      });
+
+      it('should display dashboard elements using cached session', () => {
+        cy.session('loginSession'); // Restore the session
+        cy.visit('/dashboard');
+        cy.get('[data-testid="dashboard-title"]').should('be.visible');
+      });
+    });
+    ```
    - **cy.session():**  
      Use `cy.session()` to cache login sessions or any repetitive setup steps. This reduces redundant operations and ensures consistency across tests.
      ```javascript
