@@ -19,16 +19,9 @@ describe('Registration tests', () => {
 
     it('validate object on page', () => {
         // enter data
-        regisrtPage.nameInput().should('be.visible').type(regUser.name)  
-        regisrtPage.emailInput().should('be.visible').type(regUser.email) 
-        regisrtPage.roleSelect().should('be.visible').select(regUser.role)
-        regisrtPage.addressInput().should('be.visible').type(regUser.address) 
-        interestComponent.navigateToInter(NavigationInterest.Technology)  
-        interestComponent.navigateToInter(NavigationInterest.Design) 
-        substrComponent.navigateToSubscr(NavigationSubscription.Monthly)  
-        substrComponent.navigateToSubscr(NavigationSubscription.Yearly)   
-        regisrtPage.avaButton().selectFile('cypress/fixtures/palma.png')
-        regisrtPage.regButton().should('be.visible').click()
+        regisrtPage.registerUser(regUser)
+
+
         // validate data in reg.window
         regisrtPage.regResult().should('be.visible').and('have.text', 'Registration Complete');
         regisrtPage.resultName().should('contain.text', regUser.name)
