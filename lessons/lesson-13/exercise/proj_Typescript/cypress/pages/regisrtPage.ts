@@ -23,16 +23,16 @@ export default new class regisrtPage {
     resultAva = () => cy.get('div[class="result-avatar"] img')
 
     registerUser(user: RegistrUser) { 
-                this.nameInput().should('be.visible').type(user.name)  
-                this.emailInput().should('be.visible').type(user.email) 
-                this.roleSelect().should('be.visible').select(user.role)
-                this.addressInput().should('be.visible').type(user.address) 
-                interestComponent.navigateToInter(NavigationInterest.Technology)  
-                interestComponent.navigateToInter(NavigationInterest.Design) 
-                substrComponent.navigateToSubscr(NavigationSubscription.Monthly)  
-                substrComponent.navigateToSubscr(NavigationSubscription.Yearly)   
-                this.avaButton().selectFile('cypress/fixtures/palma.png')
-                this.regButton().should('be.visible').click()
+        this.nameInput().should('be.visible').type(user.name)  
+        this.emailInput().should('be.visible').type(user.email) 
+        this.roleSelect().should('be.visible').select(user.role)
+        this.addressInput().should('be.visible').type(user.address) 
+        interestComponent.navigateToInter(NavigationInterest.Technology)  
+        interestComponent.navigateToInter(NavigationInterest.Design) 
+        substrComponent.navigateToSubscr(NavigationSubscription.Monthly)  
+        substrComponent.navigateToSubscr(NavigationSubscription.Yearly)   
+        this.avaButton().selectFile('cypress/fixtures/palma.png')
+        this.regButton().should('be.visible').click()
 
     }
 

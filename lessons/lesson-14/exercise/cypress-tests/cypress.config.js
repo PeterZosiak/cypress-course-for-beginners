@@ -5,15 +5,15 @@ module.exports = defineConfig({
   e2e: {
     setupNodeEvents(on, config) {
       // implement node event listeners here
-      let sharedValue = ''
 
+      let sharedValue = ''
       on("task", {
-        saveValue(value) { 
+        setSharedValue(value) { 
           sharedValue = value
-          return ''
+          return null;
         }, 
 
-        getValue() {
+        getSharedValue() {
           return sharedValue
          }
       })

@@ -8,7 +8,6 @@ const regUser: RegistrUser = {
     email: "liuda@com.ua",
     role: "admin",
     address: "Praha, b.6",
-    
 }
 describe('Registration tests', () => {
     beforeEach(() => {
@@ -20,8 +19,6 @@ describe('Registration tests', () => {
     it('validate object on page', () => {
         // enter data
         regisrtPage.registerUser(regUser)
-
-
         // validate data in reg.window
         regisrtPage.regResult().should('be.visible').and('have.text', 'Registration Complete');
         regisrtPage.resultName().should('contain.text', regUser.name)
