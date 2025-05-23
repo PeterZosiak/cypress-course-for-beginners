@@ -1,6 +1,7 @@
 {
-  "name": "exercise",
+  "name": "cypress-tests_typescript",
   "version": "1.0.0",
+  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -8,8 +9,12 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "",
   "dependencies": {
-    "cypress": "^14.3.3"
+    "cypress": "^14.4.0",
+    "typescript": "^5.8.3"
+  },
+  "devDependencies": {
+    "@types/cypress": "^1.1.6",
+    "@types/node": "^22.15.21"
   }
 }
