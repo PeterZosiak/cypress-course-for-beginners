@@ -1,19 +1,31 @@
 <template>
   <footer class="footer" data-testid="app-footer">
-    <p>&copy; 2025 My Nuxt App. All rights reserved.</p>
+    <div class="footer-content">
+      <p>&copy; {{ new Date().getFullYear() }} My Nuxt App. All rights reserved.</p>
+    </div>
   </footer>
 </template>
 
 <style scoped>
 .footer {
-  background: #f8f9fa;
-  padding: 1rem;
+  background-color: #f8f9fa; /* Light gray, consistent with a clean theme */
+  color: #6c757d; /* Softer text color */
+  padding: 1.5rem 2rem; /* More padding */
   text-align: center;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
-  z-index: 100;
+  border-top: 1px solid #e0e0e0; /* Subtle top border */
+  /* Removed fixed positioning to allow natural flow,
+     will be at the bottom if content pushes it.
+     If a sticky footer is absolutely needed with short content,
+     flexbox on the main app layout is a better approach. */
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer p {
+  margin: 0;
+  font-size: 0.9rem;
 }
 </style>
