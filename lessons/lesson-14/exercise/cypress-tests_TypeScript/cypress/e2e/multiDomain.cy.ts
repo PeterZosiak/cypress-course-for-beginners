@@ -19,7 +19,8 @@ describe('template spec', () => {
     })
 
     cy.readFile('cypress/fixtures/generateText.txt').then((value) => {
-    validateValuePage.validateValue(value)
+      validateValuePage.validateValue(value)
+      validateValuePage.verifiedText().should('contain.text', value)
     })
   })
 // my test

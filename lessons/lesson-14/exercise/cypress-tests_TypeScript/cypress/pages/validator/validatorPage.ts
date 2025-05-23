@@ -8,6 +8,6 @@ export default new class validateValuePage {
     this.validateEnterButton().click()
     this.validateValueInput().type(value, { force: true })
     this.validateValueButton().click()
-    this.verifiedText().should('contain.text', value)
+    
   }
 }
