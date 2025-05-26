@@ -1,0 +1,5 @@
+{
+    "urlGener": "http://localhost:8080/",
+    "urlValid": "http://localhost:8081/",
+    "urlValid2": "http://localhost:8082/"
+}
