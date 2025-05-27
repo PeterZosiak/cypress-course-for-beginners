@@ -1,0 +1,48 @@
+{
+    "body": {
+        "token": "Bearer my-secret-token"
+    },
+    "headers": {
+        "content-type": "application/json",
+        "date": "Tue, 27 May 2025 14:29:53 GMT",
+        "connection": "close",
+        "content-length": "39"
+    },
+    "status": 200,
+    "statusText": "OK",
+    "isOkStatusCode": true,
+    "requestHeaders": {
+        "Connection": "keep-alive",
+        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+        "accept": "/",
+        "accept-encoding": "gzip, deflate",
+        "content-type": "application/json",
+        "content-length": 34
+    },
+    "requestBody": "{"name":"admin","password":"pass"}",
+    "duration": 7,
+    "allRequestResponses": [
+        {
+            "Request Body": "{"name":"admin","password":"pass"}",
+            "Request Headers": {
+                "Connection": "keep-alive",
+                "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+                "accept": "/",
+                "accept-encoding": "gzip, deflate",
+                "content-type": "application/json",
+                "content-length": 34
+            },
+            "Request URL": "http://localhost:3000/api/login",
+            "Response Body": {
+                "token": "Bearer my-secret-token"
+            },
+            "Response Headers": {
+                "content-type": "application/json",
+                "date": "Tue, 27 May 2025 14:29:53 GMT",
+                "connection": "close",
+                "content-length": "39"
+            },
+            "Response Status": 200
+        }
+    ]
+}

@@ -7,9 +7,7 @@ export default defineConfig({
   e2e: {
     setupNodeEvents(on, config) {
       // implement node event listeners here
-
-      
-    const customConfig = readFileSync('cypress/config/configuration.json', 'utf-8')
+      const customConfig = readFileSync('cypress/config/configuration.json', 'utf-8')
       const parsedConfig = JSON.parse(customConfig)
       
       config.env = { ...parsedConfig }

@@ -5,6 +5,14 @@ export default defineEventHandler((event) => {
     { id: 2, title: "Vue Tips", content: "Useful tips for Vue developers." },
     { id: 3, title: "Modern Web", content: "Trends in modern web development." }
   ];
+
+  // const search = typeof query.search === 'string' ? query.search.toLowerCase() : null;
+  // if (search) {
+  //   return articles.filter(article =>
+  //     article.title.toLowerCase().includes(search)
+  //   );
+  // }
+
   if (query.search) {
     return articles.filter(article =>
       article.title.toLowerCase().includes(query.search.toLowerCase())

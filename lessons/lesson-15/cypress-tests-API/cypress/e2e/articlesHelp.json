@@ -1,0 +1,55 @@
+{
+    "body": [
+        {
+            "id": 1,
+            "title": "Nuxt 3 Guide",
+            "content": "Learn Nuxt 3 step-by-step."
+        },
+        {
+            "id": 2,
+            "title": "Vue Tips",
+            "content": "Useful tips for Vue developers."
+        },
+        {
+            "id": 3,
+            "title": "Modern Web",
+            "content": "Trends in modern web development."
+        }
+    ],
+    "headers": {
+        "content-type": "application/json",
+        "date": "Tue, 27 May 2025 13:48:28 GMT",
+        "connection": "close",
+        "content-length": "293"
+    },
+    "status": 200,
+    "statusText": "OK",
+    "isOkStatusCode": true,
+    "requestHeaders": {
+        "Connection": "keep-alive",
+        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+        "accept": "/",
+        "accept-encoding": "gzip, deflate"
+    },
+    "duration": 14,
+    "allRequestResponses": [
+        {
+            "Request Body": null,
+            "Request Headers": {
+                "Connection": "keep-alive",
+                "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+                "accept": "/",
+                "accept-encoding": "gzip, deflate"
+            },
+            "Request URL": "http://localhost:3000/api/articles",
+            "Response Body": "[\n {\n "id": 1,\n "title": "Nuxt 3 Guide",\n "content": "Learn Nuxt 3 step-by-step."\n },\n {\n "id": 2,\n "title": "Vue Tips",\n "content": "Useful tips for Vue developers."\n },\n {\n "id": 3,\n "title": "Modern Web",\n "content": "Trends in modern web development."\n }\n]",
+            "Response Headers": {
+                "content-type": "application/json",
+                "date": "Tue, 27 May 2025 13:48:28 GMT",
+                "connection": "close",
+                "content-length": "293"
+            },
+            "Response Status": 200
+        }
+    ]
+}
