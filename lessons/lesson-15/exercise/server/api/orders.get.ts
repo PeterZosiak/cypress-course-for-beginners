@@ -14,7 +14,7 @@ export default defineEventHandler(async (event) => {
     { id: 2, item: "Order Two", quantity: 1, status: "Pending" },
     { id: 3, item: "Order Three", quantity: 5, status: "Delivered" },
     { id: 4, item: "Another Item", quantity: 3, status: "Pending" },
-    { id: 5, item: "Special Order", quantity: 1, status: "Shipped" }
+    //{ id: 5, item: "Special Order", quantity: 1, status: "Shipped" }
   ]
 
   if (query.search) {

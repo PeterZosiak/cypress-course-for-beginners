@@ -41,28 +41,23 @@ describe('API tests articles Page', () => {
       })
   })
 
-  it('validate headers', () => {
+  it('should return 200 and contain valid body', () => {
     cy.request({
       method: 'POST',
       url: Cypress.env('baseUrlApi') + '/articles',
-    
-      headers: {
-      "content-type": 'application/json',
-      "connection": "close",
-      "content-length": "293",
-      "status": 200,
-      "statusText": "OK",
-      "isOkStatusCode": true
+      body: {
+        title: "New Article",
+        content: "Some content"
       },
-      failOnStatusCode: false
-      }).then((odpoved) => {
-        cy.log(JSON.stringify(odpoved));
-        //expect(odpoved.statusText).to.be.equal("OK");
-        Cypress.env('token', odpoved.body.token);
+      headers: {
+        "content-type": "application/json"
+      }
+    }).then((response) => {
+      expect(response.status).to.eq(200);
+      expect(response.body).to.have.property('id');
+      expect(response.body.title).to.eq("New Article");
+      expect(response.body.content).to.eq("Some content");
     });
-  })
+  });
 
-
-
-  
 }) 
