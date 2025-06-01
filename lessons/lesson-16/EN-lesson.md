@@ -284,22 +284,29 @@
       Install the necessary package:
       ```bash
       npm install --save-dev @badeball/cypress-cucumber-preprocessor
+      npm install --save-dev @bahmutov/cypress-esbuild-preprocessor
       ```
       
     2. **Configuration:**  
       Update your `cypress.config.js` to integrate the preprocessor:
       ```javascript
       import { defineConfig } from 'cypress';
-      import createEsbuildPlugin from '@badeball/cypress-cucumber-preprocessor/esbuild';
-      import preprocessor from '@badeball/cypress-cucumber-preprocessor';
+      import createBundler from "@bahmutov/cypress-esbuild-preprocessor"
+      import { addCucumberPreprocessorPlugin } from "@badeball/cypress-cucumber-preprocessor"
+      import createEsbuildPlugin from "@badeball/cypress-cucumber-preprocessor/esbuild"
 
       export default defineConfig({
         e2e: {
           specPattern: '**/*.feature', // Ensure your feature files are picked up
-          setupNodeEvents(on, config) {
+          async setupNodeEvents(on, config) {
             // Initialize the preprocessor
-            preprocessor.addCucumberPreprocessorPlugin(on, config);
-            on('file:preprocessor', createEsbuildPlugin(config));
+            await addCucumberPreprocessorPlugin(on, config)
+            on(
+              "file:preprocessor",
+              createBundler({
+                plugins: [createEsbuildPlugin(config)],
+              })
+            )
             return config;
           },
         },

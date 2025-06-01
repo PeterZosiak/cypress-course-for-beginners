@@ -128,7 +128,7 @@
    - **Benefits:**  
      Speeds up tests by avoiding re-login; ensures consistent test state.
 
-    #### Importance of `cy.session()` in Multidomain Testing and Performance Perspective
+    #### Importance of `cy.session()` from Performance perspective
 
     **What is `cy.session()`?**  
     `cy.session()` caches and restores session state (e.g., cookies, localStorage, sessionStorage) across tests. This is particularly useful in multidomain testing and performance optimization.
@@ -208,8 +208,6 @@
        cy.get('[data-testid="external-element"]').should('be.visible');
      });
      ```
-   - **Simulating Drag-and-Drop:**  
-     Use plugins like `cypress-drag-drop` for interactions that involve dragging elements.
 
 ---
 

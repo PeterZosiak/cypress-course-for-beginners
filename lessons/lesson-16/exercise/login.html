@@ -105,15 +105,36 @@
     <form id="login-form" data-testid="login-form" aria-label="Prihlasovací formulár">
       <div class="form-group">
         <label for="username">Používateľské meno:</label>
-        <input id="username" type="text" placeholder="Zadajte používateľské meno" data-testid="username-input" aria-required="true" aria-label="Používateľské meno" />
+        <input id="username" type="text" placeholder="Zadajte používateľské meno" data-testid="username-input"
+          aria-required="true" aria-label="Používateľské meno" aria-describedby="username-hint" />
+        <div id="username-hint" class="hint" aria-live="polite">
+          Použite svoje registrované používateľské meno.
+        </div>
       </div>
       <div class="form-group">
         <label for="password">Heslo:</label>
-        <input id="password" type="password" placeholder="Zadajte heslo" data-testid="password-input" aria-required="true" aria-label="Heslo" />
+        <input id="password" type="password" placeholder="Zadajte heslo" data-testid="password-input"
+          aria-required="true" aria-label="Heslo" aria-describedby="password-hint" />
+        <div id="password-hint" class="hint" aria-live="polite">
+          Zadajte svoje heslo.
+        </div>
       </div>
-      <button type="submit" data-testid="login-button">Prihlásiť</button>
+      <button type="submit" data-testid="login-button" aria-label="Potvrdiť prihlásenie">Prihlásiť</button>
+      <!-- Aria-label pre tlačidlo -->
     </form>
-    <div id="message" data-testid="message" role="alert" class="message hidden"></div>
+    <div id="message" data-testid="message" role="alert" class="message hidden" aria-live="assertive"></div>
+    <!-- aria-live="assertive" pre okamžité oznámenie správ -->
+
+    <!-- Pridanie odkazu na zabudnuté heslo s aria-role -->
+    <div class="form-group">
+      <a href="#" role="link" aria-label="Zabudnuté heslo">Zabudnuté heslo?</a>
+    </div>
+
+    <!-- Pridanie sekcie pre nové registrácie s aria-landmark -->
+    <section aria-label="Registrácia nového používateľa">
+      <p>Ešte nemáte účet?</p>
+      <a href="#" role="button" aria-label="Prejsť na registráciu">Registrácia</a>
+    </section>
   </div>
 
   <script>
