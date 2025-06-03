@@ -1,0 +1,42 @@
+Cypress.on('uncaught:exception', (err, runnable) => {
+    return false
+})
+
+
+const app = window.top
+if (app!.document.head.querySelector('[data-hide-command-log-request]')) {
+    const style = app!.document.createElement('style')
+    style.innerHTML =
+        '.command-name-request, .command-name-xhr { display: none }'
+    style.setAttribute('data-hide-command-log-request', '')
+    app!.document.head.appendChild(style)
+}
+
+Cypress.on('window:before:load', window => {
+    window.document.head.insertAdjacentHTML(
+        'beforeend',
+        `
+    <style>
+      /* Disable CSS transitions. */
+      *, *::before, *::after { -webkit-transition: none !important; -moz-transition: none !important; -o-transition: none !important; transition: none !important; }
+      /* Disable CSS animations. */
+      *, *::before, *::after { -webkit-animation: none !important; -moz-animation: none !important; -o-animation: none !important; animation: none !important; }
+    </style>
+  `
+    )
+})
+
+Cypress.on("log:changed", (log) => {
+  // ignore non-fetch logs
+  if (log.displayName !== "fetch") return;
+
+  if (!window.top) return;
+  const logs = window.top.document.querySelectorAll("li.command-name-request");
+  if (logs.length) {
+    // loop over all entries since log:changed-event is debounced to prevent it from firing too quickly and too often
+    [...logs].forEach((log) => {
+      // remove all fetch-entries from the panel
+      if (log.textContent?.includes("(fetch)")) log.remove();
+    });
+  }
+});
