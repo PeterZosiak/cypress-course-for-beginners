@@ -359,6 +359,10 @@ While Cypress is excellent for end-to-end and API testing, there are other tools
 - **Cypress Sessions:**  
   [cy.session Documentation](https://docs.cypress.io/api/commands/session)
 
+- **Testing API sites for practise**
+  [Fake Store API](https://fakestoreapi.com/)
+  [Booking app](https://restful-booker.herokuapp.com/)
+
 ---
 
 ### **Potential Student Questions and Answers**
@@ -372,16 +376,7 @@ While Cypress is excellent for end-to-end and API testing, there are other tools
 5. **Q:** *Can I mix API and UI tests in one suite?*  
    **A:** Yes, combining API and UI tests can provide comprehensive coverage by verifying both the backend data and its correct presentation in the UI. For instance, you can use `cy.request()` to fetch data and then assert that the UI displays the correct data.
 
-
-
-
    Below is a detailed explanation of HTTP Headers and HTTP Body:
-
----
-
----
-
-### **Summary**
 
 - **HTTP Headers:**  
   Provide metadata about the request or response (content type, caching, authentication, etc.). They help control and define how data should be interpreted.

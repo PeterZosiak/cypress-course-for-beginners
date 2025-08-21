@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cypress Real-World Testing Scenarios</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <header>
+        <h1>Cypress Real-World Problems & Solutions</h1>
+        <nav>
+            <button class="nav-btn" data-testid="dynamic-content-nav">Dynamic Content</button>
+            <button class="nav-btn" data-testid="flaky-tests-nav">Flaky Elements</button>
+            <button class="nav-btn" data-testid="complex-interactions-nav">Complex Interactions</button>
+            <button class="nav-btn" data-testid="session-management-nav">Session Management</button>
+            <button class="nav-btn" data-testid="multidomain-nav">Multi-domain</button>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Dynamic Content Section -->
+        <section id="dynamic-content" class="scenario-section active">
+            <h2>Dynamic Content & Asynchronous Behavior</h2>
+            <div class="scenario-description">
+                <p>This section demonstrates handling dynamic content and asynchronous behavior in Cypress tests.</p>
+            </div>
+
+            <div class="demo-area">
+                <button data-testid="load-dynamic-content" class="action-btn">Load Dynamic Content</button>
+                <button data-testid="load-async-data" class="action-btn">Fetch Async Data</button>
+                <button data-testid="trigger-animation" class="action-btn">Trigger Animation</button>
+
+                <div data-testid="dynamic-content-container" class="content-container">
+                    <div data-testid="loading-indicator" class="loading hidden">Loading...</div>
+                    <div data-testid="dynamic-list" class="dynamic-list hidden"></div>
+                    <div data-testid="async-result" class="async-result hidden"></div>
+                    <div data-testid="animated-element" class="animated-element">Animate Me!</div>
+                </div>
+
+                <div data-testid="status" class="status-indicator">Ready</div>
+            </div>
+        </section>
+
+        <!-- Flaky Elements Section -->
+        <section id="flaky-tests" class="scenario-section">
+            <h2>Flaky Tests & Reliability Issues</h2>
+            <div class="scenario-description">
+                <p>This section simulates flaky behavior that can make tests unreliable.</p>
+            </div>
+
+            <div class="demo-area">
+                <button data-testid="sometimes-fail-btn" class="action-btn">Sometimes Fails</button>
+                <button data-testid="network-dependent-btn" class="action-btn">Network Dependent</button>
+                <button data-testid="timing-sensitive-btn" class="action-btn">Timing Sensitive</button>
+
+                <div class="flaky-elements">
+                    <div data-testid="flaky-element" class="flaky-item">Flaky Element</div>
+                    <div data-testid="network-status" class="network-status">Network: OK</div>
+                    <div data-testid="timing-result" class="timing-result hidden">Timing Result</div>
+                    <div data-testid="retry-counter" class="retry-counter">Attempts: 0</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Complex Interactions Section -->
+        <section id="complex-interactions" class="scenario-section">
+            <h2>Complex User Interactions</h2>
+            <div class="scenario-description">
+                <p>This section demonstrates complex interactions like drag-and-drop and nested modals.</p>
+            </div>
+
+            <div class="demo-area">
+                <button data-testid="open-modal-btn" class="action-btn">Open Modal</button>
+                <button data-testid="open-nested-modal-btn" class="action-btn">Open Nested Modal</button>
+
+                <div class="drag-drop-area">
+                    <h3>Drag and Drop</h3>
+                    <div class="drag-container">
+                        <div data-testid="draggable-item-1" class="draggable-item" draggable="true">Item 1</div>
+                        <div data-testid="draggable-item-2" class="draggable-item" draggable="true">Item 2</div>
+                        <div data-testid="draggable-item-3" class="draggable-item" draggable="true">Item 3</div>
+                    </div>
+                    <div data-testid="drop-zone" class="drop-zone">Drop items here</div>
+                </div>
+
+                <div class="form-section">
+                    <h3>Multi-step Form</h3>
+                    <form data-testid="multi-step-form" class="multi-step-form">
+                        <div data-testid="step-1" class="form-step active">
+                            <input data-testid="first-name" type="text" placeholder="First Name" required>
+                            <input data-testid="last-name" type="text" placeholder="Last Name" required>
+                            <button type="button" data-testid="next-step-1" class="step-btn">Next</button>
+                        </div>
+                        <div data-testid="step-2" class="form-step hidden">
+                            <input data-testid="email" type="email" placeholder="Email" required>
+                            <input data-testid="phone" type="tel" placeholder="Phone" required>
+                            <button type="button" data-testid="prev-step-2" class="step-btn">Previous</button>
+                            <button type="submit" data-testid="submit-form" class="step-btn">Submit</button>
+                        </div>
+                    </form>
+                    <div data-testid="form-result" class="form-result hidden">Form submitted successfully!</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Session Management Section -->
+        <section id="session-management" class="scenario-section">
+            <h2>Session & State Management</h2>
+            <div class="scenario-description">
+                <p>This section demonstrates login simulation and session caching scenarios.</p>
+            </div>
+
+            <div class="demo-area">
+                <div data-testid="login-area" class="login-area">
+                    <h3>Login Simulation</h3>
+                    <form data-testid="login-form" class="login-form">
+                        <input data-testid="login-username-input" type="text" placeholder="Username" value="demoUser">
+                        <input data-testid="login-password-input" type="password" placeholder="Password"
+                            value="demoPass">
+                        <button data-testid="login-submit-button" class="action-btn" type="submit">Login</button>
+                    </form>
+                    <div data-testid="login-success-message" class="success-message hidden">Login successful!</div>
+                    <div data-testid="login-error-message" class="error-message hidden">Invalid credentials</div>
+                </div>
+
+                <div data-testid="dashboard-area" class="dashboard-area hidden">
+                    <h3>Dashboard</h3>
+                    <div data-testid="welcome-message" class="welcome-message">Welcome, User!</div>
+                    <div data-testid="dashboard-title" class="dashboard-title">User Dashboard</div>
+                    <button data-testid="logout-btn" class="action-btn">Logout</button>
+                    <div class="user-data">
+                        <h4>User Profile</h4>
+                        <div data-testid="user-profile" class="user-profile">
+                            <p>Username: <span data-testid="profile-username">demoUser</span></p>
+                            <p>Last Login: <span data-testid="last-login">Never</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Multi-domain Section -->
+        <section id="multidomain" class="scenario-section">
+            <h2>Multi-domain Testing</h2>
+            <div class="scenario-description">
+                <p>This section simulates cross-origin interactions and external domain testing.</p>
+            </div>
+
+            <div class="demo-area">
+                <button data-testid="load-external-content" class="action-btn">Load External Content</button>
+                <button data-testid="simulate-oauth" class="action-btn">Simulate OAuth</button>
+
+                <div class="external-content-area">
+                    <h3>External Domain Simulation</h3>
+                    <div data-testid="external-frame-container" class="external-frame-container">
+                        <iframe data-testid="external-iframe" src="about:blank" class="external-iframe hidden"
+                            title="External Domain Simulation">
+                        </iframe>
+                    </div>
+                    <div data-testid="oauth-result" class="oauth-result hidden">OAuth authentication successful!</div>
+                </div>
+
+                <div class="api-simulation">
+                    <h3>API Response Simulation</h3>
+                    <button data-testid="api-success-btn" class="api-btn">Success Response</button>
+                    <button data-testid="api-error-btn" class="api-btn">Error Response</button>
+                    <button data-testid="api-slow-btn" class="api-btn">Slow Response</button>
+                    <div data-testid="api-result" class="api-result"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Modal for Complex Interactions -->
+        <div data-testid="modal-overlay" class="modal-overlay hidden">
+            <div data-testid="modal-content" class="modal-content">
+                <h3>Modal Dialog</h3>
+                <p>This is a modal for testing complex interactions.</p>
+                <button data-testid="open-nested-modal" class="action-btn">Open Nested Modal</button>
+                <button data-testid="close-modal" class="action-btn">Close</button>
+            </div>
+        </div>
+
+        <!-- Nested Modal -->
+        <div data-testid="nested-modal-overlay" class="modal-overlay hidden">
+            <div data-testid="nested-modal-content" class="modal-content">
+                <h3>Nested Modal</h3>
+                <p>This is a nested modal for advanced testing scenarios.</p>
+                <input data-testid="nested-input" type="text" placeholder="Enter something">
+                <button data-testid="close-nested-modal" class="action-btn">Close Nested</button>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

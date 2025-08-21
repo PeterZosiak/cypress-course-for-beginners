@@ -355,6 +355,10 @@ I když je Cypress skvělý pro end-to-end i API testování, existují i dalš�
 - **Cypress sessiony:**  
   [cy.session Documentation](https://docs.cypress.io/api/commands/session)
 
+- **Testing API sites for practise**
+  [Fake Store API](https://fakestoreapi.com/)
+  [Booking app](https://restful-booker.herokuapp.com/)
+
 ---
 
 ### **Možné dotazy studentů a odpovědi**
@@ -368,15 +372,7 @@ I když je Cypress skvělý pro end-to-end i API testování, existují i dalš�
 5. **Q:** *Mohu v jednom testovacím balíčku kombinovat API a UI testy?*  
    **A:** Ano, kombinace API a UI testů zajišťuje komplexní pokrytí ověřením jak backendových dat, tak jejich správného zobrazení v UI. Například můžete použít `cy.request()` k získání dat a poté ověřit, že UI zobrazuje správná data.
 
-
-
    Níže je detailní vysvětlení HTTP hlaviček a těla:
-
----
-
----
-
-### **Shrnutí**
 
 - **HTTP hlavičky:**  
   Poskytují metadata o požadavku nebo odpovědi (typ obsahu, cacheování, autentizace atd.). Pomáhají řídit a určovat, jak mají být data interpretována.
