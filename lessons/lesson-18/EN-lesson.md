@@ -279,8 +279,5 @@ Sign up at [https://dashboard.cypress.io](https://dashboard.cypress.io)
 4. **Q:** *How do environment variables and secrets work in CI/CD pipelines?*  
    **A:** CI/CD platforms provide secure ways to manage environment variables and secrets. These values are injected into your build and test processes so that sensitive data, like API keys, are not hard-coded in your tests.
 
-5. **Q:** *How can cy.intercept() improve test reliability?*  
-   **A:** `cy.intercept()` allows you to stub network requests, ensuring that your tests are not affected by external backend variability. This leads to more deterministic test outcomes and faster execution times.
-
 6. **Q:** *What are the advantages of integrating Cypress tests into a CI/CD pipeline?*  
    **A:** Automation of test runs on every commit or deployment, quick feedback on code changes, improved collaboration, and the ability to catch errors early are among the major benefits. It also enables continuous quality assurance throughout the development lifecycle.

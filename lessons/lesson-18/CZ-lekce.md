@@ -278,8 +278,5 @@ Registrace na [https://dashboard.cypress.io](https://dashboard.cypress.io)
 4. **Q:** *Jak fungují proměnné prostředí a tajné klíče v CI/CD pipeline?*  
    **A:** CI/CD platformy poskytují bezpečný způsob správy proměnných prostředí a tajných údajů. Tyto hodnoty jsou vkládány do procesu sestavení a testování, aby se citlivá data, např. API klíče, nevyskytovala přímo v testech.
 
-5. **Q:** *Jak může cy.intercept() zlepšit spolehlivost testů?*  
-   **A:** `cy.intercept()` umožňuje podvrhnout síťové požadavky, což znamená, že vaše testy nejsou ovlivněny vnější variabilitou backendu. To vede k předvídatelnějším výsledkům testů a rychlejšímu provedení.
-
 6. **Q:** *Jaké jsou výhody integrace Cypress testů do CI/CD pipeline?*  
    **A:** Automatizace spouštění testů při každém commitu či nasazení, rychlá zpětná vazba ke změnám v kódu, lepší spolupráce týmu a schopnost včas zachytit chyby jsou hlavními výhodami. Také umožňuje kontinuální zajišťování kvality v celém vývojovém cyklu.
